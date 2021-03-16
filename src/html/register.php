@@ -13,7 +13,6 @@
                 <h2 class="slogan"> Begin or expand your career with PsychNova today. </h2>
             </div>
             <div class="col-md-6 registration-box">
-                <h2> Register </h2>
                 <form action="registration.php" method="post">
                     <div class="form-group">
                         <label> email </label>
