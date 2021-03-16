@@ -22,10 +22,14 @@
                         <label> password </label>
                         <input type="password" name="password" class="form-control" required>
                     </div>
-                    <button type="submit" class="btn"> Login </button>
+                    <p align="center">
+                        <button type="submit" class="btn"> Login </button>
+                    </p>
                 </form>
-                <h6> Don't have an account? Register. </h6>
-                <a href="register.php"><button class="btn">Create an account</button></a>
+                    <h6> Don't have an account? </h6>
+                <p align="center">
+                    <a href="register.php"><button class="btn">Create an account</button></a>
+                </p>
             </div>
         </div>
     </div>

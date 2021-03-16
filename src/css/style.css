@@ -1,14 +1,16 @@
-@import url('https://fonts.googleapis.com/css?family=Warnes&display=swap');
 body{
     background-color: #A58AAE !important;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-}
+    background-image: url(../images/LogIn.jpg);
+    background-position: center; /* Center the image */
+    background-size: cover;
+    min-height: 100%;
+    min-width: 100%;
+    }
 
 h1 {
-    padding-top: 50px;
+    padding-top: 100px;
     font-size: 60px;
     color: #fff;
-    text-align: center;
     font-family: 'Monaco';
     text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #ffffff, 0 0 20px #A58AAE, 0 0 25px #A58AAE, 0 0 30px #A58AAE, 0 0 35px #A58AAE;
   }
@@ -29,18 +31,22 @@ input {
 }
 
 h6 {
-    padding-top: 50px;
+    padding-top: 30px;
+    padding-bottom: 10px;
     color: #C784E0;
+    text-align: center;
 }
 
 .btn{
     background-color: #A58AAE;
     border-radius: 100px !important;
     color: white;
+    height:40px;
+    width:200px;
 }
 
 .login-registration-box{
-    max-width: 700PX;
+    max-width: 800PX;
     float: none;
     margin: 150px auto;
 }
@@ -52,7 +58,7 @@ h6 {
 }
 .registration-box{
     border-radius: 25px;
-    background-color: rgba(211, 211, 211, 0.5);
+    background-color: white;
     padding: 30px;
 }
 

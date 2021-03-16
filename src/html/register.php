@@ -6,10 +6,12 @@
 </head>
 <body>
 <div class="container">
-    <h1> PsychNova </h1>
-    <h2 class="slogan"> Begin or expand your career with PsychNova today. </h2>
     <div class="login-registration-box">
         <div class="row">
+            <div class="col-md-6 logo-box">
+                <h1> PsychNova </h1>
+                <h2 class="slogan"> Begin or expand your career with PsychNova today. </h2>
+            </div>
             <div class="col-md-6 registration-box">
                 <h2> Register </h2>
                 <form action="registration.php" method="post">
@@ -45,7 +47,9 @@
                         <label> Place of birth </label>
                         <input type="text" name="placeOfBirth" class="form-control">
                     </div>
-                    <button type="submit" class="btn"> Register </button>
+                    <p align="center">
+                        <button type="submit" class="btn"> Register </button>
+                    </p>
                 </form>
             </div>
         </div>
