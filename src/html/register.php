@@ -2,7 +2,7 @@
 <head>
     <title> PsychNova register </title>
     <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <link rel="stylesheet" type="text/css" href="../css/login_and_registration.css">
 </head>
 <body>
 <div class="container">
