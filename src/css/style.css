@@ -1,5 +1,5 @@
 body {
-    background-image: url("cool-background.png");
+    background-image: url("../images/cool-background.png");
 }
 
 .well {
@@ -8,7 +8,7 @@ body {
 
 .navbar .nav>.active>a {
     border-radius: 25px;
-    background: purple;
+    background: #A58AAE !important;
     width: 50;
     height: 30;
     /* background: purple;
@@ -37,11 +37,9 @@ textarea {
 } */
 
 .navbar .nav>.active>a:hover {
-    background: purple;
+    background: #A58AAE !important;
 }
 
-
-
 .navbar .nav>.active>a:focus {
-    background: purple;
+    background: #A58AAE !important;
 }

@@ -16,35 +16,35 @@
                 <form action="registration.php" method="post">
                     <div class="form-group">
                         <label> email </label>
-                        <input type="text" name="email" class="form-control" required>
+                        <input type="text" placeholder="e.g., joe.bloggs@example.com" name="email" class="form-control" required>
                     </div>
                     <div class="form-group">
                         <label> password </label>
-                        <input type="password" name="password" class="form-control" required>
+                        <input type="password" placeholder="e.g., ********" name="password" class="form-control" required>
                     </div>
                     <div class="form-group">
                         <label> First name </label>
-                        <input type="text" name="firstName" class="form-control" required>
+                        <input type="text" placeholder="e.g., Joe" name="firstName" class="form-control" required>
                     </div>
                     <div class="form-group">
                         <label> Last name </label>
-                        <input type="text" name="lastName" class="form-control" required>
+                        <input type="text" placeholder="e.g., Bloggs" name="lastName" class="form-control" required>
                     </div>
                     <div class="form-group">
                         <label> Profession </label>
-                        <input type="text" name="profession" class="form-control">
+                        <input type="text" placeholder="e.g., Astrologist" name="profession" class="form-control">
                     </div>
                     <div class="form-group">
                         <label> Date of birth </label>
-                        <input type="date" name="dateOfBirth" class="form-control">
+                        <input type="date" placeholder="e.g., yyyy/mm/dd" name="dateOfBirth" class="form-control">
                     </div>
                     <div class="form-group">
                         <label> Time of birth </label>
-                        <input type="time" name="timeOfBirth" class="form-control">
+                        <input type="time" placeholder="e.g., HHMM" name="timeOfBirth" class="form-control">
                     </div>
                     <div class="form-group">
                         <label> Place of birth </label>
-                        <input type="text" name="placeOfBirth" class="form-control">
+                        <input type="text" placeholder="e.g., City, Country" name="placeOfBirth" class="form-control">
                     </div>
                     <p align="center">
                         <button type="submit" class="btn"> Register </button>
