@@ -4,20 +4,20 @@
     
     include_once('includes/db.php'); //include the database connection
 
-    $mail = $_POST['email']; //retrieve the email the user entered
-    $pass = $_POST['password']; //retrieve the password the user entered
+    $mail = $_POST["email"]; //retrieve the email the user entered
+    $pass = $_POST["password"]; //retrieve the password the user entered
 
-    $q1 = "select user_id from user where email = '$mail'"; //query to get the users id using their email
+    $q1 = "select user_id from user where email = '".$mail."'"; //query to get the users id using their email
     $userId = mysqli_query($conn, $q1); //store the result of the query to be used to check if user is banned or an admin
 
     authenticateUser($conn); //call to check if user exists
 
     function authenticateUser($conn){ //authenticate the user by checking their email and password
         global $mail, $pass;
-        $q2 = " select * from user where email = '$mail' && password = '$pass'"; //query to check if the password and email combination exist in the database
+        $q2 = "SELECT user_id FROM user WHERE email = '".$mail."' AND password = '".$pass."'"; //query to check if the password and email combination exist in the database
         $q2_result = mysqli_query($conn, $q2); //store the result of the query
-        $q2_num = mysqli_num_rows($q2_result); //get the number of results
-        if($q2_num = 1){ //should be exactly 1 as an email can belong to only one user at a time
+        //$q2_num = mysqli_num_rows($q2_result); //get the number of results
+        if(mysql_num_rows($q2_result) > 0){ //should be exactly 1 as an email can belong to only one user at a time
             isUserBanned($conn); //check whether the user is banned
         }else{ //if the result was 0 i.e., wrong information entered or user isn't registered
             header('location:login.php'); //take user to login page
