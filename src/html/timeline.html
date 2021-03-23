@@ -4,8 +4,8 @@
   <title>PsychNova</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="./css/style.css" rel = "stylesheet">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link href="./css/style.css" rel = "stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   
@@ -64,18 +64,16 @@
     <div class="col-sm-3 well">
       <div class="well">
         
-        <img src="../images/hermione.png" class="img-circle" height="65" width="65" alt="Avatar">
-        <p>Hermione Granger</p>
+        <img src="/assets/hermione.png" class="img-circle" height="65" width="65" alt="Avatar">
+        <h3>Hermione Granger</h3>
+        <p>Witch @ WitchAcademy</p>
       </div>
       <div class="well">
-        <p><a href="#">Interests</a></p>
+        <p><a href="#">Signs</a></p>
         <p>
-          <span class="label label-default">News</span>
-          <span class="label label-primary">W3Schools</span>
-          <span class="label label-success">Labels</span>
-          <span class="label label-info">Football</span>
-          <span class="label label-warning">Gaming</span>
-          <span class="label label-danger">Friends</span>
+          <p>Libra (libra_icon)</p>
+          <p>Cancer (cancer_icon)</p>
+          <p>Saggitarius (sag_icon)</p>
         </p>
       </div>
       <div class="alert alert-success fade in">
@@ -95,18 +93,15 @@
           <div class="panel panel-default text-left">
             <div class="panel-body">
                 
-              <!-- <p contenteditable="true">How are you feeling today?</p> -->
               <p>How are you feeling today?</p>
-              <form action="/action_page.php">
-                <!-- <label for="fname">First name:</label> -->
-                <textarea id="fname" name="fname"></textarea>
+              <form action="/timeline.php">
+                <textarea id="textbox" name="textbox"></textarea>
                 <br><br>
-                <!-- <label for="lname">Last name:</label>
-                <input type="text" id="lname" name="lname"><br><br> -->
-                <!-- <input type="submit" value="Submit"> -->
+                <input type="submit" value="Post" button type="button" class="btn btn-default btn-sm" style="float:right"> 
+                    <span class="glyphicon glyphicon-send" style = "float:right"></span> </input> 
               </form>
-              <button type="button" class="btn btn-default btn-sm" style="float:right">
-                <span class="glyphicon glyphicon-send"></span> Post
+              <!-- <button type="button" class="btn btn-default btn-sm" style="float:right" input type="submit"> -->
+                <!-- <span class="glyphicon glyphicon-send"></span> Post -->
               </button>     
             </div>
           </div>
@@ -118,7 +113,7 @@
         <div class="col-sm-3">
           <div class="well">
            <p>Bo</p>
-           <img src="../images/profilePic.jpg" class="img-circle" height="55" width="55" alt="Avatar">
+           <img src="/assets/profilePic.jpg" class="img-circle" height="55" width="55" alt="Avatar">
           </div>
         </div>
         <div class="col-sm-9">
@@ -131,7 +126,7 @@
         <div class="col-sm-3">
           <div class="well">
            <p>Jane</p>
-           <img src="../images/profilePic.jpg" class="img-circle" height="55" width="55" alt="Avatar">
+           <img src="/assets/profilePic.jpg" class="img-circle" height="55" width="55" alt="Avatar">
           </div>
         </div>
         <div class="col-sm-9">
@@ -144,7 +139,7 @@
         <div class="col-sm-3">
           <div class="well">
            <p>Anja</p>
-           <img src="../images/profilePic.jpg" class="img-circle" height="55" width="55" alt="Avatar">
+           <img src="/assets/profilePic.jpg" class="img-circle" height="55" width="55" alt="Avatar">
           </div>
         </div>
         <div class="col-sm-9">
@@ -158,7 +153,7 @@
     <div class="col-sm-2 well">
       <div class="thumbnail">
         <p>Vacancies:</p>
-        <img src="../images/jobPic.png" alt="WitchAcademy" width="55" height="55">
+        <img src="/assets/jobPic.png" alt="WitchAcademy" width="55" height="55">
         <p><strong>Witch Academy</strong></p>
         <p>Looking for a witch</p>
         <button class="btn btn-primary">Apply</button>
@@ -172,3 +167,4 @@
 
 </body>
 </html>
+
