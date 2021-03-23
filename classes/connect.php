@@ -20,12 +20,28 @@ class Database {
         if (!$result) {
             return false;
         } else {
+           //if only one row
+            if (mysqli_num_rows($result) == 1) {
+                return mysqli_fetch_assoc($result);
+            }
+
             $data = false;
             while ($row = mysqli_fetch_assoc($result)) {
                 $data[] = $row;
             }
 
             return $data;
+        }
+    }
+
+    public function exists($query) {
+        $conn = $this->connect();
+        $result = mysqli_query($conn, $query);
+
+        if ($result) {
+            return true;
+        } else {
+            return false;
         }
     }
 

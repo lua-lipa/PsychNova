@@ -1,5 +1,6 @@
 <?php
     session_start();
+    include("./classes/connect.php");
     include("./classes/user.php");
 
     //if user not logged in redirect to login

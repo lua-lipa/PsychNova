@@ -1,12 +1,10 @@
 <?php
 
-include("connect.php");
-
 class Login {
 
     private $error = "";
 
-    public function loginUser($data) {
+    public function authenticateUser($data) {
         $email = $data['email'];
         $password = $data['password'];
 
@@ -16,9 +14,8 @@ class Login {
         $result = $DB->read($query);
 
         if ($result) {
-            $row = $result[0];
-            if ($password == $row['password']) {
-                $_SESSION['userid'] = $row['user_id'];
+            if ($password == $result['password']) {
+                $_SESSION['userid'] = $result['user_id'];
             } else {
                 $this->error .= "Incorrect password";
             }
@@ -28,4 +25,5 @@ class Login {
 
         return $this->error;
     }
+
 }

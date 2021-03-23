@@ -1,14 +1,34 @@
 <?php
 session_start();
+
+  include("./classes/connect.php");
+  include("./classes/post.php");
+  include("./classes/user.php");
+
   //if user not logged in redirect to login
   if(!isset($_SESSION['userid'])) {
     header("location: login.php");
   }
 
+  $post = new Post();
+  $user = new User();
+
+  if($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $result = $post->sendPost($_SESSION['userid'], $_POST);
+  }
+
+  $postsData = $post->getData();
+  $userData = $user->getData($_SESSION['userid']);
+   
+  echo "<pre>";
+  print_r($postsData);
+  echo "</pre>";
+
+  /*
   echo "<pre>";
   print_r($_SESSION);
   echo "</pre>";
-
+  */
 
 ?>
 
@@ -65,6 +85,7 @@ session_start();
         <li class="active"><a href="#">Home</a></li>
         <li><a href="#">Organisations</a></li>
         <li><a href="#">People</a></li>
+        <li class="active"><a href="./login.php">Logout</a></li>
       </ul>
       
       
@@ -77,18 +98,16 @@ session_start();
     <div class="col-sm-3 well">
       <div class="well">
         
-        <img src="/PsychNova/assets/hermione.png" class="img-circle" height="65" width="65" alt="Avatar">
-        <p>Hermione Granger</p>
+        <img src="/assets/hermione.png" class="img-circle" height="65" width="65" alt="Avatar">
+        <h3><?php echo $userData['first_name'] . " " . $userData['last_name'] ?></h3>
+        <p><?php echo $userData['profession'] ?></p>
       </div>
       <div class="well">
-        <p><a href="#">Interests</a></p>
+        <p><a href="#">Signs</a></p>
         <p>
-          <span class="label label-default">News</span>
-          <span class="label label-primary">W3Schools</span>
-          <span class="label label-success">Labels</span>
-          <span class="label label-info">Football</span>
-          <span class="label label-warning">Gaming</span>
-          <span class="label label-danger">Friends</span>
+          <p>Libra (libra_icon)</p>
+          <p>Cancer (cancer_icon)</p>
+          <p>Saggitarius (sag_icon)</p>
         </p>
       </div>
       <div class="alert alert-success fade in">
@@ -108,18 +127,15 @@ session_start();
           <div class="panel panel-default text-left">
             <div class="panel-body">
                 
-              <!-- <p contenteditable="true">How are you feeling today?</p> -->
               <p>How are you feeling today?</p>
-              <form action="/action_page.php">
-                <!-- <label for="fname">First name:</label> -->
-                <textarea id="fname" name="fname"></textarea>
+              <form action="" method="post">
+                <textarea id="textbox" name="postcontent"></textarea>
                 <br><br>
-                <!-- <label for="lname">Last name:</label>
-                <input type="text" id="lname" name="lname"><br><br> -->
-                <!-- <input type="submit" value="Submit"> -->
+                <input type="submit" value="Post" button type="button" class="btn btn-default btn-sm" style="float:right"> 
+                    <span class="glyphicon glyphicon-send" style = "float:right"></span> </input> 
               </form>
-              <button type="button" class="btn btn-default btn-sm" style="float:right">
-                <span class="glyphicon glyphicon-send"></span> Post
+              <!-- <button type="button" class="btn btn-default btn-sm" style="float:right" input type="submit"> -->
+                <!-- <span class="glyphicon glyphicon-send"></span> Post -->
               </button>     
             </div>
           </div>
@@ -127,11 +143,31 @@ session_start();
       </div>
       <!-- POSTS -->
 
+    <?php 
+      foreach ($postsData as $key => $value) {
+        $postUserData = $user->getData($value['user_id']);
+        ?>
+        <div class="row">
+        <div class="col-sm-3">
+          <div class="well">
+           <p><?php echo $postUserData['first_name'] . " " . $postUserData['last_name'] ?></p>
+           <img src="/assets/profilePic.jpg" class="img-circle" height="55" width="55" alt="Avatar">
+          </div>
+        </div>
+        <div class="col-sm-9">
+          <div class="well">
+            <p><?php echo $value['post'] ?></p>
+          </div>
+        </div>
+      </div>
+      <?php
+      }
+    ?>
       <div class="row">
         <div class="col-sm-3">
           <div class="well">
            <p>Bo</p>
-           <img src="/PsychNova/assets/profilePic.jpg" class="img-circle" height="55" width="55" alt="Avatar">
+           <img src="/assets/profilePic.jpg" class="img-circle" height="55" width="55" alt="Avatar">
           </div>
         </div>
         <div class="col-sm-9">
@@ -144,7 +180,7 @@ session_start();
         <div class="col-sm-3">
           <div class="well">
            <p>Jane</p>
-           <img src="/PsychNova/assets/profilePic.jpg" class="img-circle" height="55" width="55" alt="Avatar">
+           <img src="/assets/profilePic.jpg" class="img-circle" height="55" width="55" alt="Avatar">
           </div>
         </div>
         <div class="col-sm-9">
@@ -157,7 +193,7 @@ session_start();
         <div class="col-sm-3">
           <div class="well">
            <p>Anja</p>
-           <img src="/PsychNova/assets/profilePic.jpg" class="img-circle" height="55" width="55" alt="Avatar">
+           <img src="/assets/profilePic.jpg" class="img-circle" height="55" width="55" alt="Avatar">
           </div>
         </div>
         <div class="col-sm-9">
@@ -171,7 +207,7 @@ session_start();
     <div class="col-sm-2 well">
       <div class="thumbnail">
         <p>Vacancies:</p>
-        <img src="/PsychNova/assets/jobPic.png" alt="WitchAcademy" width="55" height="55">
+        <img src="/assets/jobPic.png" alt="WitchAcademy" width="55" height="55">
         <p><strong>Witch Academy</strong></p>
         <p>Looking for a witch</p>
         <button class="btn btn-primary">Apply</button>

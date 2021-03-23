@@ -1,7 +1,5 @@
 <?php
 
-include("connect.php");
-
 class SignUp {
 
     private $error = "";

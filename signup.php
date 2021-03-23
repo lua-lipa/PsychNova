@@ -1,5 +1,6 @@
 <?php
     session_start();
+    include("./classes/connect.php");
     include("./classes/signup.php");
 
     //if user logged in redirect to timeline

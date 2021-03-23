@@ -1,5 +1,6 @@
 <?php
     session_start();
+    include("./classes/connect.php");
     include("./classes/login.php");
 
     //if user logged in redirect to timeline
@@ -9,7 +10,7 @@
 
     if($_SERVER['REQUEST_METHOD'] == 'POST') {
         $Login = new Login();
-        $result = $Login->loginUser($_POST);
+        $result = $Login->authenticateUser($_POST);
 
         //print result if error
         if ($result != "") {
