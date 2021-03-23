@@ -14,7 +14,7 @@ class Post {
         $query = "INSERT INTO posts 
                     (post_id, user_id, post, date_of_post, time_of_post) 
                   VALUES 
-                    ('125', '$userId', '$post', 'CURRDATE()', 'CURRTIME()')"; 
+                    ('126', '$userId', '$post', 'CURRDATE()', 'CURRTIME()')"; 
 
 
         $db = new Database();

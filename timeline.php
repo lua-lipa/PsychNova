@@ -144,6 +144,7 @@ session_start();
       <!-- POSTS -->
 
     <?php 
+    
       foreach ($postsData as $key => $value) {
         $postUserData = $user->getData($value['user_id']);
         ?>
