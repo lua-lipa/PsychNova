@@ -22,7 +22,7 @@ if($num == 1){
 }else{
     $reg= "insert into user(user_id , email , password , first_name , last_name , profession , date_of_birth) values ('u1166' , '$mail' , '$pass' , '$first_name' , '$last_name' , '$prof' , '$date_of_birth')";
     mysqli_query($conn, $reg);
-    echo "Registration Successful!";
+    header('location:timeline.html');
 }
 
 
