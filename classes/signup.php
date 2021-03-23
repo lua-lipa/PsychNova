@@ -2,8 +2,6 @@
 
 class SignUp {
 
-    private $error = "";
-
     //add user to database (create astro sign too?)
     public function createUser($data) {
         $email = $data['email'];
@@ -16,8 +14,8 @@ class SignUp {
         $placeOfBirth = $data['placeOfBirth'];
 
         $query = "insert into user 
-                            (email , password , first_name , last_name , profession , date_of_birth) 
-                    values ('$email' , '$password' , '$firstName' , '$lastName' , '$profession' , '$dateOfBirth')";
+                            (email , password , first_name , last_name , profession , date_of_birth, type) 
+                    values ('$email' , '$password' , '$firstName' , '$lastName' , '$profession' , '$dateOfBirth', 'personal user')";
         $DB = new Database();
         $DB->save($query);
 
