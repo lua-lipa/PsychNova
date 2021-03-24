@@ -84,7 +84,7 @@ if (!$userData) header("location: login.php");
                         <div class="col-sm-3">
                             <img src="../images/jlo.jpg" class="img-circle" />
                             <div class="card-profile-info">
-                                <p><?php echo $userData['first_name'] ?></p>
+                                <p><?php echo $userData['first_name'] . " " . $userData['last_name'] ?></p>
                                 <p><?php echo $userData['profession'] ?></p>
                                 <p>Connections:</p>
                             </div>
@@ -114,7 +114,7 @@ if (!$userData) header("location: login.php");
                         <div class="row mt-3">
                             <div class="card-qualifications">
                                 <div class="qualification">
-                                    <h8 class="size-change" id="margin-add"><strong><?php echo $qualificationData['institue'] ?></strong></h8><br>
+                                    <h8 class="size-change" id="margin-add"><strong><?php echo $qualificationData['institute'] ?></strong></h8><br>
                                     <h9><?php echo $qualificationData['title'] ?></h9><br>
                                     <p><?php echo $qualificationData['description'] ?></p>
                                 </div>
