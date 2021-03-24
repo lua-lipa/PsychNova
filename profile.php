@@ -84,7 +84,7 @@ if (!$userData) header("location: login.php");
                         <div class="col-sm-3">
                             <img src="../images/jlo.jpg" class="img-circle" />
                             <div class="card-profile-info">
-                                <p><?php echo $userData['first_name'] ?></p>
+                                <p><?php echo $userData['first_name'] . " " . $userData['last_name'] ?></p>
                                 <p><?php echo $userData['profession'] ?></p>
                                 <p>Connections:</p>
                             </div>
