@@ -1,17 +1,19 @@
 <?php
 
-class Login {
+class Login
+{
 
     private $error = "";
 
-    public function authenticateUser($data) {
+    public function authenticateUser($data)
+    {
         $email = $data['email'];
         $password = $data['password'];
 
-        $query = "select * from user where email = '$email' limit 1";
-        
+        $query = "SELECT * FROM user WHERE email = '$email' LIMIT 1";
+
         $DB = new Database();
-        $result = $DB->read($query);
+        $result = $DB->readOne($query);
 
         if ($result) {
             if ($password == $result['password']) {
@@ -25,5 +27,4 @@ class Login {
 
         return $this->error;
     }
-
 }
