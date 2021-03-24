@@ -94,27 +94,27 @@ echo "</pre>";
       <div class="col-sm-3 well">
         <div class="well">
 
-          <img src="/assets/hermione.png" class="img-circle" height="65" width="65" alt="Avatar">
+          <img src="../images/hermione.png" class="img-circle" height="65" width="65" alt="Avatar">
           <h3><?php echo $userData['first_name'] . " " . $userData['last_name'] ?></h3>
           <p><?php echo $userData['profession'] ?></p>
         </div>
         <div class="well">
-          <p><a href="#">Signs</a></p>
-          <p>
-          <p>Libra (libra_icon)</p>
-          <p>Cancer (cancer_icon)</p>
-          <p>Saggitarius (sag_icon)</p>
-          </p>
-        </div>
-        <div class="alert alert-success fade in">
-          <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
-          <p><strong>Hey!</strong></p>
-          People are sending you connection requests!.
-        </div>
-        <p><a href="#">Name LastName</a></p>
-        <p><a href="#">Name LastName</a></p>
-        <p><a href="#">Name LastName</a></p>
+        <p><a href="#">Signs</a></p>
+        <p>
+          <p>Libra ♈︎ </p>
+          <p>Cancer ♋︎ </p>
+          <p>Saggitarius ♐︎</p>
+        </p>
       </div>
+      <div class="alert alert-success fade in" style="background-color:#A58AAE">
+        <a href="#" class="close"  data-dismiss="alert" aria-label="close">×</a>
+        <p style="color:white"><strong>Hey!</strong></p>
+        <p style="color:white">People are sending you connection requests!</p>
+      </div>
+      <p><a href="#">Harry Potter</a></p>
+      <p><a href="#">Draco Malfoy</a></p>
+      <p><a href="#">Ron Weasley</a></p>
+    </div>
       <div class="col-sm-7">
 
         <!-- MAKE POST -->
@@ -128,7 +128,7 @@ echo "</pre>";
                   <textarea id="textbox" name="postcontent"></textarea>
                   <br><br>
                   <input type="submit" value="Post" button type="button" class="btn btn-default btn-sm" style="float:right">
-                  <span class="glyphicon glyphicon-send" style="float:right"></span> </input>
+                  <!-- <span class="glyphicon glyphicon-send" style="float:right"></span> </input> -->
                 </form>
                 <!-- <button type="button" class="btn btn-default btn-sm" style="float:right" input type="submit"> -->
                 <!-- <span class="glyphicon glyphicon-send"></span> Post -->
@@ -149,7 +149,7 @@ echo "</pre>";
             <div class="col-sm-3">
               <div class="well">
                 <p><?php echo $postUserData['first_name'] . " " . $postUserData['last_name'] ?></p>
-                <img src="/assets/profilePic.jpg" class="img-circle" height="55" width="55" alt="Avatar">
+                <img src="../images/profilePic.jpg" class="img-circle" height="55" width="55" alt="Avatar">
               </div>
             </div>
             <div class="col-sm-9">
@@ -165,7 +165,7 @@ echo "</pre>";
           <div class="col-sm-3">
             <div class="well">
               <p>Bo</p>
-              <img src="/assets/profilePic.jpg" class="img-circle" height="55" width="55" alt="Avatar">
+              <img src="../images/profilePic.jpg" class="img-circle" height="55" width="55" alt="Avatar">
             </div>
           </div>
           <div class="col-sm-9">
@@ -178,7 +178,7 @@ echo "</pre>";
           <div class="col-sm-3">
             <div class="well">
               <p>Jane</p>
-              <img src="/assets/profilePic.jpg" class="img-circle" height="55" width="55" alt="Avatar">
+              <img src="../images/profilePic.jpg" class="img-circle" height="55" width="55" alt="Avatar">
             </div>
           </div>
           <div class="col-sm-9">
@@ -191,7 +191,7 @@ echo "</pre>";
           <div class="col-sm-3">
             <div class="well">
               <p>Anja</p>
-              <img src="/assets/profilePic.jpg" class="img-circle" height="55" width="55" alt="Avatar">
+              <img src="../images/profilePic.jpg" class="img-circle" height="55" width="55" alt="Avatar">
             </div>
           </div>
           <div class="col-sm-9">
@@ -205,9 +205,14 @@ echo "</pre>";
       <div class="col-sm-2 well">
         <div class="thumbnail">
           <p>Vacancies:</p>
-          <img src="/assets/jobPic.png" alt="WitchAcademy" width="55" height="55">
+          <img src="../images/jobPic.png" alt="WitchAcademy" width="55" height="55">
           <p><strong>Witch Academy</strong></p>
           <p>Looking for a witch</p>
+          <button class="btn btn-primary">Apply</button>
+          <br><br><br>
+          <img src="../images/jobPic.png" alt="WitchAcademy" width="55" height="55">
+          <p><strong>Witch Academy</strong></p>
+          <p>Looking for a fortune teller</p>
           <button class="btn btn-primary">Apply</button>
         </div>
 
