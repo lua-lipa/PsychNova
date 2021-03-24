@@ -1,40 +1,54 @@
 <?php
 
-class Database {
+class Database
+{
 
     private $host = "localhost";
     private $username = "root";
     private $password = "";
     private $db = "psychnova";
 
-    public function connect() {
+    public function connect()
+    {
         $connection = mysqli_connect($this->host, $this->username, $this->password, $this->db);
         return $connection;
     }
 
     //returns data from database based on the provided query
-    public function read($query) {
+    public function read($query)
+    {
+        $conn = $this->connect();
+        $result = mysqli_query($conn, $query);
+
+        if (!$result) {
+            return false;
+        }
+
+        $data = [];
+        while ($row = mysqli_fetch_assoc($result)) {
+            $data[] = $row;
+        }
+
+        return $data;
+    }
+
+    public function readOne($query)
+    {
         $conn = $this->connect();
         $result = mysqli_query($conn, $query);
 
         if (!$result) {
             return false;
         } else {
-           //if only one row
+            //if only one row
             if (mysqli_num_rows($result) == 1) {
                 return mysqli_fetch_assoc($result);
             }
-
-            $data = false;
-            while ($row = mysqli_fetch_assoc($result)) {
-                $data[] = $row;
-            }
-
-            return $data;
         }
     }
 
-    public function exists($query) {
+    public function exists($query)
+    {
         $conn = $this->connect();
         $result = mysqli_query($conn, $query);
 
@@ -46,7 +60,8 @@ class Database {
     }
 
     //saves data to the database and returns true if successful, otherwise false
-    public function save($query) {
+    public function save($query)
+    {
         $conn = $this->connect();
         $result = mysqli_query($conn, $query);
 

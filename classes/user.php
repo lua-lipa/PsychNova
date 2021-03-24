@@ -1,35 +1,40 @@
 <?php
 
-class User {
+class User
+{
 
     private $error = "";
 
     //add user to database (create astro sign too?)
-    public function getData($userId) {
+    public function getUserData($userId)
+    {
         $query = "select * from user where user_id = '$userId' limit 1";
         $db = new Database();
-        return $db->read($query);
+        return $db->readOne($query);
     }
 
-    public function isUserAdmin($userId) {
+    public function isUserAdmin($userId)
+    {
         $query = "select type from user where user_id = '$userId'";
         $db = new Database();
         return $db->exists($query);
     }
 
-    public function unbanUser($userId) {
+    public function unbanUser($userId)
+    {
         $query = "delete from banned_user where user_id = '$userId'";
         $db = new Database();
         return $db->save($query);
     }
 
-    public function isBanned($userId) {
+    public function isBanned($userId)
+    {
         $query = "select date_of_unban from banned_users where user_id = '$userId'";
         $db = new Database();
-        $result = $db->read($query);
+        $result = $db->readOne($query);
 
         if ($result) {
-            if(strtotime(($result['date_of_unban']) < time())) {
+            if (strtotime(($result['date_of_unban']) < time())) {
                 $this->unbanUser($userId);
                 return false;
             } else {
