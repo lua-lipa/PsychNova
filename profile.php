@@ -114,7 +114,7 @@ if (!$userData) header("location: login.php");
                         <div class="row mt-3">
                             <div class="card-qualifications">
                                 <div class="qualification">
-                                    <h8 class="size-change" id="margin-add"><strong><?php echo $qualificationData['institue'] ?></strong></h8><br>
+                                    <h8 class="size-change" id="margin-add"><strong><?php echo $qualificationData['institute'] ?></strong></h8><br>
                                     <h9><?php echo $qualificationData['title'] ?></h9><br>
                                     <p><?php echo $qualificationData['description'] ?></p>
                                 </div>
