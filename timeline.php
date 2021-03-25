@@ -20,9 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 $postsData = $post->getPostsData();
 $userData = $user->getUserData($_SESSION['userid']);
 
-echo "<pre>";
-print_r($postsData);
-echo "</pre>";
+
 
 /*
   echo "<pre>";
@@ -35,109 +33,58 @@ echo "</pre>";
 <html lang="en">
 
 <head>
+  <?php include("./components/head.php"); ?>
   <title>PsychNova</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <link href="./css/style.css" rel="stylesheet">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link href="./css/timeline.css" rel="stylesheet">
+  
 
-  <style>
-    /* Set black background color, white text and some padding */
-    footer {
-      background-color: #555;
-      color: white;
-      padding: 15px;
-    }
-  </style>
 </head>
 
 <body>
-  <nav class="navbar navbar-default">
-    <div class="container-fluid">
-      <!-- NAVIGATION BAR -->
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="#">PsychNova</a>
-      </div>
-      <div class="collapse navbar-collapse" id="myNavbar">
-        <!-- SEARCH BAR -->
-        <form class="navbar-form navbar-left" role="search">
-          <div class="form-group input-group">
-            <input type="text" class="form-control" placeholder="Search for people, companies ..">
-            <span class="input-group-btn">
-              <button class="btn btn-default" type="button">
-                <span class="glyphicon glyphicon-search"></span>
-              </button>
-            </span>
-          </div>
-        </form>
-        <ul class="nav navbar-nav navbar-right">
-          <!-- NAVIGATION LINKS -->
-          <li class="active"><a href="#">Home</a></li>
-          <li><a href="#">Organisations</a></li>
-          <li><a href="#">People</a></li>
-          <li class="active"><a href="./login.php">Logout</a></li>
-        </ul>
+  <?php include("./components/navbar.php"); ?>
 
-      </div>
-    </div>
-  </nav>
-  <!-- PROFILE SECTION -->
-  <div class="container text-center">
+  <div class="container">
+    <!-- profile -->
     <div class="row">
-      <div class="col-sm-3 well">
-        <div class="well">
-
-          <img src="../images/hermione.png" class="img-circle" height="65" width="65" alt="Avatar">
-          <h3><?php echo $userData['first_name'] . " " . $userData['last_name'] ?></h3>
-          <p><?php echo $userData['profession'] ?></p>
-        </div>
-        <div class="well">
-        <p><a href="#">Signs</a></p>
-        <p>
-          <p>Libra ♈︎ </p>
-          <p>Cancer ♋︎ </p>
-          <p>Saggitarius ♐︎</p>
-        </p>
-      </div>
-      <div class="alert alert-success fade in" style="background-color:#A58AAE">
-        <a href="#" class="close"  data-dismiss="alert" aria-label="close">×</a>
-        <p style="color:white"><strong>Hey!</strong></p>
-        <p style="color:white">People are sending you connection requests!</p>
-      </div>
-      <p><a href="#">Harry Potter</a></p>
-      <p><a href="#">Draco Malfoy</a></p>
-      <p><a href="#">Ron Weasley</a></p>
-    </div>
-      <div class="col-sm-7">
-
-        <!-- MAKE POST -->
-        <div class="row">
-          <div class="col-sm-12">
-            <div class="panel panel-default text-left">
-              <div class="panel-body">
-
-                <p>How are you feeling today?</p>
-                <form action="" method="post">
-                  <textarea id="textbox" name="postcontent"></textarea>
-                  <br><br>
-                  <input type="submit" value="Post" button type="button" class="btn btn-default btn-sm" style="float:right">
-                  <!-- <span class="glyphicon glyphicon-send" style="float:right"></span> </input> -->
-                </form>
-                <!-- <button type="button" class="btn btn-default btn-sm" style="float:right" input type="submit"> -->
-                <!-- <span class="glyphicon glyphicon-send"></span> Post -->
-                </button>
-              </div>
+      <div class="col-2">
+        <div class="profile-card">
+          <div class="profile-container">
+            <div class="profile-image">
+              <img src="https://dummyimage.com/100x100/cfcfcf/000000" class="rounded-circle" alt="...">
             </div>
+            <div class="profile-name">
+              <h6><?php echo $userData['first_name'] . " " . $userData['last_name'] ?></h6>
+            </div>
+            <div class="profile-profession">
+              <h7><?php echo $userData['profession'] ?></h7>
+            </div>
+            <hr />
           </div>
         </div>
-        <!-- POSTS -->
+
+        <!-- <div class="connections-card">
+          <div class="connections-container">
+
+          </div>
+        </div> -->
+      </div>
+
+
+
+      <div class="col-7">
+        <div class="post-card">
+          <div class="post-title">
+            <h7>What's on your mind?</h7>
+          </div>
+          <form action="" method="post">
+            <div class="form-group">
+              <input type="text" name="postcontent" class="form-control" required>
+            </div>
+            <button type="submit" class="btn float-right">Post</button>
+          </form>
+        </div>
 
         <?php
 
@@ -145,80 +92,32 @@ echo "</pre>";
 
           $postUserData = $user->getUserData($value['user_id']);
         ?>
-          <div class="row">
-            <div class="col-sm-3">
-              <div class="well">
-                <p><?php echo $postUserData['first_name'] . " " . $postUserData['last_name'] ?></p>
-                <img src="../images/profilePic.jpg" class="img-circle" height="55" width="55" alt="Avatar">
-              </div>
-            </div>
-            <div class="col-sm-9">
-              <div class="well">
-                <p><?php echo $value['post'] ?></p>
-              </div>
+
+        <div class="media-card">
+          <div class="media">
+            <img src="https://dummyimage.com/64x64/cfcfcf/000000" class="mr-3" alt="...">
+            <div class="media-body">
+              <h5 class="mt-0"><?php echo $postUserData['first_name'] . " " . $postUserData['last_name'] ?></h5>
+              <p><?php echo $value['post'] ?></p>
             </div>
           </div>
+        </div>
+
         <?php
         }
         ?>
-        <div class="row">
-          <div class="col-sm-3">
-            <div class="well">
-              <p>Bo</p>
-              <img src="../images/profilePic.jpg" class="img-circle" height="55" width="55" alt="Avatar">
-            </div>
-          </div>
-          <div class="col-sm-9">
-            <div class="well">
-              <p>Just Forgot that I had to mention something about someone to someone about how I forgot something, but now I forgot it. Ahh, forget it! Or wait. I remember.... no I don't.</p>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-sm-3">
-            <div class="well">
-              <p>Jane</p>
-              <img src="../images/profilePic.jpg" class="img-circle" height="55" width="55" alt="Avatar">
-            </div>
-          </div>
-          <div class="col-sm-9">
-            <div class="well">
-              <p>Just Forgot that I had to mention something about someone to someone about how I forgot something, but now I forgot it. Ahh, forget it! Or wait. I remember.... no I don't.</p>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-sm-3">
-            <div class="well">
-              <p>Anja</p>
-              <img src="../images/profilePic.jpg" class="img-circle" height="55" width="55" alt="Avatar">
-            </div>
-          </div>
-          <div class="col-sm-9">
-            <div class="well">
-              <p>Just Forgot that I had to mention something about someone to someone about how I forgot something, but now I forgot it. Ahh, forget it! Or wait. I remember.... no I don't.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- RIGHT SIDEBAR: VACANCIES -->
-      <div class="col-sm-2 well">
-        <div class="thumbnail">
-          <p>Vacancies:</p>
-          <img src="../images/jobPic.png" alt="WitchAcademy" width="55" height="55">
-          <p><strong>Witch Academy</strong></p>
-          <p>Looking for a witch</p>
-          <button class="btn btn-primary">Apply</button>
-          <br><br><br>
-          <img src="../images/jobPic.png" alt="WitchAcademy" width="55" height="55">
-          <p><strong>Witch Academy</strong></p>
-          <p>Looking for a fortune teller</p>
-          <button class="btn btn-primary">Apply</button>
-        </div>
 
       </div>
+      <div class="col-3">
+        <div class="vacancies-card">
+
+        </div>
+      </div>
     </div>
+
   </div>
+
+
 
 </body>
 

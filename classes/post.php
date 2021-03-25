@@ -5,7 +5,7 @@ class Post
 
     public function getPostsData()
     {
-        $query = "SELECT * FROM posts";
+        $query = "SELECT * FROM posts ORDER BY post_id DESC";
         $db = new Database();
         return $db->read($query);
     }
@@ -17,7 +17,7 @@ class Post
         $query = "INSERT INTO posts 
                     (post_id, user_id, post, date_of_post, time_of_post) 
                   VALUES 
-                    ('126', '$userId', '$post', 'CURRDATE()', 'CURRTIME()')";
+                    ('128', '$userId', '$post', 'CURRDATE()', 'CURRTIME()')";
 
 
         $db = new Database();
