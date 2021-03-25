@@ -14,7 +14,10 @@ $post = new Post();
 $user = new User();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-  $result = $post->sendPost($_SESSION['userid'], $_POST);
+  if (isset($_POST['postcontent'])) {
+    $result = $post->sendPost($_SESSION['userid'], $_POST);
+  }
+  
 }
 
 $postsData = $post->getPostsData();

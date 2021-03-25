@@ -15,9 +15,9 @@ class Post
         $post = $data['postcontent'];
 
         $query = "INSERT INTO posts 
-                    (post_id, user_id, post, date_of_post, time_of_post) 
+                    (user_id, post, date_of_post, time_of_post) 
                   VALUES 
-                    ('128', '$userId', '$post', 'CURRDATE()', 'CURRTIME()')";
+                    ('$userId', '$post', 'CURRDATE()', 'CURRTIME()')";
 
 
         $db = new Database();

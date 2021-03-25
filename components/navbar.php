@@ -13,9 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $search = new Search();
         $_SESSION['searchresults'] = $search->searchUser($_POST);
 
-        if ($_SESSION['searchresults']) {
-            header("location: searchresult.php");
-        }
+        header("location: searchresult.php");
     }
 }
 
@@ -45,8 +43,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     </form>
                 </div>
                 <ul class="navbar-nav my-2 my-lg-0">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="timeline.php">Home <span class="sr-only">(current)</span></a>
+                    <li class="nav-item">
+                        <a class="nav-link" href="timeline.php">Home </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="profile.php">Profile</a>
