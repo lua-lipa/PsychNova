@@ -13,6 +13,12 @@ class User
         return $db->readOne($query);
     }
 
+    public function getUserAstroInfo($userid){
+        $query = "SELECT * FROM user_astrological WHERE user_id = $userid";
+        $db = new Database();
+        return $db->read($query);
+    }
+
     public function isUserAdmin($userId)
     {
         $query = "select type from user where user_id = '$userId'";
