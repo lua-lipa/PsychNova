@@ -1,7 +1,7 @@
 <?php
 session_start();
-include("./classes/connect.php");
-include("./classes/signup.php");
+include("../classes/connect.php");
+include("../classes/signup.php");
 
 //if user logged in redirect to timeline
 if (isset($_SESSION['userid'])) {
@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <head>
     <title> PsychNova register </title>
     <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="./css/login_and_registration.css">
+    <link rel="stylesheet" type="text/css" href="../css/login_and_registration.css">
 </head>
 
 <body>

@@ -1,10 +1,10 @@
 <?php
 session_start();
 
-include("./classes/connect.php");
-include("./classes/post.php");
-include("./classes/user.php");
-include("./classes/connections.php");
+include("../classes/connect.php");
+include("../classes/post.php");
+include("../classes/user.php");
+include("../classes/connections.php");
 
 //if user not logged in redirect to login
 if (!isset($_SESSION['userid'])) {
@@ -39,17 +39,17 @@ $pendingConnectionsData = $connection->getPendingConnections($_SESSION['userid']
 <html lang="en">
 
 <head>
-  <?php include("./components/head.php"); ?>
+  <?php include("../components/head.php"); ?>
   <title>PsychNova</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="./css/timeline.css" rel="stylesheet">
+  <link href="../css/timeline.css" rel="stylesheet">
   
 
 </head>
 
 <body>
-  <?php include("./components/navbar.php"); ?>
+  <?php include("../components/navbar.php"); ?>
 
   <div class="container">
     <!-- profile -->

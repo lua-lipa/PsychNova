@@ -1,7 +1,7 @@
 <?php
 session_start();
-include("./classes/connect.php");
-include("./classes/user.php");
+include("../classes/connect.php");
+include("../classes/user.php");
 
 
 
@@ -30,12 +30,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <head>
     <title> PsychNova </title>
-    <?php include("./components/head.php"); ?>
-    <link href="./css/searchresult.css" rel="stylesheet">
+    <?php include("../components/head.php"); ?>
+    <link href="../css/searchresult.css" rel="stylesheet">
 </head>
 
 <body>
-    <?php include("./components/navbar.php"); ?>
+    <?php include("../components/navbar.php"); ?>
     <div class="container">
         <div class="row">
             <div class="col-3"></div>
