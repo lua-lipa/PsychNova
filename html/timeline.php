@@ -1,9 +1,10 @@
 <?php
 session_start();
 
-include("./classes/connect.php");
-include("./classes/post.php");
-include("./classes/user.php");
+include("../classes/connect.php");
+include("../classes/post.php");
+include("../classes/user.php");
+include("../classes/connections.php");
 
 //if user not logged in redirect to login
 if (!isset($_SESSION['userid'])) {
@@ -12,6 +13,7 @@ if (!isset($_SESSION['userid'])) {
 
 $post = new Post();
 $user = new User();
+$connection = new connections();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   if (isset($_POST['postcontent'])) {
@@ -22,6 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 $postsData = $post->getPostsData();
 $userData = $user->getUserData($_SESSION['userid']);
+$pendingConnectionsData = $connection->getPendingConnections($_SESSION['userid']);
 
 
 
@@ -36,17 +39,17 @@ $userData = $user->getUserData($_SESSION['userid']);
 <html lang="en">
 
 <head>
-  <?php include("./components/head.php"); ?>
+  <?php include("../components/head.php"); ?>
   <title>PsychNova</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="./css/timeline.css" rel="stylesheet">
+  <link href="../css/timeline.css" rel="stylesheet">
   
 
 </head>
 
 <body>
-  <?php include("./components/navbar.php"); ?>
+  <?php include("../components/navbar.php"); ?>
 
   <div class="container">
     <!-- profile -->
@@ -67,14 +70,26 @@ $userData = $user->getUserData($_SESSION['userid']);
           </div>
         </div>
 
-        <!-- <div class="connections-card">
+        <div class="connections-card">
           <div class="connections-container">
+            <h9>Connection Requests</h9><br>
+            <?php
 
+            foreach ($pendingConnectionsData as $key => $value) {
+              $pendingConnectionUserData = $user->getUserData($value['user_id']);
+            ?>
+
+            <div class="pending-connection">
+                <img src="https://dummyimage.com/50x50/cfcfcf/000000" class="rounded-circle" alt="...">
+                <h9><?php echo $pendingConnectionUserData['first_name'] . " " . $pendingConnectionUserData['last_name'] ?></h9><br>
+            </div>
+
+            <?php
+            }
+            ?>
           </div>
-        </div> -->
+        </div>
       </div>
-
-
 
       <div class="col-7">
         <div class="post-card">
