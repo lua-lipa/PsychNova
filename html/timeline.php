@@ -76,6 +76,7 @@ $pendingConnectionsData = $connection->getPendingConnections($_SESSION['userid']
             <?php
 
             foreach ($pendingConnectionsData as $key => $value) {
+              $pendingConnectionUserData = new User();
               $pendingConnectionUserData = $user->getUserData($value['user_id']);
             ?>
 
@@ -83,10 +84,6 @@ $pendingConnectionsData = $connection->getPendingConnections($_SESSION['userid']
                 <img src="https://dummyimage.com/50x50/cfcfcf/000000" class="rounded-circle" alt="...">
                 <h9><?php echo $pendingConnectionUserData['first_name'] . " " . $pendingConnectionUserData['last_name'] ?></h9><br>
             </div>
-
-            <?php
-            }
-            ?>
           </div>
         </div>
       </div>
