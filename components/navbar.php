@@ -26,16 +26,26 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <style>
     /* Set black background color, white text and some padding */
+    .navbar {
+            background-color: #A58AAE !important;
+        }
     .form-inline .form-control {
         width: 300px;
         border-radius: 50px;
+    }
+    .navbar-brand{
+        padding-top: 5px;
+        font-size: 20px;
+        color: #fff !important;
+        font-family: 'Monaco';
+        text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #ffffff, 0 0 20px #A58AAE, 0 0 25px #A58AAE, 0 0 30px #A58AAE, 0 0 35px #A58AAE;
     }
 </style>
 
 <div class="nav-wrapper">
     <nav class="navbar navbar-expand-lg navbar-light bg-white mb-4">
         <div class="container">
-            <a class="navbar-brand" href="#">PsychNova</a>
+            <a class="navbar-brand" href="timeline.php">PsychNova</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -94,6 +104,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="profile.php">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="myorganisations.php">My Organisations</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="logout.php">Logout</a>
