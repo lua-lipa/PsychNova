@@ -37,7 +37,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <body>
     <?php 
         include("../components/navbar.php"); 
-        unset($_SESSION['searchinput']);
     ?>
     <div class="container">
         <div class="row">
@@ -46,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <?php
 
                 if (empty($_SESSION["searchresults"])) {
-                    echo "no search results";
+                    echo "no search results for " . $_SESSION['searchinput'] ;
                 } else {
 
 
