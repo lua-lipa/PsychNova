@@ -4,7 +4,6 @@ include("../classes/connect.php");
 include("../classes/user.php");
 
 
-
 /*
 //if user logged in redirect to timeline
 if (isset($_SESSION['userid'])) {
@@ -24,6 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 */
 
+
 ?>
 
 <html>
@@ -35,7 +35,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 
 <body>
-    <?php include("../components/navbar.php"); ?>
+    <?php 
+        include("../components/navbar.php"); 
+        unset($_SESSION['searchinput']);
+    ?>
     <div class="container">
         <div class="row">
             <div class="col-3"></div>
@@ -47,30 +50,51 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 } else {
 
 
-                    $user = new User();
+
                     foreach ($_SESSION["searchresults"] as $key => $value) {
 
-                        $searchresultData = $user->getUserData($value['user_id']);
+
                 ?>
                         <div class="result-card">
                             <div class="result-container">
-                                <div class="col-3">
-                                    <img src="https://dummyimage.com/64x64/cfcfcf/000000" class="rounded-circle" alt="...">
-                                </div>
-                                <div class="col-9">
-                                    <div class="row">
-                                        <h6><?php echo $searchresultData['first_name'] . " " . $searchresultData['last_name'] ?></h6>
+                                <?php
+                                if ($_SESSION["dropdowninput"] == "Users") {
+                                ?>
+                                    <div class="col-3">
+                                        <img src="https://dummyimage.com/64x64/cfcfcf/000000" class="rounded-circle" alt="...">
                                     </div>
-                                    <div class="row">
-                                        <h7><?php echo $searchresultData['profession'] ?></h7>
+                                    <div class="col-9">
+                                        <div class="row">
+                                            <h6><?php echo $value['first_name'] . " " . $value['last_name'] ?></h6>
+                                        </div>
+                                        <div class="row">
+                                            <h7><?php echo $value['profession'] ?></h7>
+                                        </div>
                                     </div>
-                                </div>
+
+                                <?php
+                                } else if ($_SESSION["dropdowninput"] == "Organisations") {
+                                ?>
+                                    <div class="col-3">
+                                        <img src="https://dummyimage.com/64x64/cfcfcf/000000" class="rounded-circle" alt="...">
+                                    </div>
+                                    <div class="col-9">
+                                        <div class="row">
+                                            <h6><?php echo $value['name'] ?></h6>
+                                        </div>
+                                        <div class="row">
+                                            <h7><?php echo $value['description'] ?></h7>
+                                        </div>
+                                    </div>
                             </div>
-                        </div>
+                        <?php
+                                }
+                        ?>
                 <?php
                     }
                 }
                 ?>
+                        </div>
             </div>
             <div class="col-2"></div>
         </div>

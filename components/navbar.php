@@ -1,5 +1,5 @@
 <?php
-include("./classes/search.php");
+include("../classes/search.php");
 
 /*
 //if user logged in redirect to timeline
@@ -8,10 +8,15 @@ if (isset($_SESSION['userid'])) {
 }
 */
 
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
     if (isset($_POST['searchinput'])) {
         $search = new Search();
-        $_SESSION['searchresults'] = $search->searchUser($_POST);
+        $_SESSION['searchresults'] = $search->searchDatabase($_POST);
+
+        $_SESSION['searchinput'] = $_POST['searchinput'];
+        $_SESSION['dropdowninput'] = $_POST['dropdowninput'];
 
         header("location: searchresult.php");
     }
@@ -39,7 +44,42 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <div class="search-box ml-auto mr-auto mt-2 mt-lg-0 d-flex">
 
                     <form action="" method="post" class="form-inline">
-                        <input class="form-control mr-sm-2" type="search" placeholder="Search" name="searchinput">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" name="searchinput" value=
+                    <?php 
+                        if (isset($_SESSION['searchinput'])) {
+                            echo $_SESSION['searchinput'];
+                        }
+                    ?>>
+                        <div class="dropdown">
+                            <button class="btn dropdown-toggle" name="dropdown" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <?php 
+                                    if (isset($_SESSION['dropdowninput'])) {
+                                        echo $_SESSION['dropdowninput'];
+                                    } else {
+                                        echo "Users";
+                                    }
+                                ?>
+                            </button>
+                            
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <li>
+                                    <a class="dropdown-item" href="#">Users</a>
+                                    <a class="dropdown-item" href="#">Organisations</a>
+                                </li>
+
+                            </div>
+                            <script type="text/javascript">
+                                $(".dropdown-menu").on('click', 'li a', function() {
+                                    $(".btn:first-child").text($(this).text());
+                                    $(".btn:first-child").val($(this).text());
+                                    $("#dropdowninput").val($(this).text());
+                                    
+                                });
+                            </script>
+                        </div>
+
+                        <input type="hidden" id="dropdowninput" name="dropdowninput" value="Users">
+                        
                     </form>
                 </div>
                 <ul class="navbar-nav my-2 my-lg-0">
