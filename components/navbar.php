@@ -78,7 +78,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             </script>
                         </div>
 
-                        <input type="hidden" id="dropdowninput" name="dropdowninput" value="Users">
+                        <input type="hidden" id="dropdowninput" name="dropdowninput" value= <?php 
+                        if (isset($_SESSION['dropdowninput'])) {
+                            echo $_SESSION['dropdowninput'];
+                        } else {
+                            echo "Users";
+                        }
+                    ?>>
                         
                     </form>
                 </div>
