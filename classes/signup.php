@@ -1,13 +1,9 @@
 <?php
 
-include("../html/star_sign.php");
-
-class SignUp
-{
+class SignUp {
 
     //add user to database (create astro sign too?)
-    public function createUser($data)
-    {
+    public function createUser($data) {
         $email = $data['email'];
         $password = $data['password'];
         $firstName = $data['firstName'];
@@ -17,8 +13,6 @@ class SignUp
         $timeOfBirth = $data['timeOfBirth'];
         $placeOfBirth = $data['placeOfBirth'];
 
-        calcStarSign($dateOfBirth);
-
         $query = "insert into user 
                             (email , password , first_name , last_name , profession , date_of_birth, type) 
                     values ('$email' , '$password' , '$firstName' , '$lastName' , '$profession' , '$dateOfBirth', 'personal user')";
@@ -27,4 +21,6 @@ class SignUp
 
         return $this->error;
     }
+
+    
 }
