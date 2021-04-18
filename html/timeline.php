@@ -19,11 +19,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   if (isset($_POST['postcontent'])) {
     $result = $post->sendPost($_SESSION['userid'], $_POST);
   }
+  
 }
 
 $postsData = $post->getPostsData();
 $userData = $user->getUserData($_SESSION['userid']);
 $pendingConnectionsData = $connection->getPendingConnections($_SESSION['userid']);
+
+
 
 /*
   echo "<pre>";
@@ -41,7 +44,7 @@ $pendingConnectionsData = $connection->getPendingConnections($_SESSION['userid']
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="../css/timeline.css" rel="stylesheet">
-
+  
 
 </head>
 
@@ -77,18 +80,13 @@ $pendingConnectionsData = $connection->getPendingConnections($_SESSION['userid']
               $pendingConnectionUserData = $user->getUserData($value['user_id']);
             ?>
 
-
-              <div class="pending-connection">
+            <div class="pending-connection">
                 <img src="https://dummyimage.com/50x50/cfcfcf/000000" class="rounded-circle" alt="...">
                 <h9><?php echo $pendingConnectionUserData['first_name'] . " " . $pendingConnectionUserData['last_name'] ?></h9><br>
-              </div>
-            <?php
-            }
-            ?>
+            </div>
           </div>
         </div>
       </div>
-
 
       <div class="col-7">
         <div class="post-card">
@@ -110,15 +108,15 @@ $pendingConnectionsData = $connection->getPendingConnections($_SESSION['userid']
           $postUserData = $user->getUserData($value['user_id']);
         ?>
 
-          <div class="media-card">
-            <div class="media">
-              <img src="https://dummyimage.com/64x64/cfcfcf/000000" class="mr-3" alt="...">
-              <div class="media-body">
-                <h5 class="mt-0"><?php echo $postUserData['first_name'] . " " . $postUserData['last_name'] ?></h5>
-                <p><?php echo $value['post'] ?></p>
-              </div>
+        <div class="media-card">
+          <div class="media">
+            <img src="https://dummyimage.com/64x64/cfcfcf/000000" class="mr-3" alt="...">
+            <div class="media-body">
+              <h5 class="mt-0"><?php echo $postUserData['first_name'] . " " . $postUserData['last_name'] ?></h5>
+              <p><?php echo $value['post'] ?></p>
             </div>
           </div>
+        </div>
 
         <?php
         }
@@ -133,6 +131,8 @@ $pendingConnectionsData = $connection->getPendingConnections($_SESSION['userid']
     </div>
 
   </div>
+
+
 
 </body>
 
