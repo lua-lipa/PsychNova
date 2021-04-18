@@ -6,6 +6,7 @@ include("../classes/userQualification.php");
 include("../classes/qualification.php");
 include("../classes/userSkills.php");
 include("../classes/skills.php");
+include("../html/star_sign.php");
 
 //if user not logged in redirect to login
 if (!isset($_SESSION['userid'])) {
@@ -60,12 +61,13 @@ if (!$userData) header("location: login.php");
                             <div class="card-profile-info">
                                 <p><?php echo $userData['first_name'] . " " . $userData['last_name'] ?></p>
                                 <p><?php echo $userData['profession'] ?></p>
+                                <p><?php echo $userData['date_of_birth'] ?></p>
                                 <p>Connections:</p>
                             </div>
                         </div>
                         <div class="col-sm-9">
                             <div class="row h-50 d-flex justify-content-center">
-                                <p class="mr-3 mt-5">Sun: Gemini </p>
+                                <p class="mr-3 mt-5">Sun: <?php echo calcStarSign($userData['date_of_birth']) ?></p>
                                 <p class="mr-3 mt-5">Rising: Cancer</p>
                                 <p class="mr-3 mt-5">Moon: Taurus</p>
                             </div>
