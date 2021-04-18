@@ -71,3 +71,11 @@ function calcStarSign($dob)
     }
     return $astro_sign;
 }
+
+function risingCalc()
+{
+}
+
+function moonCalc()
+{
+}
