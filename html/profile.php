@@ -67,7 +67,7 @@ if (!$userData) header("location: login.php");
                         </div>
                         <div class="col-sm-9">
                             <div class="row h-50 d-flex justify-content-center">
-                                <p class="mr-3 mt-5">Sun: <?php echo calcStarSign($userData['date_of_birth']) ?></p>
+                                <p class="mr-3 mt-5">Sun: <?php echo calcStarSign($userData['date_of_birth']) ?></p> 
                                 <p class="mr-3 mt-5">Rising: Cancer</p>
                                 <p class="mr-3 mt-5">Moon: Taurus</p>
                             </div>

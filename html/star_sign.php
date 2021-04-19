@@ -1,7 +1,7 @@
 <?php
 
 function calcStarSign($dob)
-{
+{ 
     $astro_sign = "";
     $dob_split = explode('-', $dob);
     $day = $dob_split[1];
