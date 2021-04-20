@@ -82,9 +82,16 @@ $pendingConnectionsData = $connection->getPendingConnections($_SESSION['userid']
               <div class="pending-connection">
                 <img src="https://dummyimage.com/50x50/cfcfcf/000000" class="rounded-circle" alt="...">
                 <h9><?php echo $pendingConnectionUserData['first_name'] . " " . $pendingConnectionUserData['last_name'] ?></h9><br>
+<<<<<<< HEAD
+            </div>
+
+            <?php
+             }
+=======
               </div>
             <?php
             }
+>>>>>>> 2bd6ca045354d477a46a1fb927226050bf0552ab
             ?>
           </div>
         </div>

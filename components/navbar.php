@@ -35,10 +35,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
     .navbar-brand{
         padding-top: 5px;
+        padding-left: 20px;
         font-size: 20px;
         color: #fff !important;
         font-family: 'Monaco';
-        text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #ffffff, 0 0 20px #A58AAE, 0 0 25px #A58AAE, 0 0 30px #A58AAE, 0 0 35px #A58AAE;
+        text-shadow: 0 0 5px #F5F5F5, 0 0 10px #F5F5F5, 0 0 15px #F5F5F5, 0 0 20px #A58AAE, 0 0 25px #A58AAE, 0 0 30px #A58AAE, 0 0 35px #A58AAE;
     }
 </style>
 
