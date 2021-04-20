@@ -2,6 +2,7 @@
 session_start();
 include("../classes/connect.php");
 include("../classes/organisation.php");
+include("../classes/user.php");
 include("../classes/userOrganisations.php");
 
 if (!isset($_SESSION['userid'])) {
@@ -33,35 +34,31 @@ $userOrganisationsData = $userOrganisations->getUserOrganisations($_SESSION['use
             <div class="col-3"></div>
             <div class="col-6">
                 <?php
-
-                    foreach ($userOrganisationsData as $key => $value) {
-                        $userOrg = $org->getOrganisationData($value['org_id']);
+                foreach ($userOrganisationsData as $key => $value) {
                 ?>
-                        <div class="result-card">
-                            <div class="result-container">
-                                <div class="col-3">
-                                    <img src="https://dummyimage.com/64x64/cfcfcf/000000" class="rounded-circle" alt="...">
+                    <div class="result-card">
+                        <div class="result-container">
+                            <div class="col-3">
+                                <img src="https://dummyimage.com/64x64/cfcfcf/000000" class="rounded-circle" alt="...">
+                            </div>
+                            <div class="col-9">
+                                <div class="row">
+                                    <h6><a href="http://localhost/psychnova_official_2/PsychNova/html/organisation_profile.php" style="color: black"><?php echo $value['name'] ?></h6>
                                 </div>
-                                <div class="col-9">
-                                    <div class="row">
-                                        <h6><?php echo $userOrg['name']?></h6>
-                                    </div>
-                                    <div class="row">
-                                        <h7>Established: <?php echo $userOrg['date_established'] ?></h7>
-                                    </div>
+                                <div class="row">
+                                    <h7>Established: <?php echo $value['date_established'] ?></h7>
                                 </div>
                             </div>
                         </div>
+                    </div>
                 <?php
-                    }
-                
+                }
                 ?>
             </div>
             <div class="col-3"></div>
         </div>
-
-
     </div>
+
 </body>
 
 </html>

@@ -6,6 +6,7 @@ include("../classes/userQualification.php");
 include("../classes/qualification.php");
 include("../classes/userSkills.php");
 include("../classes/skills.php");
+include("../classes/star_sign.php");
 
 //if user not logged in redirect to login
 if (!isset($_SESSION['userid'])) {
@@ -65,7 +66,7 @@ if (!$userData) header("location: login.php");
                         </div>
                         <div class="col-sm-9">
                             <div class="row h-50 d-flex justify-content-center">
-                                <p class="mr-3 mt-5">Sun: Gemini </p>
+                                <p class="mr-3 mt-5">Sun: <?php echo calcStarSign($userData['date_of_birth']) ?> </p>
                                 <p class="mr-3 mt-5">Rising: Cancer</p>
                                 <p class="mr-3 mt-5">Moon: Taurus</p>
                             </div>
