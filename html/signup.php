@@ -41,12 +41,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <div class="col-md-6 registration-box">
                     <form action="" method="post">
                         <div class="form-group">
-                            <label> email </label>
+                            <label> E-Mail </label>
                             <input type="text" name="email" class="form-control" required>
                         </div>
                         <div class="form-group">
-                            <label> password </label>
-                            <input type="password" name="password" class="form-control" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
+                            <label> Password </label>
+                            <input type="password" name="password" class="form-control" required>
                         </div>
                         <div class="form-group">
                             <label> First name </label>
