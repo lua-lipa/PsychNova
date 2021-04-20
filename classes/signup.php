@@ -2,6 +2,7 @@
 
 class SignUp {
 
+    private $error = "";
     //add user to database (create astro sign too?)
     public function createUser($data) {
         $email = $data['email'];
