@@ -1,23 +1,27 @@
 body{
     background-color: #A58AAE !important;
-    background-image: url(../images/LogIn.jpg);
-    background-position: center; /* Center the image */
+    background-image: url(../images/login2.png);
+    background-position: center center;
     background-size: cover;
-    min-height: 100%;
-    min-width: 100%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-clip: border-box;
     }
 
 h1 {
-    padding-top: 100px;
+    padding-top: 50px;
     font-size: 60px;
     color: #fff;
     font-family: 'Monaco';
-    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #ffffff, 0 0 20px #A58AAE, 0 0 25px #A58AAE, 0 0 30px #A58AAE, 0 0 35px #A58AAE;
+    text-shadow: 0 0 5px #F5F5F5, 0 0 10px #F5F5F5, 0 0 15px #F5F5F5, 0 0 20px #A58AAE, 0 0 25px #A58AAE, 0 0 30px #A58AAE, 0 0 35px #A58AAE;
   }
 
+#more {display: none;}
+
 .slogan {
-    font-size: 20px;
+    font-size: 15px;
     padding-top: 30px;
+    padding-bottom: 20px;
     color: #fff;
 
 }
@@ -31,7 +35,7 @@ input {
 }
 
 h6 {
-    padding-top: 30px;
+    padding-top: 10px;
     padding-bottom: 10px;
     color: #C784E0;
     text-align: center;
@@ -45,8 +49,18 @@ h6 {
     width:200px;
 }
 
+.myBtn{
+    background-color: white;
+    border-radius: 100px !important;
+    color: #A58AAE;
+    height:30px;
+    width:100px;
+    border: none;
+    margin-bottom: 30px;
+}
+
 .login-registration-box{
-    max-width: 800PX;
+    max-width: 800px;
     float: none;
     margin: 150px auto;
 }
@@ -64,4 +78,13 @@ h6 {
 
 .form-control{
     background-color: transparent !important;
+}
+
+@media screen and (max-width: 767px){
+    .login-registration-box{
+        max-width: 400px;
+    }
+    h1{
+        padding-top: 0px;
+    }
 }

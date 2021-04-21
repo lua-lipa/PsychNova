@@ -2,6 +2,7 @@
 session_start();
 include("../classes/connect.php");
 include("../classes/organisation.php");
+include("../classes/user.php");
 include("../classes/userOrganisations.php");
 
 if (!isset($_SESSION['userid'])) {
@@ -28,39 +29,76 @@ $userOrganisationsData = $userOrganisations->getUserOrganisations($_SESSION['use
 
 <body>
     <?php include("../components/navbar.php"); ?>
-    <div class="container">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-3"></div>
+            <div class="col-6"> 
+                <h5> Create a new PsychNova organisation or view an existing one. </h5>
+            </div> 
+            <div class="col-3"></div>
+        </div>  
         <div class="row">
             <div class="col-3"></div>
             <div class="col-6">
-                <?php
-
-                    foreach ($userOrganisationsData as $key => $value) {
-                        $userOrg = $org->getOrganisationData($value['org_id']);
-                ?>
-                        <div class="result-card">
-                            <div class="result-container">
-                                <div class="col-3">
-                                    <img src="https://dummyimage.com/64x64/cfcfcf/000000" class="rounded-circle" alt="...">
-                                </div>
-                                <div class="col-9">
-                                    <div class="row">
-                                        <h6><?php echo $userOrg['name']?></h6>
-                                    </div>
-                                    <div class="row">
-                                        <h7>Established: <?php echo $userOrg['date_established'] ?></h7>
+                <div class="result-card">
+                    <h6 class="cardTitle"> Your organisations </h6>
+                    <div class="scrolling-wrapper row flex-row flex-nowrap mt-4 pb-4 pt-2">
+                            <div class="col-4">
+                                <div class="card card-block card-1">
+                                    <div class="profile-image">
+                                        <img src="https://dummyimage.com/100x100/cfcfcf/000000" class="rounded-circle" alt="...">
+                                        </div>
+                                        <div class="profile-name">
+                                        <h6>Honest Potions</h6>
+                                        <button class="myBtn"> View </button>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                <?php
-                    }
-                
-                ?>
+                            <div class="col-4">
+                                <div class="card card-block card-1">
+                                    <div class="profile-image">
+                                        <img src="https://dummyimage.com/100x100/cfcfcf/000000" class="rounded-circle" alt="...">
+                                        </div>
+                                        <div class="profile-name">
+                                        <h6>Honest Potions</h6>
+                                        <button class="myBtn"> View </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="card card-block card-1">
+                                    <div class="profile-image">
+                                        <img src="https://dummyimage.com/100x100/cfcfcf/000000" class="rounded-circle" alt="...">
+                                        </div>
+                                        <div class="profile-name">
+                                        <h6>Honest Potions</h6>
+                                        <button class="myBtn"> View </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="card card-block card-1">
+                                    <div class="profile-image">
+                                        <img src="https://dummyimage.com/100x100/cfcfcf/000000" class="rounded-circle" alt="...">
+                                        </div>
+                                        <div class="profile-name">
+                                        <h6>Honest Potions</h6>
+                                        <button class="myBtn"> View </button>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                </div>
             </div>
             <div class="col-3"></div>
         </div>
-
-
+        <div class="row">
+            <div class="col-3"></div>
+            <div class="col-6">
+                <button type="button" class="orgBtn btn-block"> Create a new organisation </button>
+            </div>
+            <div class="col-3"></div>
+        </div>
     </div>
 </body>
 

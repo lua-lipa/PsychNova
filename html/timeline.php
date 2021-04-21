@@ -88,6 +88,7 @@ $pendingConnectionsData = $connection->getPendingConnections($_SESSION['userid']
             ?>
           </div>
         </div>
+
       </div>
 
       <div class="col-7">

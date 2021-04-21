@@ -41,11 +41,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <div class="col-md-6 registration-box">
                     <form action="" method="post">
                         <div class="form-group">
-                            <label> email </label>
+                            <label> E-Mail </label>
                             <input type="text" name="email" class="form-control" required>
                         </div>
                         <div class="form-group">
-                            <label> password </label>
+                            <label> Password </label>
                             <input type="password" name="password" class="form-control" required>
                         </div>
                         <div class="form-group">
