@@ -50,15 +50,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         </div>
                         <div class="form-group">
                             <label> First name </label>
-                            <input type="text" name="firstName" class="form-control" pattern="[A-Za-z]" title="Must contain only letters" required>
+                            <input type="text" name="firstName" class="form-control" pattern="[A-Za-z]+" title="Must contain only letters" required>
                         </div>
                         <div class="form-group">
                             <label> Last name </label>
-                            <input type="text" name="lastName" class="form-control" pattern="[A-Za-z]" title="Must contain only letters" required>
+                            <input type="text" name="lastName" class="form-control" pattern="[A-Za-z]+" title="Must contain only letters" required>
                         </div>
                         <div class="form-group">
                             <label> Profession </label>
-                            <input type="text" name="profession" class="form-control" pattern="[A-Za-z]" title="Must contain only letters">
+                            <input type="text" name="profession" class="form-control" pattern="[A-Za-z]+" title="Must contain only letters">
                         </div>
                         <div class="form-group">
                             <label> Date of birth </label>
