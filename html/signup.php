@@ -42,23 +42,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <form action="" method="post">
                         <div class="form-group">
                             <label> E-Mail </label>
-                            <input type="text" name="email" class="form-control" required>
+                            <input type="text" name="email" class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" title="Must be in the form psychnova@email.com" required>
                         </div>
                         <div class="form-group">
                             <label> Password </label>
-                            <input type="password" name="password" class="form-control" required>
+                            <input type="password" name="password" class="form-control" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
                         </div>
                         <div class="form-group">
                             <label> First name </label>
-                            <input type="text" name="firstName" class="form-control" required>
+                            <input type="text" name="firstName" class="form-control" pattern="[A-Za-z]+" title="Must contain only letters" required>
                         </div>
                         <div class="form-group">
                             <label> Last name </label>
-                            <input type="text" name="lastName" class="form-control" required>
+                            <input type="text" name="lastName" class="form-control" pattern="[A-Za-z]+" title="Must contain only letters" required>
                         </div>
                         <div class="form-group">
                             <label> Profession </label>
-                            <input type="text" name="profession" class="form-control">
+                            <input type="text" name="profession" class="form-control" pattern="[A-Za-z]+" title="Must contain only letters">
                         </div>
                         <div class="form-group">
                             <label> Date of birth </label>
@@ -70,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         </div>
                         <div class="form-group">
                             <label> Place of birth </label>
-                            <input type="text" name="placeOfBirth" class="form-control">
+                            <input type="text" name="placeOfBirth" class="form-control" pattern="[A-Za-z]" title="Must contain only letters">
                         </div>
                         <p align="center">
                             <button type="submit" class="btn"> Register </button>
