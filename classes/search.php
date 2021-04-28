@@ -27,6 +27,19 @@ class Search {
         return $db->read($query);
     }
 
+    private function searchUsersWithOptions($searchInput, $skillInput, $organisationInput) {
+        //todo
+        //search with skill only
+        //search with companies worked for only
+        //search with both
+
+        $query = "SELECT * FROM user WHERE
+                    first_name LIKE '%$searchInput' ||
+                    last_name LIKE '%$searchInput'";
+        $db = new Database();
+        return $db->read($query);
+    }
+
     private function searchOrganisations($searchInput) {
         $query = "SELECT * FROM organisation WHERE
                     name LIKE '%$searchInput'";
