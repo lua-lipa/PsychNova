@@ -1,12 +1,21 @@
-.form-inline .form-control {
-    width: 300px;
-    border-radius: 50px;
-  }
-  
-  #search-btn {
-    border-radius: 50px;
-  }
+body {
+    background-color: #fff;
+}
 
-  .navbar-wrapper {
-      background-color: red !important;
-  }
+.form-inline .form-control {
+    width: 300px !important;
+    border-radius: 50px !important;
+}
+
+#search-btn {
+    border-radius: 50px;
+}
+
+.navbar-wrapper {
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.075);
+    border-radius: 0px 0px 10px 10px;
+}
+
+.navbar-brand {
+    color: #A58AAE !important;
+}

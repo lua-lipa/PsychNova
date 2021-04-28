@@ -2,7 +2,7 @@ body {
     background-color: #f5f5f5f5;
 }
 
-.btn{
+.btn {
     background-color: #A58AAE;
     border-radius: 100px !important;
     color: white;
@@ -10,7 +10,6 @@ body {
 }
 
 .profile-card {
-    
     height: 300px;
     border-radius: 20px;
     box-shadow: 0px 4px 27px -5px #5C486F;
@@ -52,7 +51,7 @@ body {
     display: flex;
 }
 
-h9{
+h9 {
     margin-top: 20px;
     font-size: 12px;
 }
@@ -82,8 +81,5 @@ h9{
     padding: 15px;
     border-radius: 20px;
     box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.15);
-
     background-color: white;
 }
-
-
