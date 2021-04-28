@@ -18,7 +18,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $_SESSION['searchinput'] = $_POST['searchinput'];
         $_SESSION['dropdowninput'] = $_POST['dropdowninput'];
 
-        header("location: searchresult.php");
+        if ($_POST['dropdowninput'] == 'Users') {
+            header("location: usersearch.php");
+        } else if ($_POST['dropdowninput'] == 'Organisations') {
+            header("location: usersearch.php");
+        }
     }
 }
 
@@ -26,20 +30,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <style>
     /* Set black background color, white text and some padding */
-    .navbar {
-            background-color: #A58AAE !important;
-        }
-    .form-inline .form-control {
-        width: 300px;
-        border-radius: 50px;
+   
+
+    .search-input .form-control {
+        width: 300px !important;
+        border-radius: 50px !important;
     }
-    .navbar-brand{
-        padding-top: 5px;
-        padding-left: 20px;
-        font-size: 20px;
-        color: #fff !important;
-        font-family: 'Monaco';
-        text-shadow: 0 0 5px #F5F5F5, 0 0 10px #F5F5F5, 0 0 15px #F5F5F5, 0 0 20px #A58AAE, 0 0 25px #A58AAE, 0 0 30px #A58AAE, 0 0 35px #A58AAE;
+
+    .navbar-wrapper {
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.075);
+        border-radius: 0px 0px 10px 10px;
+    }
+
+    .navbar-brand {
+        color: #A58AAE !important;
     }
 </style>
 
@@ -55,23 +59,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <div class="search-box ml-auto mr-auto mt-2 mt-lg-0 d-flex">
 
                     <form action="" method="post" class="form-inline">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" name="searchinput" value=
-                    <?php 
-                        if (isset($_SESSION['searchinput'])) {
-                            echo $_SESSION['searchinput'];
-                        }
-                    ?>>
+                        <div class="search-input">
+                            <input class="form-control mr-sm-2" type="search" placeholder="Search" name="searchinput" value=<?php
+                                                                                                                            if (isset($_SESSION['searchinput'])) {
+                                                                                                                                echo $_SESSION['searchinput'];
+                                                                                                                            }
+                                                                                                                            ?>>
+                        </div>
                         <div class="dropdown">
                             <button class="btn dropdown-toggle" name="dropdown" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <?php 
-                                    if (isset($_SESSION['dropdowninput'])) {
-                                        echo $_SESSION['dropdowninput'];
-                                    } else {
-                                        echo "Users";
-                                    }
+                                <?php
+                                if (isset($_SESSION['dropdowninput'])) {
+                                    echo $_SESSION['dropdowninput'];
+                                } else {
+                                    echo "Users";
+                                }
                                 ?>
                             </button>
-                            
+
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                 <li>
                                     <a class="dropdown-item" href="#">Users</a>
@@ -84,19 +89,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                     $(".btn:first-child").text($(this).text());
                                     $(".btn:first-child").val($(this).text());
                                     $("#dropdowninput").val($(this).text());
-                                    
+
                                 });
                             </script>
                         </div>
 
-                        <input type="hidden" id="dropdowninput" name="dropdowninput" value= <?php 
-                        if (isset($_SESSION['dropdowninput'])) {
-                            echo $_SESSION['dropdowninput'];
-                        } else {
-                            echo "Users";
-                        }
-                    ?>>
-                        
+                        <input type="hidden" id="dropdowninput" name="dropdowninput" value=<?php
+                                                                                            if (isset($_SESSION['dropdowninput'])) {
+                                                                                                echo $_SESSION['dropdowninput'];
+                                                                                            } else {
+                                                                                                echo "Users";
+                                                                                            }
+                                                                                            ?>>
+
                     </form>
                 </div>
                 <ul class="navbar-nav my-2 my-lg-0">

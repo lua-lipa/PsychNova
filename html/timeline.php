@@ -37,11 +37,11 @@ $pendingConnectionsData = $connection->getPendingConnections($_SESSION['userid']
 
 <html lang="en">
 
+
+
 <head>
   <?php include("../components/head.php"); ?>
   <title>PsychNova</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="../css/timeline.css" rel="stylesheet">
 
 
