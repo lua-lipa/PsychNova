@@ -2,7 +2,6 @@
 session_start();
 include("../classes/connect.php");
 include("../classes/user.php");
-include("../classes/search.php");
 
 
 /*

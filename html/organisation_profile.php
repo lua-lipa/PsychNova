@@ -86,7 +86,6 @@ $userData = $user->getUserData($_SESSION['userid']);
                         </div>
                 </div>
             </div>
-
         </div>
     </div>
     </body>
