@@ -4,7 +4,7 @@ function calcStarSign($dob)
 {
     $astro_sign = "";
     $dob_split = explode('-', $dob);
-    $day = $dob_split[2];
+    $day = $dob_split[0];
     $month = $dob_split[1];
     //split str date
 

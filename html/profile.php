@@ -24,8 +24,13 @@ $qualification = new Qualification();
 $userSkills = new userSkills();
 $userSkillsData = $userSkills->getUserSkills($_SESSION['userid']);
 $skill = new Skill();
+
+$allSkillsData = $skill->getAllSkills();
+
+$userSkillsArray = array();
+
 // echo "<pre>";
-// print_r($userSkillsData);
+// print_r($allSkillsData);
 // echo "</pre>";
 
 if (!$userData) header("location: login.php");
@@ -37,12 +42,8 @@ if (!$userData) header("location: login.php");
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <?php include("../components/head.php"); ?>
     <link rel="stylesheet" type="text/css" href="../css/profile-style.css">
-    <script src="https://kit.fontawesome.com/0bb62d8e50.js" crossorigin="anonymous"></script>
     <title>Profile</title>
 </head>
 
@@ -79,7 +80,6 @@ if (!$userData) header("location: login.php");
                         </div>
                     </div>
                     <?php
-
                     foreach ($userQualificationData as $key => $value) {
                         // echo "<pre>";
                         // print_r($userQualificationData);
@@ -89,9 +89,31 @@ if (!$userData) header("location: login.php");
                         <div class="row mt-3">
                             <div class="card-qualifications">
                                 <div class="qualification">
-                                    <h8 class="size-change" id="margin-add"><strong><?php echo $qualificationData['institute'] ?></strong></h8><br>
+                                    <h8 class="size-change" id="margin-add"><strong><?php echo $qualificationData['institue'] ?></strong></h8><br>
                                     <h9><?php echo $qualificationData['title'] ?></h9><br>
                                     <p><?php echo $qualificationData['description'] ?></p>
+                                    <button type="button" class="btn qualification-button btn-primary" data-toggle="modal" data-target="#exampleModal">
+                                        <i class="bi bi-pencil"></i>
+                                    </button>
+                                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Edit Qualification</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    Edit
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                                 <hr>
                             </div>
@@ -99,23 +121,54 @@ if (!$userData) header("location: login.php");
                     <?php
                     }
                     ?>
+
                     <div class="row mt-3">
                         <?php
                         foreach ($userSkillsData as $key => $value) {
                             $skillsData = $skill->getSkillFromId($value['skill_id']);
+                            array_push($userSkillsArray, $skillsData['title']);
                         ?>
-                            <div class="col mt-3">
-                                <div class="card-skills">
-                                    <div class="skills" style="flex-wrap: wrap;">
-                                        <h9><?php echo $skillsData['title'] ?></h9><br>
-                                        <p><?php echo $skillsData['description'] ?></p>
-                                    </div>
-                                </div>
+                            <div class="skills" style="flex-wrap: wrap;">
+                                <span type="badge badge-primary" class="badge-skill" style="background-color: #876e8f;  margin-bottom:20px;"><?php echo $skillsData['title'] ?> </span>
                             </div>
 
                         <?php
                         }
                         ?>
+                        <button type="button" style="background-color: #ffffff; color: #000000; height: 35px; border-color: #876e8f; border-radius:50px;" class="btn btn-primary" data-toggle="modal" data-target="#editSkillsModal">
+                            <i class="bi bi-pencil"></i>
+                        </button>
+                        <div class="modal fade" id="editSkillsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="editSkillsModal">Edit Skills</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <?php foreach ($allSkillsData as $key => $value) {
+                                            $allSkills = $skill->getAllSkills();
+                                            if (in_array($value['title'], $userSkillsArray)) {
+                                        ?>
+                                                <span class="badge badge-primary" style="background-color: #876e8f"><?php echo $value['title'] ?> <span aria-hidden="true"><i class="fa fa-times" aria-hidden="true"></i></span></span>
+                                            <?php
+                                            } else {
+                                            ?>
+                                                <span class="badge badge-primary" style="background-color: #a58aae"><?php echo $value['title'] ?> <span aria-hidden="true"><i class="fa fa-times" aria-hidden="true"></i></span></span>
+                                        <?php
+                                            }
+                                        }
+                                        ?>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal" style="border-radius:15px; background-color: #876e8f; border-color:#876e8f">Close</button>
+                                        <button type="button" class="btn btn-primary" style="border-radius:15px; background-color: #a58aae; border-color:#876e8f">Save changes</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
