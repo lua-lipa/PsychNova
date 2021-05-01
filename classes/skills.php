@@ -6,7 +6,7 @@ class Skill
     {
         $query = "SELECT * FROM skills";
         $db = new Database();
-        return $db->readById($query, "skill_id");
+        return $db->read($query);
     }
 
     public function getSkillFromId($skillId)
