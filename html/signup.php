@@ -75,7 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         </div>
                         <div class="form-group">
                             <label> Place of birth </label>
-                            <input type="text" name="placeOfBirth" class="form-control" pattern="[A-Za-z]" title="Must contain only letters">
+                            <input type="text" name="placeOfBirth" class="form-control" pattern="[A-Za-z]+" title="Must contain only letters">
                             <p class="text-muted">We use this to calculate your rising sign.</p>
                         </div>
                         <p align="center">
