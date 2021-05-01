@@ -57,12 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         </div>
                         <div class="form-group">
                             <label> Last name </label>
-<<<<<<< HEAD
-                            <a href="#" data-toggle="popover" title="Popover Header" data-content="Some content inside the popover">Toggle popover</a>
-                            <input type="text" name="lastName" class="form-control" required>
-=======
                             <input type="text" name="lastName" class="form-control" pattern="[A-Za-z]+" title="Must contain only letters" required>
->>>>>>> 51823c661591e3fe5c8980acd0d84465be315bfa
                         </div>
                         <div class="form-group">
                             <label> Profession </label>
@@ -70,26 +65,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         </div>
                         <div class="form-group">
                             <label> Date of birth </label>
-                            <a href="#" role="button" class="popBtn btn-secondary popover-test" title="Date of birth" data-content="We need your date of birth for calculating your star sign.">&#9432;</a>
                             <input type="date" name="dateOfBirth" class="form-control">
+                            <p class="text-muted">We use this to calculate your star sign.</p>
                         </div>
                         <div class="form-group">
                             <label> Time of birth </label>
-                            <span>
-                                &#9432;
-                            </span>
                             <input type="time" name="timeOfBirth" class="form-control">
+                            <p class="text-muted">We use this to calculate your moon sign.</p>
                         </div>
                         <div class="form-group">
                             <label> Place of birth </label>
-<<<<<<< HEAD
-                            <span>
-                                &#9432;
-                            </span>
-                            <input type="text" name="placeOfBirth" class="form-control">
-=======
                             <input type="text" name="placeOfBirth" class="form-control" pattern="[A-Za-z]" title="Must contain only letters">
->>>>>>> 51823c661591e3fe5c8980acd0d84465be315bfa
+                            <p class="text-muted">We use this to calculate your rising sign.</p>
                         </div>
                         <p align="center">
                             <button type="submit" class="btn"> Register </button>
@@ -115,11 +102,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             moreText.style.display = "inline";
         }
         }
-    </script>
-    <script>
-    $(document).ready(function(){
-    $('[data-toggle="popover"]').popover(); 
-    });
     </script>
 </body>
 
