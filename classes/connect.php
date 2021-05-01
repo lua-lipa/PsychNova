@@ -32,23 +32,6 @@ class Database
         return $data;
     }
 
-    public function readById($query, $id)
-    {
-        $conn = $this->connect();
-        $result = mysqli_query($conn, $query);
-
-        if (!$result) {
-            return false;
-        }
-
-        $data = [];
-        while ($row = mysqli_fetch_assoc($result)) {
-            $data[$row[$id]] = $row;
-        }
-
-        return $data;
-    }
-
     public function readOne($query)
     {
         $conn = $this->connect();
