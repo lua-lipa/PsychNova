@@ -1,6 +1,6 @@
 
 <?php
-include("./user.php");
+
 class Login
 {
 
