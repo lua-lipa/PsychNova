@@ -6,7 +6,6 @@ function calcStarSign($dob)
     $dob_split = explode('-', $dob);
     $day = $dob_split[0];
     $month = $dob_split[1];
-    //split str date
 
     if ($month == 12) {
         if ($day < 22)
@@ -70,4 +69,18 @@ function calcStarSign($dob)
             $astro_sign = "12";
     }
     return $astro_sign;
+}
+
+function calcRising()
+{
+    $signs = array("Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces");
+    $rising = array_rand($signs, 1);
+    print_r($signs[$rising]);
+}
+
+function calcMoon()
+{
+    $signs = array("Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces");
+    $moon = array_rand($signs, 1);
+    print_r($signs[$moon]);
 }

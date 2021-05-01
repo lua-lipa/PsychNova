@@ -2,11 +2,12 @@
 
 class Skill
 {
+    //readbyid
     public function getAllSkills()
     {
         $query = "SELECT * FROM skills";
         $db = new Database();
-        return $db->read($query);
+        return $db->readById($query, "skill_id");
     }
 
     public function getSkillFromId($skillId)
