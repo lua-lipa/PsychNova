@@ -245,8 +245,6 @@ if (!$userData) header("location: login.php");
                     </div>
                 </div>
 
-                <?php print_r($selectedSkills); ?>
-
                 <div class="col-sm-3">
                     <div class="card-vacancies text-center">
                         <h9>Recent Vacancies</h8>

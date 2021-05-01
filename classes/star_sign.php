@@ -6,7 +6,6 @@ function calcStarSign($dob)
     $dob_split = explode('-', $dob);
     $day = $dob_split[0];
     $month = $dob_split[1];
-    //split str date
 
     if ($month == 12) {
         if ($day < 22)

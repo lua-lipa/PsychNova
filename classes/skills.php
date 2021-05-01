@@ -2,6 +2,7 @@
 
 class Skill
 {
+    //readbyid
     public function getAllSkills()
     {
         $query = "SELECT * FROM skills";
