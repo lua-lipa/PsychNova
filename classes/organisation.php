@@ -35,13 +35,13 @@ class organisation
         $error = "";
         $name = $data['name'];
         $DE = $data['dateEstablished'];
-        $Desc = $data['description'];
+        $desc = $data['description'];
         $email = $data['email'];
         $number = $data['contactNo'];
     
         $query = "insert into organisation 
                             (name, date_established, description, user_id, email, contact_number) 
-                    values ('$name' , '$DE , '$Desc' , '$userId' , '$email' , '$contact_number')";
+                    values ('$name' , '$DE' , '$desc' , '$userId' , '$email' , '$contact_number')";
         $DB = new Database();
         $DB->save($query);
 
