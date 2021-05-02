@@ -41,15 +41,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <?php include("../components/navbar.php"); ?>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-3"></div>
-            <div class="col-6">
+            <div class="col-sm-3"></div>
+            <div class="col-lg-6">
                 <h6 class="yourOrgTitle"> Your organisation </h6>
             </div>
-            <div class="col-3"></div>
+            <div class="col-sm-3"></div>
         </div> 
         <div class="row">
-            <div class="col-3"></div>
-            <div class="col-6">
+            <div class="col-sm-3"></div>
+            <div class="col-lg-6">
             <?php
             if (empty($userOrganisationsData)) {
             ?>
@@ -97,12 +97,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             ?>
                 <div class="result-card">
                     <div class="result-container">
-                        <div class="col-3">
-                            <img src="https://dummyimage.com/64x64/cfcfcf/000000" class="rounded-circle" alt="...">
+                        <div class="col-2">
+                            <img src="<?php echo $userOrganisationsData['profile_picture']?>" class="rounded-circle" alt="..." width="64" height="64">
                         </div>
-                        <div class="col-9">
+                        <div class="col-10 result-card-content">
                             <div class="row">
-                                <h6 class="yourOrgname"><?php echo $userOrganisationsData['name']?></h6>
+                                <h6 class="yourOrgname"><a style="color: #A58AAE; text-decoration: none;" class="yourOrgname" href = "organisation_profile.php?id=<?php echo $userOrganisationsData['org_id']?>" type="submit" name="view"> <?php echo $userOrganisationsData['name']?></a></h6>
                             </div>
                             <div class="row">
                                 <h7 class="yourOrgDesc"><?php echo $userOrganisationsData['description']?></h7>
@@ -115,21 +115,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             }
             ?>
             </div>
-            <div class="col-3"></div>
+            <div class="col-sm-3"></div>
         </div> 
         <div class="row">
             <HR>
         </div>
         <div class="row">
-            <div class="col-3"></div>
-            <div class="col-6">
+            <div class="col-sm-3"></div>
+            <div class="col-lg-6">
                 <h6 class="linkedOrgTitle"> Organisations your linked to </h6>
             </div>
-            <div class="col-3"></div>
+            <div class="col-sm-3"></div>
         </div> 
         <div class="row">
-            <div class="col-3"></div>
-            <div class="col-6">
+            <div class="col-sm-3"></div>
+            <div class="col-lg-6">
                 <div class="org-card">
                     <div class="scrolling-wrapper row flex-row flex-nowrap mt-4 pb-4 pt-2">
                     <?php
@@ -141,14 +141,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             foreach ($linkedOrgs as $key => $value) {
                                 $linkedOrgsData = $org->getOrganisationData($value['org_id']);
                         ?>
-                                <div class="col-4">
+                                <div class="col-lg-4">
                                     <div class="card card-block card-1">
                                         <div class="profile-image">
-                                            <img src="https://dummyimage.com/100x100/cfcfcf/000000" class="rounded-circle" alt="...">
+                                            <img src="<?php echo $linkedOrgsData['profile_picture']?>" class="rounded-circle" alt="..." width="100" height="100">
                                         </div>
                                         <div class="profile-name" align="center">
                                             <h6 class="linkedOrgname"><?php echo $linkedOrgsData['name']?></h6>
-                                            <button class="myBtn"> View </button>
+                                            <a style="color: #A58AAE; text-decoration: none;" href = "organisation_profile.php?id=<?php echo $linkedOrgsData['org_id']?>" type="submit" name="view" class="myBtn"> View </a>
                                         </div>
                                     </div>
                                 </div>
@@ -159,7 +159,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     </div>
                 </div>
             </div>
-            <div class="col-3"></div>
+            <div class="col-sm-3"></div>
         </div>
     </div>
 </body>

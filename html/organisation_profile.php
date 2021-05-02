@@ -9,9 +9,10 @@ if (!isset($_SESSION['userid'])) {
     header("location: myorganisations.php");
 }
 
+$org_id = $_GET['id'];
 $organisation = new organisation();
-$organisationData = $organisation->getOrganisationData($_SESSION['userid']);
-
+// $organisationData = $organisation->getOrganisationData($_SESSION['userid']);
+$organisationData = $organisation->getOrganisationData($org_id);
 $user = new User();
 $userData = $user->getUserData($_SESSION['userid']);
 
