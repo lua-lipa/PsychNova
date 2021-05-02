@@ -34,9 +34,9 @@ if (isset($_POST['updateSkills'])) {
     }
 }
 
-echo "<pre>";
-print_r($newSkills);
-echo "</pre>";
+// echo "<pre>";
+// print_r($newSkills);
+// echo "</pre>";
 
 $user = new User();
 $userData = $user->getUserData($_SESSION['userid']);
