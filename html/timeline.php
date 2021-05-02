@@ -24,8 +24,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 $postsData = $post->getPostsData();
 $userData = $user->getUserData($_SESSION['userid']);
 $pendingConnectionsData = $connection->getPendingConnections($_SESSION['userid']);
-
-
+$numberOfConections = count($pendingConnectionsData);
+// $numberOfConections = 0;
 
 /*
   echo "<pre>";
@@ -69,23 +69,29 @@ $pendingConnectionsData = $connection->getPendingConnections($_SESSION['userid']
           </div>
         </div>
 
+
         <div class="connections-card">
           <div class="connections-container">
-            <h9>Connection Requests</h9><br>
+            <p>Connection Requests</p>
             <?php
-
-            foreach ($pendingConnectionsData as $key => $value) {
-              $pendingConnectionUserData = new User();
-              $pendingConnectionUserData = $user->getUserData($value['user_id']);
-            ?>
-
-              <div class="pending-connection">
-                <img src="https://dummyimage.com/50x50/cfcfcf/000000" class="rounded-circle" alt="...">
-                <h9><?php echo $pendingConnectionUserData['first_name'] . " " . $pendingConnectionUserData['last_name'] ?></h9><br>
-              </div>
+            if ($numberOfConections == 0) { ?>
+              <p>You have no connection requests</p>
+              <?php
+            } else {
+              foreach ($pendingConnectionsData as $key => $value) {
+                $pendingConnectionUserData = $user->getUserData($value['user_inviter']);
+              ?>
+                <div class="connection-row">
+                  <img src="https://dummyimage.com/40x40/cfcfcf/000000" class="rounded-circle" alt="...">
+                  <h9><?php echo $pendingConnectionUserData['first_name'] . " " . $pendingConnectionUserData['last_name'] ?></h9><br>
+                  <br>
+                </div>
             <?php
+              }
             }
             ?>
+            <a class="btn float-center" href="pending_connections.php">More</a>
+            <!-- <button type="submit" class="btn float-center">More</button> -->
           </div>
         </div>
 
