@@ -13,7 +13,6 @@ if (!isset($_SESSION['userid'])) {
     header("location: login.php");
 }
 
-
 if (isset($_POST['updateAbout'])) {
     $user = new User();
     $user->updateAbout($_SESSION['userid'], $_POST);
@@ -26,12 +25,12 @@ if (isset($_POST['updateQualification'])) {
 
 $newSkills = array();
 if (isset($_POST['updateSkills'])) {
+    $userSkills = new userSkills();
+    $userSkills->removeAllSkills($_SESSION['userid']);
     foreach ($_POST['selectedSkills'] as $selected) {
         echo ($selected);
         array_push($newSkills, $selected);
-
-        // $user = new User();
-        // $user->updateSkills($_SESSION['userid'], $_POST);
+        $userSkills->addUserSkill($_SESSION['userid'], $selected);
     }
 }
 
@@ -45,7 +44,6 @@ $userData = $user->getUserData($_SESSION['userid']);
 $userQualification = new userQualification();
 $userQualificationData = $userQualification->getUserQualificationData($_SESSION['userid']);
 $qualification = new Qualification();
-//$qualificationData = $qualification->getQualificationData();
 
 $userSkills = new userSkills();
 $userSkillsData = $userSkills->getUserSkills($_SESSION['userid']);
@@ -54,23 +52,10 @@ $allSkillsData = $skill->getAllSkills();
 
 $selectedSkills = array();
 
-// echo "<pre>";
-// print_r($allSkillsData);
-// echo "</pre>";
-
-// echo "<pre>";
-// print_r($userSkillsData);
-// echo "</pre>";
-
-echo "<pre>";
-print_r($userQualificationData);
-echo "</pre>";
-
 if (!$userData) header("location: login.php");
 
 ?>
 
-<!-- LEFT COLOURS IN FOR EASIER VIEW of whats going on -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -83,9 +68,6 @@ if (!$userData) header("location: login.php");
 <body>
     <!-- navbar -->
     <?php include("../components/navbar.php"); ?>
-    <script>
-        var arr = [];
-    </script>
     <div class="container mt-3">
         <div class="main-page">
             <div class="row">
@@ -152,12 +134,12 @@ if (!$userData) header("location: login.php");
                         // print_r($userQualificationData);
                         // echo "</pre>";
                         $qualificationData = $qualification->getQualificationFromId($value['qualification_id']);
-                        $id = $qualificationData['qualification_id'];
+                        $id = "qualificationModal" . $qualificationData['qualification_id'];
                     ?>
                         <div class="row mt-3">
                             <div class="card-qualifications">
                                 <div class="qualification">
-                                    <h8 class="size-change" id="margin-add"><strong><?php echo $qualificationData['institue'] ?></strong></h8><br>
+                                    <h8 class="size-change" id="margin-add"><strong><?php echo $qualificationData['institute'] ?></strong></h8><br>
                                     <h9><?php echo $qualificationData['title'] ?></h9><br>
                                     <h9><?php echo $value['date_obtained'] ?></h9><br>
                                     <p><?php echo $qualificationData['description'] ?></p>
@@ -196,6 +178,7 @@ if (!$userData) header("location: login.php");
                     }
                     ?>
 
+                    <!-- Skills -->
                     <div class="row mt-3">
                         <?php
                         foreach ($userSkillsData as $key => $value) {
@@ -224,15 +207,12 @@ if (!$userData) header("location: login.php");
 
                                     <div class="modal-body">
                                         <?php foreach ($allSkillsData as $key => $value) {
-
                                             if (array_key_exists($key, $userSkillsData)) {
                                         ?>
-
                                                 <input id="submitButton" type="submit" onclick="myFunction(this, ' <?php echo $value['skill_id'] ?>', '<?php echo $key ?>')" class="button_submit btn-sm" style="margin-top:5px; color: #ffffff; background-color: #a58aae; border: 3px solid black; border-radius: 10px" value="<?php echo $value['title'] ?>" />
                                             <?php
                                             } else {
                                             ?>
-
                                                 <input id="submitButton" type="submit" onclick="myFunction(this, ' <?php echo $value['skill_id'] ?>', '<?php echo $key ?>')" class="button_submit btn-sm" style="margin-top:10px; color: #ffffff;background-color: #a58aae; border: 3px solid #a58aae; border-radius: 10px" value="<?php echo $value['title'] ?>" />
                                         <?php
                                             }
@@ -266,7 +246,6 @@ if (!$userData) header("location: login.php");
                                                     }
                                                 }
                                                 ?>
-
                                             </div>
                                     </div>
 
@@ -293,6 +272,7 @@ if (!$userData) header("location: login.php");
                     </div>
                 </div>
 
+                <!-- Vacancies -->
                 <div class="col-sm-3">
                     <div class="card-vacancies text-center">
                         <h9>Recent Vacancies</h8>
