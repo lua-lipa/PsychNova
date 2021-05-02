@@ -13,7 +13,8 @@ class User
         return $db->readOne($query);
     }
 
-    public function getUserAstroInfo($userid){
+    public function getUserAstroInfo($userid)
+    {
         $query = "SELECT * FROM user_astrological WHERE user_id = $userid";
         $db = new Database();
         return $db->read($query);
@@ -24,6 +25,51 @@ class User
         $query = "select type from user where user_id = '$userId'";
         $db = new Database();
         return $db->exists($query);
+    }
+
+    public function updateQualification($data)
+    {
+        $dateObtained = $data['dateObtained'];
+        $userQualificationId = $data['userQualificationId'];
+
+        $query = "UPDATE user_qualification 
+        SET date_obtained='$dateObtained'
+        WHERE u_qualification_id='$userQualificationId';";
+
+        $DB = new Database();
+        $DB->save($query);
+    }
+
+    public function updateAbout($userId, $data)
+    {
+        $firstName = $data['firstName'];
+        $lastName = $data['lastName'];
+        $dateOfBirth = $data['dateOfBirth'];
+        $description = $data['description'];
+
+        $query = "UPDATE user 
+                  SET first_name='$firstName', last_name='$lastName', 
+                      date_of_birth='$dateOfBirth', description='$description'
+                  WHERE user_id='$userId';";
+
+        $DB = new Database();
+        $DB->save($query);
+    }
+
+    public function updateSkills($userId, $data)
+    {
+        $firstName = $data['firstName'];
+        $lastName = $data['lastName'];
+        $dateOfBirth = $data['dateOfBirth'];
+        $description = $data['description'];
+
+        $query = "UPDATE user 
+                  SET first_name='$firstName', last_name='$lastName', 
+                      date_of_birth='$dateOfBirth', description='$description'
+                  WHERE user_id='$userId';";
+
+        $DB = new Database();
+        $DB->save($query);
     }
 
     public function unbanUser($userId)
@@ -38,12 +84,12 @@ class User
         $DB = new Database();
         $banQuery = "SELECT * FROM banned_users WHERE user_id = '$userId';";
         $banned = $DB->readOne($banQuery);
-        if($banned){
+        if ($banned) {
             $date = new DateTime($banned['date_of_unban']);
             $now = new DateTime();
-            if($date < $now){
+            if ($date < $now) {
                 $this->unbanUser($userId);
-            }else{
+            } else {
                 $unbanDate = $banned['date_of_unban'];
                 return "You have been banned for violating our guidelines. You will be unbanned on $unbanDate";
             }

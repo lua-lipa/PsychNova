@@ -13,6 +13,22 @@ if (!isset($_SESSION['userid'])) {
     header("location: login.php");
 }
 
+
+if (isset($_POST['updateAbout'])) {
+    $user = new User();
+    $user->updateAbout($_SESSION['userid'], $_POST);
+}
+
+if (isset($_POST['updateQualification'])) {
+    $user = new User();
+    $user->updateQualification($_POST);
+}
+
+if (isset($_POST['updateSkills'])) {
+    $user = new User();
+    $user->updateSkills($_SESSION['userid'], $_POST);
+}
+
 $user = new User();
 $userData = $user->getUserData($_SESSION['userid']);
 
@@ -27,6 +43,7 @@ $skill = new Skill();
 $allSkillsData = $skill->getAllSkills();
 
 $selectedSkills = array();
+
 // echo "<pre>";
 // print_r($allSkillsData);
 // echo "</pre>";
@@ -34,6 +51,10 @@ $selectedSkills = array();
 // echo "<pre>";
 // print_r($userSkillsData);
 // echo "</pre>";
+
+echo "<pre>";
+print_r($userQualificationData);
+echo "</pre>";
 
 if (!$userData) header("location: login.php");
 
@@ -83,21 +104,21 @@ if (!$userData) header("location: login.php");
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
                                             </div>
-                                            <div class="modal-body">
-                                                <form action="" method="POST">
+                                            <form action="" method="POST">
+                                                <div class="modal-body">
                                                     <label for="firstName" style="color:black">First name *</label> <input type="text" name="firstName" style="border-radius:5px;" value=<?php echo $userData['first_name'] ?> />
                                                     <br>
-                                                    <label for="LastName" style="color:black">Last name *</label> <input type="text" name="LastName" style="border-radius:5px;" value=<?php echo $userData['last_name'] ?> />
+                                                    <label for="lastName" style="color:black">Last name *</label> <input type="text" name="lastName" style="border-radius:5px;" value=<?php echo $userData['last_name'] ?> />
                                                     <br>
-                                                    <label for="DOB" style="color:black">Date of Birth *</label> <input type="text" name="DOB" style="border-radius:5px;" value="<?php echo $userData['date_of_birth'] ?>" />
+                                                    <label for="dateOfBirth" style="color:black">Date of Birth *</label> <input type="date" name="dateOfBirth" style="border-radius:5px;" value="<?php echo $userData['date_of_birth'] ?>" />
                                                     <br>
-                                                    <label for="Description" style="color:black">Description *</label> <input type="text" name="Description" style="margin-bottom:10px; height: 50px; width:95%; border-radius:5px;" maxlength="200" value="<?php echo $userData['description'] ?>" />
-                                                </form>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal" style="border-radius:15px; background-color: #876e8f; border-color:#876e8f">Close</button>
-                                                <button type="button" class="btn btn-primary" style="border-radius:15px; background-color: #a58aae; border-color:#876e8f">Save changes</button>
-                                            </div>
+                                                    <label for="description" style="color:black">Description *</label> <input type="text" name="description" style="margin-bottom:10px; height: 50px; width:95%; border-radius:5px;" maxlength="200" value="<?php echo $userData['description'] ?>" />
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal" style="border-radius:15px; background-color: #876e8f; border-color:#876e8f">Close</button>
+                                                    <button type="submit" name="updateAbout" class="btn btn-primary" style="border-radius:15px; background-color: #a58aae; border-color:#876e8f">Save changes</button>
+                                                </div>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
@@ -108,7 +129,7 @@ if (!$userData) header("location: login.php");
                                 <p class="mr-3 mt-5">Moon: Taurus</p>
                             </div>
                             <div class="row h-50">
-                                <div class="card-about text-center px-4">
+                                <div class="card-about text-center px-4" ]>
                                     <h8><strong>About</strong></h8>
                                     <p><?php echo $userData['description'] ?></p>
                                 </div>
@@ -128,6 +149,7 @@ if (!$userData) header("location: login.php");
                                 <div class="qualification">
                                     <h8 class="size-change" id="margin-add"><strong><?php echo $qualificationData['institue'] ?></strong></h8><br>
                                     <h9><?php echo $qualificationData['title'] ?></h9><br>
+                                    <h9><?php echo $value['date_obtained'] ?></h9><br>
                                     <p><?php echo $qualificationData['description'] ?></p>
                                     <div class="row float-right">
                                         <button type="button" class="btn qualification-button btn-primary" data-toggle="modal" data-target="#<?php echo $id ?>" style="margin-right:20px; margin-bottom:10px;">
@@ -144,19 +166,14 @@ if (!$userData) header("location: login.php");
                                                     </div>
                                                     <div class="modal-body">
                                                         <form action="" method="POST">
-                                                            <label for="Institute" style="color:black">Institute *</label> <input type="text" name="firstName" style="border-radius:5px;" value="<?php echo $qualificationData['institue'] ?>" />
-                                                            <br>
-                                                            <label for="Title" style="color:black">Title *</label> <input type="text" name="LastName" style="border-radius:5px;" value="<?php echo $qualificationData['title'] ?> " />
-                                                            <br>
-                                                            <label for="Level" style="color:black">Level *</label> <input type="number" name="DOB" style="border-radius:5px;" value="<?php echo $qualificationData['level'] ?>" />
-                                                            <br>
-                                                            <label for="Description" style="color:black">Description *</label> <input type="text" name="Description" style="margin-bottom:10px; height: 50px; width:95%; border-radius:5px;" maxlength="200" value="<?php echo $qualificationData['description'] ?>" />
-                                                        </form>
+                                                            <label for="dateObtained" style="color:black">Date obtained *</label> <input type="date" name="dateObtained" style="border-radius:5px;" value=<?php echo $value['date_obtained'] ?> />
+                                                            <input type="hidden" name="userQualificationId" value=<?php echo $value['u_qualification_id'] ?> />
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary" data-dismiss="modal" style="border-radius:15px; background-color: #876e8f; border-color:#876e8f">Close</button>
-                                                        <button type="button" class="btn btn-primary" style="border-radius:15px; background-color: #a58aae; border-color:#876e8f">Save changes</button>
+                                                        <button type="submit" name="updateQualification" class="btn btn-primary" style="border-radius:15px; background-color: #a58aae; border-color:#876e8f">Save changes</button>
                                                     </div>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>
@@ -217,27 +234,24 @@ if (!$userData) header("location: login.php");
                                             console.log($(target).css("border-right-color"));
                                             if ($(target).css("border-right-color") == "rgb(0, 0, 0)") {
                                                 target.style.border = "3px solid #a58aae";
-                                                <?php unset($selectedSkills['<script>document.write(key)</script>']); ?>
+                                                <?php unset($selectedSkills['<script>key</script>']); ?>
                                                 //remove here
                                             } else {
                                                 //add here
                                                 target.style.border = "3px solid black";
                                                 <?php array_push($selectedSkills, '<script>document.write(value)</script>'); ?>
                                             }
+                                            <?php
+                                            echo "<pre>";
+                                            print_r($allSkillsData);
+                                            echo "</pre>";
+                                            ?>
                                             <?php $userSkills = $selectedSkills; ?>
                                         }
-
-                                        // function myFunction() {
-                                        //     if (document.getElementById("submitButton").style.borderColor == "#a58aae") {
-                                        //         document.getElementById("submitButton").style.borderColor = "#000000";
-                                        //     } else if (document.getElementById("submitButton").style.borderColor == "#000000") {
-                                        //         document.getElementById("submitButton").style.borderColor = "#a58aae";
-                                        //     }
-                                        // }
                                     </script>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal" style="border-radius:15px; background-color: #876e8f; border-color:#876e8f">Close</button>
-                                        <button type="button" class="btn btn-primary" style="border-radius:15px; background-color: #a58aae; border-color:#876e8f">Save changes</button>
+                                        <button type="submit" name="updateSkills" class="btn btn-primary" style="border-radius:15px; background-color: #a58aae; border-color:#876e8f">Save changes</button>
                                     </div>
                                 </div>
                             </div>
