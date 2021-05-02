@@ -25,7 +25,7 @@ $postsData = $post->getPostsData();
 $userData = $user->getUserData($_SESSION['userid']);
 $pendingConnectionsData = $connection->getPendingConnections($_SESSION['userid']);
 $numberOfConections = count($pendingConnectionsData);
-// $numberOfConections = 0;
+// $numberOfConections = 1;
 
 /*
   echo "<pre>";
@@ -71,15 +71,30 @@ $numberOfConections = count($pendingConnectionsData);
 
 
         <div class="connections-card">
+          <?php if ($numberOfConections > 1) { ?>
+            <h class="connections-title" style="text-align:center"><?php echo $numberOfConections . " connection requests" ?></h>
+
+          <?php } else if ($numberOfConections == 1) { ?>
+            <h class="connections-title" style="text-align:center"><?php echo $numberOfConections . " connection request" ?></h>
+          <?php
+          } else { ?>
+            <h class="connections-title" style="text-align:center">Connection requests</h>
+          <?php } ?>
+
           <div class="connections-container">
-            <p>Connection Requests</p>
+
             <?php
             if ($numberOfConections == 0) { ?>
-              <p>You have no connection requests</p>
+              <p style="font-size:11px">No requests yet!</p>
               <?php
             } else {
+              $noOfConnectionsDisplayed = 0;
               foreach ($pendingConnectionsData as $key => $value) {
-                $pendingConnectionUserData = $user->getUserData($value['user_inviter']);
+                if ($noOfConnectionsDisplayed == 3) break;
+                else {
+                  $pendingConnectionUserData = $user->getUserData($value['user_inviter']);
+                  $noOfConnectionsDisplayed += 1;
+                }
               ?>
                 <div class="connection-row">
                   <img src="https://dummyimage.com/40x40/cfcfcf/000000" class="rounded-circle" alt="...">
@@ -90,8 +105,8 @@ $numberOfConections = count($pendingConnectionsData);
               }
             }
             ?>
-            <a class="btn float-center" href="pending_connections.php">More</a>
-            <!-- <button type="submit" class="btn float-center">More</button> -->
+            <a class="btn-small float-center" href="pending_connections.php">Explore</a>
+            <!-- <button type=" submit" class="btn float-center">More</button> -->
           </div>
         </div>
 
