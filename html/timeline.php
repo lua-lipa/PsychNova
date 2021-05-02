@@ -24,8 +24,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 $postsData = $post->getPostsData();
 $userData = $user->getUserData($_SESSION['userid']);
 $pendingConnectionsData = $connection->getPendingConnections($_SESSION['userid']);
-
-
+$numberOfConections = count($pendingConnectionsData);
+// $numberOfConections = 1;
 
 /*
   echo "<pre>";
@@ -69,23 +69,44 @@ $pendingConnectionsData = $connection->getPendingConnections($_SESSION['userid']
           </div>
         </div>
 
+
         <div class="connections-card">
+          <?php if ($numberOfConections > 1) { ?>
+            <h class="connections-title" style="text-align:center"><?php echo $numberOfConections . " connection requests" ?></h>
+
+          <?php } else if ($numberOfConections == 1) { ?>
+            <h class="connections-title" style="text-align:center"><?php echo $numberOfConections . " connection request" ?></h>
+          <?php
+          } else { ?>
+            <h class="connections-title" style="text-align:center">Connection requests</h>
+          <?php } ?>
+
           <div class="connections-container">
-            <h9>Connection Requests</h9><br>
-            <?php
 
-            foreach ($pendingConnectionsData as $key => $value) {
-              $pendingConnectionUserData = new User();
-              $pendingConnectionUserData = $user->getUserData($value['user_id']);
-            ?>
-
-              <div class="pending-connection">
-                <img src="https://dummyimage.com/50x50/cfcfcf/000000" class="rounded-circle" alt="...">
-                <h9><?php echo $pendingConnectionUserData['first_name'] . " " . $pendingConnectionUserData['last_name'] ?></h9><br>
-              </div>
             <?php
+            if ($numberOfConections == 0) { ?>
+              <p style="font-size:11px">No requests yet!</p>
+              <?php
+            } else {
+              $noOfConnectionsDisplayed = 0;
+              foreach ($pendingConnectionsData as $key => $value) {
+                if ($noOfConnectionsDisplayed == 3) break;
+                else {
+                  $pendingConnectionUserData = $user->getUserData($value['user_inviter']);
+                  $noOfConnectionsDisplayed += 1;
+                }
+              ?>
+                <div class="connection-row">
+                  <img src="https://dummyimage.com/40x40/cfcfcf/000000" class="rounded-circle" alt="...">
+                  <h9><?php echo $pendingConnectionUserData['first_name'] . " " . $pendingConnectionUserData['last_name'] ?></h9><br>
+                  <br>
+                </div>
+            <?php
+              }
             }
             ?>
+            <a class="btn-small float-center" href="pending_connections.php">Explore</a>
+            <!-- <button type=" submit" class="btn float-center">More</button> -->
           </div>
         </div>
 

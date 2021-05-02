@@ -87,7 +87,7 @@ h5{
     background-color: white;
     border-radius: 100px !important;
     color: #A58AAE;
-    height:30px;
+    height:25px;
     width:100px;
     border: none;
     margin: 25px;
@@ -109,6 +109,9 @@ h5{
     height:50px;
     margin-top: 20px;
     border: none;
+}
 
+.result-card-content{
+    margin-left: 10px;
 }
 
