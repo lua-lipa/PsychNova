@@ -9,6 +9,15 @@ if (!isset($_SESSION['userid'])) {
     header("location: login.php");
 }
 
+$connection = new connections();
+if (isset($_POST['acceptConnection'])) {
+    $connection->acceptPendingConnection($_POST['acceptConnection']);
+}
+
+if (isset($_POST['rejectConnection'])) {
+    $connection->rejectPendingConnection($_POST['acceptConnection']);
+}
+
 $user = new User();
 $userData = $user->getUserData($_SESSION['userid']);
 
@@ -56,13 +65,10 @@ $connectionsNumber = count($connectionsData);
                                         <h6><?php echo $pendingConnectionUserData['first_name'] . " " . $pendingConnectionUserData['last_name'] ?></h6>
                                     </div>
                                     <div class="col-3">
-                                        <div class="row">
-                                            <a class="btn-small float-center" href="pending_connections.php" onclick="<?php $connections->acceptPendingConnection($connectionsData['connection_id']) ?>">Accept</a>
-                                        </div>
-                                        <div class="row">
-                                            <a class="btn-small float-center" href="pending_connections.php">Reject</a>
-
-                                        </div>
+                                        <form action="" method="POST">
+                                            <button type="submit" name="acceptConnection" value=<?php echo $value['connection_id'] ?>>Accept</button>
+                                            <button type="submit" name="rejectConnection" value=<?php echo $value['connection_id'] ?>>Reject</button>
+                                        </form>
                                     </div>
                                 </div>
                                 <br><br>
