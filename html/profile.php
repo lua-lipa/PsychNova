@@ -9,6 +9,7 @@ include("../classes/star_sign.php");
 include("../classes/employmentHistory.php");
 include("../classes/vacancy.php");
 include("../classes/organisation.php");
+include("../classes/connections.php");
 
 //if user not logged in redirect to login
 if (!isset($_SESSION['userid'])) {
@@ -82,6 +83,10 @@ $recommendedVacancies = $vacancy->getVacancies();
 
 $organisation = new organisation();
 
+$connections = new connections();
+$connectionsData = $connections->getUserConnections($_SESSION['userid']);
+$connectionsNumber = count($connectionsData);
+
 // echo "<pre>";
 // print_r($allQualifications);
 // echo "</pre>";
@@ -116,7 +121,7 @@ if (!$userData) header("location: login.php");
                             <div class="card-profile-info"">
                                 <p style=" font-size: 18px;"><?php echo $userData['first_name'] . " " . $userData['last_name'] ?></p>
                                 <p style=" font-size: 12px;"><?php echo $userData['profession'] ?></p>
-                                <p style=" font-size: 12px; margin-bottom:20%;">Connections:</p>
+                                <p style=" font-size: 12px; margin-bottom:20%;">Connections: <?php echo $connectionsNumber ?> </p>
                             </div>
                         </div>
                         <div class=" col-sm-9">
