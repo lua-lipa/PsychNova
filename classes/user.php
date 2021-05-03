@@ -44,12 +44,12 @@ class User
 
     public function updateEmploymentHistoryOrg($data)
     {
-        $orgId = $data['org_id'];
-        $name = $data['name'];
-        $query = "UPDATE employment_history 
-                SET org_id=$orgId, name='$name';";
-        $DB = new Database();
-        $DB->save($query);
+        // $orgId = $data['org_id'];
+        // $name = $data['name'];
+        // $query = "UPDATE employment_history 
+        //         SET org_id=$orgId, name='$name';";
+        // $DB = new Database();
+        // $DB->save($query);
     }
 
     public function updateAbout($userId, $data)
