@@ -2,7 +2,16 @@
 session_start();
 include("../classes/connect.php");
 include("../classes/user.php");
+include("../classes/skills.php");
+include("../classes/search.php");
 
+//if user not logged in redirect to login
+if (!isset($_SESSION['userid'])) {
+    header("location: login.php");
+}
+
+$skill = new Skill();
+$skillsData = $skill->getAllSkills();
 
 /*
 //if user logged in redirect to timeline
@@ -23,9 +32,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 */
 
-if (isset($_POST['skillinput']) || isset($_POST['companyinput'])) {
+if (isset($_GET['skill']) || isset($_GET['companyinput'])) {
     $search = new Search();
-    $_SESSION['searchresults'] = $search->searchUsersWithOptions($_SESSION['searchinput'], $_POST['skillinput'], $_POST['companyinput']);
+    $_SESSION['searchresults'] = $search->searchUsers($_SESSION['searchinput']);
     //search user based
 }
 
@@ -51,20 +60,28 @@ if (isset($_POST['skillinput']) || isset($_POST['companyinput'])) {
 
                 <!-- filters -->
                 <div class="filters-wrapper">
-                    <form action="" method="post" class="form-inline">
+                    <form action="" method="GET" class="form-inline">
                         <div class="form-group">
-                            <select class="form-control skill-form" name="skillInput">
+                            <select class="form-control skill-form" onchange='this.form.submit()' name="skill">
                                 <option value="" selected disabled hidden>Skill</option>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
+                                <?php foreach ($skillsData as $key => $value) {
+                                    if ($key == $_GET['skill']) {
+                                ?>
+                                        <option selected value="<?php echo $key ?>"><?php echo $value['title'] ?></option>
+                                    <?php
+                                    } else {
+                                    ?>
+                                        <option value="<?php echo $key ?>"><?php echo $value['title'] ?></option>
+                                <?php
+                                    }
+                                }
+                                ?>
                             </select>
+                            <noscript><input type="submit" value="Submit"></noscript>
                         </div>
                     </form>
 
-                    <form action="" method="post" class="form-inline">
+                    <form action="" method="GET" class="form-inline">
                         <input class="form-control mr-sm-2" type="search" placeholder="Companies worked for" name="companyinput">
                     </form>
                 </div>
