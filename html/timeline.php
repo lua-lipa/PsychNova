@@ -174,7 +174,7 @@ $recommendedVacancies = $vacancy->getVacancies();
                 <h9><?php echo $vacancyOrgData['name'] ?></h9><br>
                 <h9><?php echo $value['title'] ?></h9><br>
                 <h9><?php echo $value['description'] ?></h9><br>
-                <h9><?php echo $value['requirements'] ?></h9><br>
+                <h9><?php echo "Requirements: " . $value['requirements'] ?></h9><br>
 
                 <br>
               </div>

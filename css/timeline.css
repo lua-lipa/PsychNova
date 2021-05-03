@@ -103,4 +103,8 @@ h9 {
     border-radius: 20px;
     box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.15);
     background-color: white;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    flex-wrap: wrap;
 }
