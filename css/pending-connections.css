@@ -10,7 +10,7 @@ body {
 .result-card {
     height: 100px;
     padding: 15px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     border-radius: 20px;
     box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.15);
     background-color: white;
@@ -20,6 +20,7 @@ body {
     background-color: #A58AAE;
     border-radius: 100px !important;
     color: white;
+    border-width: 0px;
     width: 70px;
     margin: auto;
     display: block;
@@ -157,6 +158,20 @@ h5 {
     height: 30px;
     width: 100px;
     border: none;
+}
+
+.btn-small-empty {
+    background-color: white;
+    border-radius: 100px !important;
+    color: #A58AAE;
+    border-width: 0px;
+    width: 70px;
+    margin: auto;
+    display: block;
+    text-align: center;
+    margin-bottom: 10px;
+    margin-right: 10px;
+
 }
 
 .orgBtn {
