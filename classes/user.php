@@ -71,12 +71,17 @@ class User
 
     public function updateQualification($data)
     {
+        $description = $data['description'];
+        $title = $data['title'];
+        $institute = $data['institute'];
         $dateObtained = $data['dateObtained'];
-        $userQualificationId = $data['userQualificationId'];
+        $qualificationId = $data['qualificationId'];
+        $userId = $data['userId'];
 
-        $query = "UPDATE user_qualification 
-        SET date_obtained='$dateObtained'
-        WHERE u_qualification_id='$userQualificationId';";
+        $query = "UPDATE qualification 
+        SET date_obtained='$dateObtained', description='$description',
+            title='$title',institute='$institute'
+        WHERE qualification_id='$qualificationId' AND user_id='$userId';";
 
         $DB = new Database();
         $DB->save($query);
