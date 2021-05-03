@@ -2,8 +2,6 @@
 session_start();
 include("../classes/connect.php");
 include("../classes/user.php");
-include("../classes/userQualification.php");
-include("../classes/qualification.php");
 include("../classes/userSkills.php");
 include("../classes/skills.php");
 include("../classes/star_sign.php");
@@ -19,7 +17,7 @@ if (isset($_POST['updateAbout'])) {
     $user->updateAbout($_SESSION['userid'], $_POST);
 }
 
-if (isset($_POST['updateQualification'])) {
+if (isset($_POST['updateEmploymentHistory'])) {
     $user = new User();
     $user->updateEmploymentHistory($_POST);
     $user->updateEmploymentHistoryOrg($_POST);
@@ -38,10 +36,6 @@ if (isset($_POST['updateSkills'])) {
 
 $user = new User();
 $userData = $user->getUserData($_SESSION['userid']);
-
-$userQualification = new userQualification();
-$userQualificationData = $userQualification->getUserQualificationData($_SESSION['userid']);
-$qualification = new Qualification();
 
 $userSkills = new userSkills();
 $userSkillsData = $userSkills->getUserSkills($_SESSION['userid']);
@@ -174,7 +168,7 @@ if (!$userData) header("location: login.php");
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal" style="border-radius:15px; background-color: #876e8f; border-color:#876e8f">Close</button>
-                                            <button type="submit" name="updateQualification" class="btn btn-primary" style="border-radius:15px; background-color: #a58aae; border-color:#876e8f">Save changes</button>
+                                            <button type="submit" name="updateEmploymentHistory" class="btn btn-primary" style="border-radius:15px; background-color: #a58aae; border-color:#876e8f">Save changes</button>
                                         </div>
                                         </form>
                                     </div>
@@ -192,20 +186,20 @@ if (!$userData) header("location: login.php");
                         $id = "employmentModal" . $value['emp_his_id'];
                     ?>
                         <div class="row mt-3">
-                            <div class="card-qualifications">
-                                <div class="qualification">
+                            <div class="card-employmentHistory">
+                                <div class="employmentHistory">
                                     <h8 class="size-change" id="margin-add"><strong><?php echo $value['name'] ?></strong></h8><br>
                                     <h9><?php echo $value['position'] ?></h9><br>
                                     <h9><?php echo $value['start_date'] . " - " .  $value['end_date']  ?></h9><br>
                                     <div class="row float-right">
-                                        <button type="button" class="btn qualification-button btn-primary" data-toggle="modal" data-target="#<?php echo $id ?>" style="margin-right:20px; margin-bottom:10px;">
+                                        <button type="button" class="btn employmentHistory-button btn-primary" data-toggle="modal" data-target="#<?php echo $id ?>" style="margin-right:20px; margin-bottom:10px;">
                                             <i class="bi bi-pencil"></i>
                                         </button>
-                                        <div class="modal fade" id="<?php echo $id ?>" tabindex=" -1" role="dialog" aria-labelledby="qualificationModalLabel" aria-hidden="true">
+                                        <div class="modal fade" id="<?php echo $id ?>" tabindex=" -1" role="dialog" aria-labelledby="employmentHistoryModalLabel" aria-hidden="true">
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title" id="qualificationModalLabel">Edit Employment History</h5>
+                                                        <h5 class="modal-title" id="employmentHistoryModalLabel">Edit Employment History</h5>
                                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                             <span aria-hidden="true">&times;</span>
                                                         </button>
@@ -233,7 +227,7 @@ if (!$userData) header("location: login.php");
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary" data-dismiss="modal" style="border-radius:15px; background-color: #876e8f; border-color:#876e8f">Close</button>
-                                                        <button type="submit" name="updateQualification" class="btn btn-primary" style="border-radius:15px; background-color: #a58aae; border-color:#876e8f">Save changes</button>
+                                                        <button type="submit" name="updateEmploymentHistory" class="btn btn-primary" style="border-radius:15px; background-color: #a58aae; border-color:#876e8f">Save changes</button>
                                                     </div>
                                                     </form>
                                                 </div>

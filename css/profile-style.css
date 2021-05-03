@@ -66,8 +66,8 @@ body {
   color: #000000;
 }
 
-/* qualifications */
-.card-qualifications {
+/* employmentHistorys */
+.card-employmentHistory {
   background-color: #ffffff;
   -webkit-box-shadow: 0 1px 20px 0 rgba(69, 90, 100, 0.08);
   box-shadow: inset 0 1px 20px 0 rgba(69, 90, 100, 0.08);
@@ -80,25 +80,25 @@ body {
   font-size: 10px;
 }
 
-.qualification #margin-add {
+.employmentHistory #margin-add {
   margin-top: 10px;
   display: inline-block;
 }
 
-.qualification {
+.employmentHistory {
   margin-top: 20px;
   margin-left: 30px;
 }
 
-.qualification p {
+.employmentHistory p {
   margin-bottom: 20px;
 }
 
-.qualification h9 {
+.employmentHistory h9 {
   font-size: 10px;
 }
 
-.qualification .qualification-button {
+.employmentHistory .employmentHistory-button {
   background-color: #876e8f;
   border-color: #876e8f;
   border-radius: 50px;
