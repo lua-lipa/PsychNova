@@ -41,8 +41,8 @@ class organisation
         $number = $data['contactNo'];
 
         $query = "insert into organisation 
-                            (name, date_established, description, user_id, email, contact_number) 
-                    values ('$name' , '$DE' , '$desc' , '$userId' , '$email' , '$number')";
+                            (name, date_established, description, user_id, email, contact_number, profile_picture) 
+                    values ('$name' , '$DE' , '$desc' , '$userId' , '$email' , '$number', '../images/pp/org_annon.png')";
         $DB = new Database();
         $DB->save($query);
 

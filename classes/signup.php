@@ -15,8 +15,8 @@ class SignUp {
         $placeOfBirth = $data['placeOfBirth'];
 
         $query = "insert into user 
-                            (email , password , first_name , last_name , profession , date_of_birth, type) 
-                    values ('$email' , '$password' , '$firstName' , '$lastName' , '$profession' , '$dateOfBirth', 'personal user')";
+                            (email , password , first_name , last_name , profession , date_of_birth, type, profile_picture) 
+                    values ('$email' , '$password' , '$firstName' , '$lastName' , '$profession' , '$dateOfBirth', 'personal user', '../images/pp/user_annon.png')";
         $DB = new Database();
         $DB->save($query);
 
