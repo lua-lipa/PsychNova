@@ -5,6 +5,8 @@ include("../classes/connect.php");
 include("../classes/post.php");
 include("../classes/user.php");
 include("../classes/connections.php");
+include("../classes/vacancy.php");
+include("../classes/organisation.php");
 
 //if user not logged in redirect to login
 if (!isset($_SESSION['userid'])) {
@@ -14,6 +16,8 @@ if (!isset($_SESSION['userid'])) {
 $post = new Post();
 $user = new User();
 $connection = new connections();
+$vacancy = new vacancy();
+$organisation = new organisation();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   if (isset($_POST['postcontent'])) {
@@ -21,10 +25,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   }
 }
 
+if (isset($_POST['connectWithUser'])) {
+  $connection->sendConnectionRequest($_SESSION['userid'], $_POST['connectWithUser']);
+}
+
 $postsData = $post->getPostsData();
 $userData = $user->getUserData($_SESSION['userid']);
 $pendingConnectionsData = $connection->getPendingConnections($_SESSION['userid']);
 $numberOfConections = count($pendingConnectionsData);
+$recommendedVacancies = $vacancy->getVacancies();
+
 // $numberOfConections = 1;
 
 /*
@@ -85,7 +95,8 @@ $numberOfConections = count($pendingConnectionsData);
 
             <?php
             if ($numberOfConections == 0) { ?>
-              <p style="font-size:11px">No requests yet!</p>
+              <br>
+              <p style="text-align:center">No requests yet!</p><br>
               <?php
             } else {
               $noOfConnectionsDisplayed = 0;
@@ -105,7 +116,7 @@ $numberOfConections = count($pendingConnectionsData);
               }
             }
             ?>
-            <a class="btn-small float-center" href="pending_connections.php">Explore</a>
+            <a class="btn-view-more float-center" href="people.php">Explore</a>
             <!-- <button type=" submit" class="btn float-center">More</button> -->
           </div>
         </div>
@@ -136,7 +147,16 @@ $numberOfConections = count($pendingConnectionsData);
             <div class="media">
               <img src="https://dummyimage.com/64x64/cfcfcf/000000" class="mr-3" alt="...">
               <div class="media-body">
-                <h5 class="mt-0"><?php echo $postUserData['first_name'] . " " . $postUserData['last_name'] ?></h5>
+                <div class="post-user-title">
+                  <h5 class="mt-0"><b><?php echo $postUserData['first_name'] . " " . $postUserData['last_name'] ?></b></h5>
+                  <!-- if the users are not connected, the connect button gets displayed -->
+                  <?php if (count($connection->areConnected($postUserData['user_id'], $_SESSION['userid'])) == 0 && $postUserData['user_id'] != $_SESSION['userid']) { ?>
+                    <form action="" method="POST">
+                      <button class="connect-btn" type="submit" name="connectWithUser" value=<?php echo $postUserData['user_id'] ?>>+</button>
+                    </form>
+                  <?php } ?>
+                </div>
+
                 <p><?php echo $value['post'] ?></p>
               </div>
             </div>
@@ -149,7 +169,37 @@ $numberOfConections = count($pendingConnectionsData);
       </div>
       <div class="col-3">
         <div class="vacancies-card">
+          <h class="connections-title" style="text-align:center">Recommended Vacancies</h>
+          <?php if (count($recommendedVacancies) == 0) {
+            echo "no vacancies to show.";
+          } else {
+            $numberOfVacanciesDisplayed = 0;
+            foreach ($recommendedVacancies as $key => $value) {
+              if ($numberOfVacanciesDisplayed == 4) break;
+              else {
+                $vacancyOrgData = $organisation->getOrganisationData($value['org_id']);
+                $numberOfVacanciesDisplayed += 1;
+              }
 
+          ?>
+              <div class="connection-row">
+                <div class="vacancy-header">
+                  <img src=https://dummyimage.com/40x40/cfcfcf/000000 class="rounded-circle" alt="...">
+                  <div class="vacancy-title">
+                    <h9><?php echo $vacancyOrgData['name'] ?></h9><br>
+                    <h9><?php echo $value['title'] ?></h9>
+                  </div>
+                </div>
+                <hr>
+                <h style="font-size:12px"><i><?php echo $value['description'] ?></i></h><br>
+              </div>
+              <a class="btn-small float-center" style="margin-top:5px" href="jobs.php">Apply</a>
+
+          <?php
+            }
+          }
+          ?>
+          <a class="btn-view-more float-center" href="jobs.php">View All</a>
         </div>
       </div>
     </div>

@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <style>
     /* Set black background color, white text and some padding */
-   
+
 
     .search-input .form-control {
         width: 300px !important;
@@ -102,7 +102,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </div>
                 <ul class="navbar-nav my-2 my-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="timeline.php">Home </a>
+                        <a class="nav-link" href="people.php">People</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="jobs.php">Jobs</a>
