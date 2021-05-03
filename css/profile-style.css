@@ -38,6 +38,7 @@ body {
 .card-profile-info {
   margin-left: 10%;
 }
+
 .card-profile-info p {
   text-align: left;
   margin: 0;
@@ -217,16 +218,6 @@ body {
   font-size: 10px;
 }
 
-.btn-small {
-  background-color: #a58aae;
-  border-radius: 100px !important;
-  color: white;
-  width: 70px;
-  margin: auto;
-  display: block;
-  text-align: center;
-  margin-bottom: 10px;
-}
 
 .connect-btn {
   background-color: #a58aae;
@@ -237,4 +228,30 @@ body {
   margin: auto;
   display: block;
   text-align: center;
+}
+
+.btn-small {
+  background-color: #A58AAE;
+  border-radius: 100px !important;
+  color: white;
+  width: auto;
+  padding: 3px;
+  font-size: 10px;
+  margin: auto;
+  display: block;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.btn-view-more {
+  background-color: white;
+  border-radius: 100px !important;
+  color: #A58AAE;
+  width: auto;
+  padding: 3px;
+  font-size: 10px;
+  margin: auto;
+  display: block;
+  text-align: center;
+  margin-bottom: 10px;
 }
