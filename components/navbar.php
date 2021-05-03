@@ -1,5 +1,4 @@
 <?php
-include("../classes/search.php");
 
 /*
 //if user logged in redirect to timeline
@@ -12,14 +11,11 @@ if (isset($_SESSION['userid'])) {
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if (isset($_POST['searchinput'])) {
-        $search = new Search();
-        $_SESSION['searchresults'] = $search->searchDatabase($_POST);
 
-        $_SESSION['searchinput'] = $_POST['searchinput'];
         $_SESSION['dropdowninput'] = $_POST['dropdowninput'];
 
         if ($_POST['dropdowninput'] == 'Users') {
-            header("location: usersearch.php?user=" . $_POST['searchinput']);
+            header("location: usersearch.php?name=" . $_POST['searchinput']);
         } else if ($_POST['dropdowninput'] == 'Organisations') {
             header("location: usersearch.php");
         }

@@ -32,11 +32,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 */
 
-if (isset($_GET['skill']) || isset($_GET['companyinput'])) {
+$searchResults = null;
+if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $search = new Search();
-    $_SESSION['searchresults'] = $search->searchUsers($_SESSION['searchinput']);
-    //search user based
+    $searchResults = $search->searchUsers($_GET);
 }
+
+
 
 
 ?>
@@ -77,25 +79,25 @@ if (isset($_GET['skill']) || isset($_GET['companyinput'])) {
                                 }
                                 ?>
                             </select>
+                            <input type="hidden" name="name" value="<?php echo $_GET['name'] ?>" />
                             <noscript><input type="submit" value="Submit"></noscript>
+                            <input class="form-control mr-sm-2" value="<?php if(isset($_GET['company'])) echo $_GET['company']; ?>" type="search" placeholder="Companies worked for" name="company">
                         </div>
-                    </form>
 
-                    <form action="" method="GET" class="form-inline">
-                        <input class="form-control mr-sm-2" type="search" placeholder="Companies worked for" name="companyinput">
+                        
                     </form>
                 </div>
 
 
                 <?php
 
-                if (empty($_SESSION["searchresults"])) {
-                    echo "no search results for " . $_SESSION['searchinput'];
+                if (empty($searchResults)) {
+                    echo "no search results";
                 } else {
 
 
 
-                    foreach ($_SESSION["searchresults"] as $key => $value) {
+                    foreach ($searchResults as $key => $value) {
 
 
                 ?>
