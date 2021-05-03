@@ -37,9 +37,11 @@ class Qualification
         return $db->read($query);
     }
 
-    public function deleteQualification($userId)
+    public function deleteQualification($userId, $data)
     {
-        $query = "DELETE FROM qualification WHERE user_id=$userId;";
+        $qualificationId = $data['qualificationId'];
+
+        $query = "DELETE FROM qualification WHERE user_id=$userId AND qualification_id=$qualificationId";
         $db = new Database();
         return $db->save($query);
     }

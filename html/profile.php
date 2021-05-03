@@ -2,7 +2,6 @@
 session_start();
 include("../classes/connect.php");
 include("../classes/user.php");
-include("../classes/userQualification.php");
 include("../classes/qualification.php");
 include("../classes/userSkills.php");
 include("../classes/skills.php");
@@ -10,6 +9,7 @@ include("../classes/star_sign.php");
 include("../classes/employmentHistory.php");
 include("../classes/vacancy.php");
 include("../classes/organisation.php");
+include("../classes/connections.php");
 
 //if user not logged in redirect to login
 if (!isset($_SESSION['userid'])) {
@@ -68,7 +68,6 @@ $qualification = new Qualification();
 $userQualificationData = $qualification->getUserQualificationData($_SESSION['userid']);
 $allQualifications = $qualification->getAllQualificationData();
 
-
 $userSkills = new userSkills();
 $userSkillsData = $userSkills->getUserSkills($_SESSION['userid']);
 $skill = new Skill();
@@ -83,6 +82,10 @@ $vacancy = new vacancy();
 $recommendedVacancies = $vacancy->getVacancies();
 
 $organisation = new organisation();
+
+$connections = new connections();
+$connectionsData = $connections->getUserConnections($_SESSION['userid']);
+$connectionsNumber = count($connectionsData);
 
 // echo "<pre>";
 // print_r($allQualifications);
@@ -114,16 +117,11 @@ if (!$userData) header("location: login.php");
                     <!--  style=" border: 2px solid green" -->
                     <div class="row card-profile">
                         <div class="col-sm-3">
-                            <img src="../images/background-stars.jpg" class="img-circle" style="border: 1px solid black;" />
-                            <div class="card-profile-info"">
-                                <p style=" font-size: 18px;"><?php echo $userData['first_name'] . " " . $userData['last_name'] ?></p>
-                                <p style=" font-size: 12px;"><?php echo $userData['profession'] ?></p>
-                                <p style=" font-size: 12px; margin-bottom:20%;">Connections:</p>
-                            </div>
+                            <img src="<?php echo $userData['profile_picture'] ?>" class="img-circle" style="border: 1px solid black;" />
                         </div>
                         <div class=" col-sm-9">
                             <div class="row float-right">
-                                <button type="button" style="margin-right: 30px; margin-top: 10px; background-color: #ffffff; color: #000000; height: 35px; border-color: #876e8f; border-radius:50px;" class="btn btn-primary" data-toggle="modal" data-target="#editAboutModal">
+                                <button type="button" style="margin-right: 10px; margin-top: 10px; background-color: #ffffff; color: #000000; height: 35px; border-color: #876e8f; border-radius:50px;" class="btn btn-primary" data-toggle="modal" data-target="#editAboutModal">
                                     <i class="bi bi-pencil"></i>
                                 </button>
                                 <div class="modal fade" id="editAboutModal" tabindex="-1" role="dialog">
@@ -154,18 +152,33 @@ if (!$userData) header("location: login.php");
                                     </div>
                                 </div>
                             </div>
-                            <div class="row h-25"></div>
-                            <div class="row h-50 justify-content-center" style="margin-right:15%; margin-bottom:15%;">
+                            <div class="row">
+                                <h4 style="color: white;"><?php echo $userData['first_name'] . " " . $userData['last_name'] ?></h4>
+                            </div>
+                            <div class="row">
+                                <p style="color: white; font-size: 16px;"><?php echo $userData['profession'] ?></p>
+                            </div>
+                            <div class="row">
+                                <p class="mr-3" style="color: white; font-size: 14px;"><i class="bi bi-sun" style="color:white"></i> <?php echo calcStarSign($userData['date_of_birth']) ?> </p>
+                                <p class="mr-3" style="color: white; font-size: 14px;"><i class="bi bi-sunrise" style="color:white"></i> Cancer</p>
+                                <p class="mr-3" style="color: white; font-size: 14px;"><i class="bi bi-moon" style="color:white"></i> Taurus</p>
+                            </div>
+                            <div class="row">
+                                <p style="color: white; font-size: 12px;">Connections: <?php echo $connectionsNumber ?> </p>
+                            </div>
+                            <!-- <div class="row h-50 justify-content-center" style="margin-right:15%; margin-bottom:15%;">
                                 <p class="mr-3 mt-5" style="font-size: 18px;"><i class="bi bi-sun" style="color:white"></i> <?php echo calcStarSign($userData['date_of_birth']) ?> </p>
                                 <p class="mr-3 mt-5" style="font-size: 18px;"><i class="bi bi-sunrise" style="color:white"></i> Cancer</p>
                                 <p class="mr-3 mt-5" style="font-size: 18px;"><i class="bi bi-moon" style="color:white"></i> Taurus</p>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                     <div class="row h-22 mt-3">
-                        <div class="card-about text-center px-4" ]>
-                            <h8><strong>About</strong></h8>
-                            <p><?php echo $userData['description'] ?></p>
+                        <div class="mb-3">
+                            <h8 class="mb-3">About</h8>
+                        </div>
+                        <div class="card-about px-4 pt-4 pb-4" ]>
+                            <p style="font-size: 14px"><?php echo $userData['description'] ?></p>
                         </div>
                     </div>
 
@@ -227,8 +240,8 @@ if (!$userData) header("location: login.php");
                         <div class="row mt-3">
                             <div class="card-employmentHistory">
                                 <div class="employmentHistory">
-                                    <h8 class="size-change" id="margin-add"><strong><?php echo $value['name'] ?></strong></h8><br>
-                                    <h9><?php echo $value['position'] ?></h9><br>
+                                    <h8 class="size-change" style="font-size: 18px" id="margin-add"><strong><?php echo $value['name'] ?></strong></h8><br>
+                                    <h9 style="font-size: 12px"><?php echo $value['position'] ?></h9><br>
                                     <h9><?php echo $value['start_date'] . " - " .  $value['end_date']  ?></h9><br>
                                     <div class="row float-right">
                                         <button type="button" class="btn employmentHistory-button btn-primary" data-toggle="modal" data-target="#<?php echo $id ?>" style="margin-right:20px; margin-bottom:10px;">
@@ -323,19 +336,16 @@ if (!$userData) header("location: login.php");
                     <!-- Qualifications DISPLAY -->
                     <?php
                     foreach ($userQualificationData as $key => $value) {
-                        // echo "<pre>";
-                        // print_r($userQualificationData);
-                        // echo "</pre>";
                         $qualificationData = $qualification->getQualificationFromId($value['qualification_id']);
                         $id = "qualificationModal" . $qualificationData['qualification_id'];
                     ?>
                         <div class="row mt-3">
                             <div class="card-qualification">
                                 <div class="qualification">
-                                    <h8 class="size-change" id="margin-add"><strong><?php echo $qualificationData['institute'] ?></strong></h8><br>
-                                    <h9><?php echo $qualificationData['title'] ?></h9><br>
+                                    <h8 class="size-change" style="font-size: 18px" id="margin-add"><strong><?php echo $qualificationData['institute'] ?></strong></h8><br>
+                                    <h9><?php echo $value['title'] ?></h9><br>
                                     <h9><?php echo $value['date_obtained'] ?></h9><br>
-                                    <p><?php echo $qualificationData['description'] ?></p>
+                                    <p><?php echo $value['description'] ?></p>
                                     <div class="row float-right">
                                         <button type="button" class="btn qualification-button btn-primary" data-toggle="modal" data-target="#<?php echo $id ?>" style="margin-right:20px; margin-bottom:10px;">
                                             <i class="bi bi-pencil"></i>
@@ -348,12 +358,10 @@ if (!$userData) header("location: login.php");
                                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                             <span aria-hidden="true">&times;</span>
                                                         </button>
-
                                                     </div>
                                                     <div class="modal-body">
                                                         <form action="" method="POST">
                                                             <label for="dateObtained" style="color:black">Date obtained *</label> <input type="date" name="dateObtained" style="border-radius:5px;" value=<?php echo $value['date_obtained'] ?> />
-                                                            <input type="hidden" name="userQualificationId" value=<?php echo $value['u_qualification_id'] ?> />
                                                             <br>
                                                             <label for="institute" style="color:black">Institute *</label><input type="text" name="institute" style="border-radius:5px;" value='<?php echo $qualificationData['institute'] ?>' />
                                                             <br>
@@ -466,7 +474,6 @@ if (!$userData) header("location: login.php");
                                     $vacancyOrgData = $organisation->getOrganisationData($value['org_id']);
                                     $numberOfVacanciesDisplayed += 1;
                                 }
-
                         ?>
                                 <div class="connection-row">
                                     <div class="vacancy-header">
