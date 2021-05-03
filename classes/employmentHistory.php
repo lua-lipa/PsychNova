@@ -25,4 +25,15 @@ class employmentHistory
         $db = new Database();
         return $db->read($query);
     }
+
+    public function deleteEmploymentHistory($data)
+    {
+        $empHisId = $data['empHisId'];
+        $userId = $data['userId'];
+
+        $query = "DELETE FROM employment_history WHERE user_id='$userId' AND emp_his_id='$empHisId';";
+
+        $db = new Database();
+        return $db->save($query);
+    }
 }
