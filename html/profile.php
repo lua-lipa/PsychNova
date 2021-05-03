@@ -2,7 +2,6 @@
 session_start();
 include("../classes/connect.php");
 include("../classes/user.php");
-include("../classes/userQualification.php");
 include("../classes/qualification.php");
 include("../classes/userSkills.php");
 include("../classes/skills.php");
@@ -67,7 +66,6 @@ $userData = $user->getUserData($_SESSION['userid']);
 $qualification = new Qualification();
 $userQualificationData = $qualification->getUserQualificationData($_SESSION['userid']);
 $allQualifications = $qualification->getAllQualificationData();
-
 
 $userSkills = new userSkills();
 $userSkillsData = $userSkills->getUserSkills($_SESSION['userid']);
@@ -323,9 +321,6 @@ if (!$userData) header("location: login.php");
                     <!-- Qualifications DISPLAY -->
                     <?php
                     foreach ($userQualificationData as $key => $value) {
-                        // echo "<pre>";
-                        // print_r($userQualificationData);
-                        // echo "</pre>";
                         $qualificationData = $qualification->getQualificationFromId($value['qualification_id']);
                         $id = "qualificationModal" . $qualificationData['qualification_id'];
                     ?>
@@ -333,9 +328,9 @@ if (!$userData) header("location: login.php");
                             <div class="card-qualification">
                                 <div class="qualification">
                                     <h8 class="size-change" id="margin-add"><strong><?php echo $qualificationData['institute'] ?></strong></h8><br>
-                                    <h9><?php echo $qualificationData['title'] ?></h9><br>
+                                    <h9><?php echo $value['title'] ?></h9><br>
                                     <h9><?php echo $value['date_obtained'] ?></h9><br>
-                                    <p><?php echo $qualificationData['description'] ?></p>
+                                    <p><?php echo $value['description'] ?></p>
                                     <div class="row float-right">
                                         <button type="button" class="btn qualification-button btn-primary" data-toggle="modal" data-target="#<?php echo $id ?>" style="margin-right:20px; margin-bottom:10px;">
                                             <i class="bi bi-pencil"></i>
@@ -348,12 +343,10 @@ if (!$userData) header("location: login.php");
                                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                             <span aria-hidden="true">&times;</span>
                                                         </button>
-
                                                     </div>
                                                     <div class="modal-body">
                                                         <form action="" method="POST">
                                                             <label for="dateObtained" style="color:black">Date obtained *</label> <input type="date" name="dateObtained" style="border-radius:5px;" value=<?php echo $value['date_obtained'] ?> />
-                                                            <input type="hidden" name="userQualificationId" value=<?php echo $value['u_qualification_id'] ?> />
                                                             <br>
                                                             <label for="institute" style="color:black">Institute *</label><input type="text" name="institute" style="border-radius:5px;" value='<?php echo $qualificationData['institute'] ?>' />
                                                             <br>
@@ -466,7 +459,6 @@ if (!$userData) header("location: login.php");
                                     $vacancyOrgData = $organisation->getOrganisationData($value['org_id']);
                                     $numberOfVacanciesDisplayed += 1;
                                 }
-
                         ?>
                                 <div class="connection-row">
                                     <div class="vacancy-header">
