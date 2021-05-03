@@ -117,7 +117,7 @@ if (!$userData) header("location: login.php");
                     <!--  style=" border: 2px solid green" -->
                     <div class="row card-profile">
                         <div class="col-sm-3">
-                            <img src="../images/background-stars.jpg" class="img-circle" style="border: 1px solid black;" />
+                            <img src="<?php echo $userData['profile_picture'] ?>" class="img-circle" style="border: 1px solid black;" />
                         </div>
                         <div class=" col-sm-9">
                             <div class="row float-right">
