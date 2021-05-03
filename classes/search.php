@@ -40,6 +40,42 @@ class Search
         return $db->read($query);
     }
 
+    public function searchVacancy($get) {
+        $query = "SELECT vacancy.vacancy_id, vacancy.title, vacancy.description, vacancy.date_created, organisation.org_id, organisation.name
+        FROM vacancy, vacancy_skills, organisation";
+
+        $whereAdded = false;
+        if(!empty($get['title'])) {
+            if ($whereAdded == false) {
+                $query .= "WHERE ";
+            } else {
+                $query .= "AND ";
+                $whereAdded = true;
+            }
+            $query .= "user_skills.user_id = user.user_id 
+                        AND user_skills.skill_id = '" . $get['skill'] . "'";
+        }
+        if(!empty($get['companyName'])) {
+            $query .= "employment_history.user_id = user.user_id
+                        AND organisation.org_id = employment_history.org_id 
+                        AND organisation.name LIKE '" . $get['company'] . "'";
+        }
+        if(!empty($get['dateCreated'])) {
+            $query .= "employment_history.user_id = user.user_id
+                        AND organisation.org_id = employment_history.org_id 
+                        AND organisation.name LIKE '" . $get['company'] . "'";
+        }
+        if(!empty($get['skill'])) {
+            $query .= "employment_history.user_id = user.user_id
+                        AND organisation.org_id = employment_history.org_id 
+                        AND organisation.name LIKE '" . $get['company'] . "'";
+        }
+        //$query .= "GROUP BY user.user_id ";
+
+        $db = new Database();
+        return $db->read($query);
+    }
+
     public function searchUsersWithOptions($searchInput, $skillInput, $organisationInput)
     {
         //todo
