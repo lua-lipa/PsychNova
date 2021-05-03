@@ -360,8 +360,10 @@ if (!$userData) header("location: login.php");
                                                             <label for="title" style="color:black">Title *</label><input type="text" name="title" style="border-radius:5px;" value='<?php echo $qualificationData['title'] ?>' />
                                                             <br>
                                                             <label for="description" style="color:black">Description *</label><input type="text" name="description" style="border-radius:5px;" value='<?php echo $qualificationData['description'] ?>' />
+
                                                             <input type="hidden" name="qualificationId" value=<?php echo $value['qualification_id'] ?> />
                                                             <input type="hidden" name="userId" value=<?php echo $value['user_id'] ?> />
+
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary" data-dismiss="modal" style="border-radius:15px; background-color: #876e8f; border-color:#876e8f">Close</button>
