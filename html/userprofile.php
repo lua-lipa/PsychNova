@@ -24,8 +24,7 @@ $userData = $user->getUserData($_GET['id']);
 $userQualification = new userQualification();
 $userQualificationData = $userQualification->getUserQualificationData($_SESSION['userid']);
 $qualification = new Qualification();
-$userJoinQualifications = $qualification->userJoinQualification($_SESSION['userid']);
-$allQualifications = $qualification->getAllQualifications();
+$allQualifications = $qualification->getAllQualificationData();
 
 $userSkills = new userSkills();
 $userSkillsData = $userSkills->getUserSkills($_SESSION['userid']);
