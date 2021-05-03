@@ -25,6 +25,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   }
 }
 
+if (isset($_POST['connectWithUser'])) {
+  $connection->sendConnectionRequest($_SESSION['user_id'], $_POST['connectWithUser']);
+}
+
 $postsData = $post->getPostsData();
 $userData = $user->getUserData($_SESSION['userid']);
 $pendingConnectionsData = $connection->getPendingConnections($_SESSION['userid']);
@@ -143,6 +147,12 @@ $recommendedVacancies = $vacancy->getVacancies();
               <img src="https://dummyimage.com/64x64/cfcfcf/000000" class="mr-3" alt="...">
               <div class="media-body">
                 <h5 class="mt-0"><?php echo $postUserData['first_name'] . " " . $postUserData['last_name'] ?></h5>
+
+                <form action="" method="POST">
+                  <button class="btn-small" type="submit" name="connectWithUser" value=<?php echo $postUserData['user_id'] ?>>+</button>
+                </form>
+
+
                 <p><?php echo $value['post'] ?></p>
               </div>
             </div>
@@ -173,7 +183,7 @@ $recommendedVacancies = $vacancy->getVacancies();
                 <h9><?php echo $vacancyOrgData['name'] ?></h9><br>
                 <h9><?php echo $value['title'] ?></h9><br>
                 <h9><?php echo $value['description'] ?></h9><br>
-                <h9><?php echo "Requirements: " . $value['requirements'] ?></h9><br>
+                <h9><?php echo "Requirements: " . $value['required_experience'] ?></h9><br>
 
                 <br>
               </div>
@@ -181,7 +191,7 @@ $recommendedVacancies = $vacancy->getVacancies();
             }
           }
           ?>
-          <a class="btn-small float-center" href="jobs.php">View More</a>
+          <a class="btn-small float-center" href="jobs.php"> More</a>
         </div>
       </div>
     </div>
