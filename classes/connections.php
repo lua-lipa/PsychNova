@@ -47,7 +47,7 @@ class connections
 
     public function areConnected($user_a_id, $user_b_id)
     {
-        $query = "SELECT COUNT(*) FROM connection WHERE ((user_invited = $user_a_id AND user_inviter = $user_b_id) OR (user_invited = $user_b_id AND user_inviter = $user_a_id)) AND state = 'accepted'";
+        $query = "SELECT connection_id FROM connection WHERE ((user_invited = $user_a_id AND user_inviter = $user_b_id) OR (user_invited = $user_b_id AND user_inviter = $user_a_id))";
         $db = new Database();
         return $db->read($query);
     }

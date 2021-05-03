@@ -146,11 +146,14 @@ $recommendedVacancies = $vacancy->getVacancies();
             <div class="media">
               <img src="https://dummyimage.com/64x64/cfcfcf/000000" class="mr-3" alt="...">
               <div class="media-body">
-                <h5 class="mt-0"><?php echo $postUserData['first_name'] . " " . $postUserData['last_name'] ?></h5>
-
-                <form action="" method="POST">
-                  <button class="btn-small" type="submit" name="connectWithUser" value=<?php echo $postUserData['user_id'] ?>>+</button>
-                </form>
+                <div class="post-user-title" <h5 class="mt-0"><?php echo $postUserData['first_name'] . " " . $postUserData['last_name'] ?></h5>
+                  <!-- if the users are not connected, the connect button gets displayed -->
+                  <?php if (count($connection->areConnected($postUserData['user_id'], $_SESSION['userid'])) == 0 && $postUserData['user_id'] != $_SESSION['userid']) { ?>
+                    <form action="" method="POST">
+                      <button class="connect-btn" type="submit" name="connectWithUser" value=<?php echo $postUserData['user_id'] ?>>+</button>
+                    </form>
+                  <?php } ?>
+                </div>
 
                 <p><?php echo $value['post'] ?></p>
               </div>
