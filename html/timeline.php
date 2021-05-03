@@ -156,7 +156,6 @@ $recommendedVacancies = $vacancy->getVacancies();
       <div class="col-3">
         <div class="vacancies-card">
           <h class="connections-title" style="text-align:center">Recommended Vacancies</h>
-          <hr>
           <?php if (count($recommendedVacancies) == 0) {
             echo "no vacancies to show.";
           } else {
@@ -182,7 +181,7 @@ $recommendedVacancies = $vacancy->getVacancies();
             }
           }
           ?>
-          <a class="btn-small float-center" href="jobs.php">More</a>
+          <a class="btn-small float-center" href="jobs.php">View More</a>
         </div>
       </div>
     </div>
