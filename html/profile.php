@@ -67,6 +67,7 @@ $qualification = new Qualification();
 $userQualificationData = $qualification->getUserQualificationData($_SESSION['userid']);
 $allQualifications = $qualification->getAllQualificationData();
 
+
 $userSkills = new userSkills();
 $userSkillsData = $userSkills->getUserSkills($_SESSION['userid']);
 $skill = new Skill();
