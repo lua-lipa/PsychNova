@@ -26,7 +26,7 @@ class connections
 
     public function getUserConnections($userid)
     {
-        $query = "SELECT * FROM connection WHERE user_invited = $userid OR user_inviter = $userid";
+        $query = "SELECT * FROM connection WHERE (user_invited = $userid OR user_inviter = $userid) AND state = 'accepted'";
         $db = new Database();
         return $db->read($query);
     }

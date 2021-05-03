@@ -105,7 +105,7 @@ $numberOfConections = count($pendingConnectionsData);
               }
             }
             ?>
-            <a class="btn-small float-center" href="pending_connections.php">Explore</a>
+            <a class="btn-small float-center" href="people.php">Explore</a>
             <!-- <button type=" submit" class="btn float-center">More</button> -->
           </div>
         </div>
