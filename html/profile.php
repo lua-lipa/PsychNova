@@ -463,21 +463,19 @@ if (!$userData) header("location: login.php");
                                         <img src=https://dummyimage.com/40x40/cfcfcf/000000 class="rounded-circle" alt="...">
                                         <div class="vacancy-title">
                                             <h9><?php echo $vacancyOrgData['name'] ?></h9><br>
-                                            <h9><?php echo $value['title'] ?></h9><br>
+                                            <h9><?php echo $value['title'] ?></h9>
                                         </div>
                                     </div>
-                                    <h9><?php echo $value['description'] ?></h9><br>
-                                    <h9><?php echo "Requirements: " . $value['required_experience'] ?></h9><br>
-                                    <br>
-                                    <a class="btn-small float-right" href="jobs.php">Apply</a>
-
-                                    <br>
+                                    <hr>
+                                    <h style="font-size:12px"><i><?php echo $value['description'] ?></i></h><br>
                                 </div>
+                                <a class="btn-small float-center" style="margin-top:5px" href="jobs.php">Apply</a>
+
                         <?php
                             }
                         }
                         ?>
-                        <a class="btn-small float-center" href="jobs.php"> More</a>
+                        <a class="btn-view-more float-center" href="jobs.php">View All</a>
                     </div>
                 </div>
 
