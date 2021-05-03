@@ -79,7 +79,7 @@ $connectedUsersData = $connections->getUserConnections($_SESSION['userid']);
                                     </div>
                                     <div class="profile-name" align="center">
                                         <h6 class="linkedOrgname"><?php echo $connectedUser['first_name'] . " " . $connectedUser['last_name'] ?></h6>
-                                        <a style="color: #A58AAE; text-decoration: none;" href="profile.php?id=<?php echo $connectedUser['user_id'] ?>" type="submit" name="view" class="myBtn"> View </a>
+                                        <a style="color: #A58AAE; text-decoration: none;" href="userprofile.php?id=<?php echo $connectedUser['user_id'] ?>" type="submit" name="view" class="myBtn"> View </a>
                                     </div>
                                 </div>
                             </div>
