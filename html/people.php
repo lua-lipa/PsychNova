@@ -106,7 +106,7 @@ $connectedUsersData = $connections->getUserConnections($_SESSION['userid']);
                 } else {
                     foreach ($connectionsData as $key => $value) {
 
-                        $pendingConnectionUserData = $user->getUserData($connectionsData['inviter_id']);
+                        $pendingConnectionUserData = $user->getUserData($value['inviter_id']);
                 ?>
                         <div class="row">
                             <div class="result-card">

@@ -5,6 +5,8 @@ include("../classes/connect.php");
 include("../classes/post.php");
 include("../classes/user.php");
 include("../classes/connections.php");
+include("../classes/vacancy.php");
+include("../classes/organisation.php");
 
 //if user not logged in redirect to login
 if (!isset($_SESSION['userid'])) {
@@ -14,6 +16,8 @@ if (!isset($_SESSION['userid'])) {
 $post = new Post();
 $user = new User();
 $connection = new connections();
+$vacancy = new vacancy();
+$organisation = new organisation();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   if (isset($_POST['postcontent'])) {
@@ -25,6 +29,8 @@ $postsData = $post->getPostsData();
 $userData = $user->getUserData($_SESSION['userid']);
 $pendingConnectionsData = $connection->getPendingConnections($_SESSION['userid']);
 $numberOfConections = count($pendingConnectionsData);
+$recommendedVacancies = $vacancy->getVacancies();
+
 // $numberOfConections = 1;
 
 /*
@@ -149,7 +155,32 @@ $numberOfConections = count($pendingConnectionsData);
       </div>
       <div class="col-3">
         <div class="vacancies-card">
+          <h class="connections-title" style="text-align:center">Recommended Vacancies</h>
+          <hr>
+          <?php if (count($recommendedVacancies) == 0) {
+            echo "no vacancies to show.";
+          } else {
+            $numberOfVacanciesDisplayed = 0;
+            foreach ($recommendedVacancies as $key => $value) {
+              if ($numberOfVacanciesDisplayed == 4) break;
+              else {
+                $vacancyOrgData = $organisation->getOrganisationData($value['org_id']);
+                $numberOfVacanciesDisplayed += 1;
+              }
 
+          ?>
+              <div class="connection-row">
+                <img src="https://dummyimage.com/40x40/cfcfcf/000000" class="rounded-circle" alt="...">
+                <h9><?php echo $vacancyOrgData['name'] ?></h9><br>
+                <h9><?php echo $value['title'] ?></h9><br>
+
+                <br>
+              </div>
+          <?php
+            }
+          }
+          ?>
+          <a class="btn-small float-center" href="jobs.php">More</a>
         </div>
       </div>
     </div>
