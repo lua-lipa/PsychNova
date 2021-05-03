@@ -44,4 +44,18 @@ class connections
         $db = new Database();
         return $db->read($query);
     }
+
+    public function areConnected($user_a_id, $user_b_id)
+    {
+        $query = "SELECT COUNT(*) FROM connection WHERE ((user_invited = $user_a_id AND user_inviter = $user_b_id) OR (user_invited = $user_b_id AND user_inviter = $user_a_id)) AND state = 'accepted'";
+        $db = new Database();
+        return $db->read($query);
+    }
+
+    public function sendConnectionRequest($from_user_id, $to_user_id)
+    {
+        $query = "INSERT INTO connection(user_inviter, user_invited, state) VALUES ($from_user_id, $to_user_id, 'pending')";
+        $db = new Database();
+        return $db->read($query);
+    }
 }
