@@ -13,22 +13,41 @@ body {
     background-color: #A58AAE;
     border-radius: 100px !important;
     color: white;
-    width: 70px;
+    width: auto;
+    padding: 3px;
+    font-size: 10px;
     margin: auto;
     display: block;
     text-align: center;
     margin-bottom: 10px;
 }
 
+
 .connect-btn {
     background-color: #A58AAE;
     border-radius: 100px !important;
     color: white;
     width: auto;
+    border-width: 0px;
+    font-size: 10px;
     height: auto;
+    margin-left: 10px;
+    display: block;
+    text-align: center;
+    margin-top: 2px;
+}
+
+.btn-view-more {
+    background-color: white;
+    border-radius: 100px !important;
+    color: #A58AAE;
+    width: auto;
+    padding: 3px;
+    font-size: 10px;
     margin: auto;
     display: block;
     text-align: center;
+    margin-bottom: 10px;
 }
 
 .profile-card {
@@ -111,6 +130,7 @@ h9 {
 .post-user-title {
     display: flex;
     flex-direction: row;
+    justify-content: left;
 }
 
 .vacancies-card {
@@ -122,4 +142,13 @@ h9 {
     justify-content: center;
     flex-direction: column;
     flex-wrap: wrap;
+}
+
+.vacancy-header {
+    display: flex;
+    flex-direction: row;
+}
+
+.vacancy-title {
+    margin-left: 10px;
 }

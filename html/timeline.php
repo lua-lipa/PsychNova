@@ -95,7 +95,8 @@ $recommendedVacancies = $vacancy->getVacancies();
 
             <?php
             if ($numberOfConections == 0) { ?>
-              <p style="font-size:11px">No requests yet!</p>
+              <br>
+              <p style="text-align:center">No requests yet!</p><br>
               <?php
             } else {
               $noOfConnectionsDisplayed = 0;
@@ -115,7 +116,7 @@ $recommendedVacancies = $vacancy->getVacancies();
               }
             }
             ?>
-            <a class="btn-small float-center" href="people.php">Explore</a>
+            <a class="btn-view-more float-center" href="people.php">Explore</a>
             <!-- <button type=" submit" class="btn float-center">More</button> -->
           </div>
         </div>
@@ -146,7 +147,8 @@ $recommendedVacancies = $vacancy->getVacancies();
             <div class="media">
               <img src="https://dummyimage.com/64x64/cfcfcf/000000" class="mr-3" alt="...">
               <div class="media-body">
-                <div class="post-user-title" <h5 class="mt-0"><?php echo $postUserData['first_name'] . " " . $postUserData['last_name'] ?></h5>
+                <div class="post-user-title">
+                  <h5 class="mt-0"><b><?php echo $postUserData['first_name'] . " " . $postUserData['last_name'] ?></b></h5>
                   <!-- if the users are not connected, the connect button gets displayed -->
                   <?php if (count($connection->areConnected($postUserData['user_id'], $_SESSION['userid'])) == 0 && $postUserData['user_id'] != $_SESSION['userid']) { ?>
                     <form action="" method="POST">
@@ -181,19 +183,23 @@ $recommendedVacancies = $vacancy->getVacancies();
 
           ?>
               <div class="connection-row">
-                <img src=<?php $vacancyOrgData['profile_picture'] ?> class="rounded-circle" alt="...">
-                <h9><?php echo $vacancyOrgData['name'] ?></h9><br>
-                <h9><?php echo $value['title'] ?></h9><br>
-                <h9><?php echo $value['description'] ?></h9><br>
-                <h9><?php echo "Requirements: " . $value['required_experience'] ?></h9><br>
-
-                <br>
+                <div class="vacancy-header">
+                  <img src=https://dummyimage.com/40x40/cfcfcf/000000 class="rounded-circle" alt="...">
+                  <div class="vacancy-title">
+                    <h9><?php echo $vacancyOrgData['name'] ?></h9><br>
+                    <h9><?php echo $value['title'] ?></h9>
+                  </div>
+                </div>
+                <hr>
+                <h style="font-size:12px"><i><?php echo $value['description'] ?></i></h><br>
               </div>
+              <a class="btn-small float-center" style="margin-top:5px" href="jobs.php">Apply</a>
+
           <?php
             }
           }
           ?>
-          <a class="btn-small float-center" href="jobs.php"> More</a>
+          <a class="btn-view-more float-center" href="jobs.php">View All</a>
         </div>
       </div>
     </div>
