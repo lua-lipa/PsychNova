@@ -41,7 +41,7 @@ $recommendedVacancies = $vacancy->getVacancies();
 $organisation = new organisation();
 
 $connections = new connections();
-$connectionsData = $connections->getUserConnections($_SESSION['userid']);
+$connectionsData = $connections->getUserConnections($_GET['id']);
 $connectionsNumber = count($connectionsData);
 
 // echo "<pre>";
