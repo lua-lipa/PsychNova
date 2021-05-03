@@ -146,11 +146,14 @@ $recommendedVacancies = $vacancy->getVacancies();
             <div class="media">
               <img src="https://dummyimage.com/64x64/cfcfcf/000000" class="mr-3" alt="...">
               <div class="media-body">
-                <h5 class="mt-0"><?php echo $postUserData['first_name'] . " " . $postUserData['last_name'] ?></h5>
-
-                <form action="" method="POST">
-                  <button class="btn-small" type="submit" name="connectWithUser" value=<?php echo $postUserData['user_id'] ?>>+</button>
-                </form>
+                <div class="post-user-title" <h5 class="mt-0"><?php echo $postUserData['first_name'] . " " . $postUserData['last_name'] ?></h5>
+                  <!-- if the users are not connected, the connect button gets displayed -->
+                  <?php if (count($connection->areConnected($postUserData['user_id'], $_SESSION['userid'])) == 0 && $postUserData['user_id'] != $_SESSION['userid']) { ?>
+                    <form action="" method="POST">
+                      <button class="connect-btn" type="submit" name="connectWithUser" value=<?php echo $postUserData['user_id'] ?>>+</button>
+                    </form>
+                  <?php } ?>
+                </div>
 
                 <p><?php echo $value['post'] ?></p>
               </div>
@@ -178,11 +181,17 @@ $recommendedVacancies = $vacancy->getVacancies();
 
           ?>
               <div class="connection-row">
-                <img src=<?php $vacancyOrgData['profile_picture'] ?> class="rounded-circle" alt="...">
-                <h9><?php echo $vacancyOrgData['name'] ?></h9><br>
-                <h9><?php echo $value['title'] ?></h9><br>
+                <div class="vacancy-header">
+                  <img src=https://dummyimage.com/40x40/cfcfcf/000000 class="rounded-circle" alt="...">
+                  <div class="vacancy-title">
+                    <h9><?php echo $vacancyOrgData['name'] ?></h9><br>
+                    <h9><?php echo $value['title'] ?></h9><br>
+                  </div>
+                </div>
                 <h9><?php echo $value['description'] ?></h9><br>
                 <h9><?php echo "Requirements: " . $value['required_experience'] ?></h9><br>
+                <br>
+                <a class="btn-small float-right" href="jobs.php">Apply</a>
 
                 <br>
               </div>

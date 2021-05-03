@@ -20,6 +20,17 @@ body {
     margin-bottom: 10px;
 }
 
+.connect-btn {
+    background-color: #A58AAE;
+    border-radius: 100px !important;
+    color: white;
+    width: auto;
+    height: auto;
+    margin: auto;
+    display: block;
+    text-align: center;
+}
+
 .profile-card {
     height: 300px;
     border-radius: 20px;
@@ -97,6 +108,12 @@ h9 {
     background-color: white;
 }
 
+.post-user-title {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
 .vacancies-card {
     padding: 15px;
     border-radius: 20px;
@@ -106,4 +123,13 @@ h9 {
     justify-content: center;
     flex-direction: column;
     flex-wrap: wrap;
+}
+
+.vacancy-header {
+    display: flex;
+    flex-direction: row;
+}
+
+.vacancy-title {
+    margin-left: 10px;
 }
