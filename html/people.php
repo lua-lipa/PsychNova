@@ -64,7 +64,13 @@ $connectedUsersData = $connections->getUserConnections($_SESSION['userid']);
                         <?php
                     } else {
                         foreach ($connectedUsersData as $key => $value) {
-                            $connectedUser = $user->getUserData($value['user_inviter']);
+                            $inviter_id = $value['user_inviter'];
+                            $invited_id = $value['user_invited'];
+                            if ($inviter_id == $_SESSION['userid']) {
+                                $inviter_id = $invited_id;
+                            }
+                            $connectedUser = $user->getUserData($inviter_id);
+
                         ?>
                             <div class="col-lg-4">
                                 <div class="card card-block card-1">
@@ -91,15 +97,16 @@ $connectedUsersData = $connections->getUserConnections($_SESSION['userid']);
         <div class="row">
             <div class="col-3"></div>
             <div class="col-6">
-                <?php
-                echo "you have " . $connectionsNumber . " pending connections"; ?>
+                <br>
+                <h6 class="linkedOrgTitle"> <?php echo "you have " . $connectionsNumber . " pending connections"; ?> </h6>
                 <br><br>
                 <?php
                 if ($connectionsNumber == 0) {
                     echo "no connections"; // . $_SESSION['searchinput'] ;
                 } else {
                     foreach ($connectionsData as $key => $value) {
-                        $pendingConnectionUserData = $user->getUserData($value['user_inviter']);
+
+                        $pendingConnectionUserData = $user->getUserData($connectionsData['inviter_id']);
                 ?>
                         <div class="row">
                             <div class="result-card">
