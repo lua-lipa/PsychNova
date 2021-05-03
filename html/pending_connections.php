@@ -9,6 +9,15 @@ if (!isset($_SESSION['userid'])) {
     header("location: login.php");
 }
 
+$connection = new connections();
+if (isset($_POST['acceptConnection'])) {
+    $connection->acceptPendingConnection($_POST['acceptConnection']);
+}
+
+if (isset($_POST['rejectConnection'])) {
+    $connection->rejectPendingConnection($_POST['acceptConnection']);
+}
+
 $user = new User();
 $userData = $user->getUserData($_SESSION['userid']);
 
@@ -23,10 +32,12 @@ $connectionsNumber = count($connectionsData);
 <head>
     <title> PsychNova </title>
     <?php include("../components/head.php"); ?>
-    <link href="../css/searchresult.css" rel="stylesheet">
+    <link href="../css/pending-connections.css" rel="stylesheet">
 </head>
 
 <body>
+
+
     <?php
     include("../components/navbar.php");
     ?>
@@ -41,7 +52,9 @@ $connectionsNumber = count($connectionsData);
                 if ($connectionsNumber == 0) {
                     echo "no connections"; // . $_SESSION['searchinput'] ;
                 } else {
-                    foreach ($connectionsData as $key => $value) { ?>
+                    foreach ($connectionsData as $key => $value) {
+                        $pendingConnectionUserData = $user->getUserData($value['user_inviter']);
+                ?>
                         <div class="row">
                             <div class="result-card">
                                 <div class="result-container">
@@ -49,17 +62,13 @@ $connectionsNumber = count($connectionsData);
                                         <img src="https://dummyimage.com/64x64/cfcfcf/000000" class="rounded-circle" alt="...">
                                     </div>
                                     <div class="col-6">
-                                        <!-- <div class="row"> -->
-                                        <h6><?php echo $value['user_inviter'] . " sent you a request" ?></h6>
-                                        <!-- </div> -->
+                                        <h6><?php echo $pendingConnectionUserData['first_name'] . " " . $pendingConnectionUserData['last_name'] ?></h6>
                                     </div>
                                     <div class="col-3">
-                                        <div class="row">
-                                            <h6>Accept</h6>
-                                        </div>
-                                        <div class="row">
-                                            <h6>Reject</h6>
-                                        </div>
+                                        <form action="" method="POST">
+                                            <button type="submit" name="acceptConnection" value=<?php echo $value['connection_id'] ?>>Accept</button>
+                                            <button type="submit" name="rejectConnection" value=<?php echo $value['connection_id'] ?>>Reject</button>
+                                        </form>
                                     </div>
                                 </div>
                                 <br><br>

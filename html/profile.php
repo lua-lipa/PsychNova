@@ -13,13 +13,37 @@ if (!isset($_SESSION['userid'])) {
     header("location: login.php");
 }
 
+if (isset($_POST['updateAbout'])) {
+    $user = new User();
+    $user->updateAbout($_SESSION['userid'], $_POST);
+}
+
+if (isset($_POST['updateQualification'])) {
+    $user = new User();
+    $user->updateQualification($_POST);
+}
+
+$newSkills = array();
+if (isset($_POST['updateSkills'])) {
+    $userSkills = new userSkills();
+    $userSkills->removeAllSkills($_SESSION['userid']);
+    foreach ($_POST['selectedSkills'] as $selected) {
+        echo ($selected);
+        array_push($newSkills, $selected);
+        $userSkills->addUserSkill($_SESSION['userid'], $selected);
+    }
+}
+
+echo "<pre>";
+print_r($newSkills);
+echo "</pre>";
+
 $user = new User();
 $userData = $user->getUserData($_SESSION['userid']);
 
 $userQualification = new userQualification();
 $userQualificationData = $userQualification->getUserQualificationData($_SESSION['userid']);
 $qualification = new Qualification();
-//$qualificationData = $qualification->getQualificationData();
 
 $userSkills = new userSkills();
 $userSkillsData = $userSkills->getUserSkills($_SESSION['userid']);
@@ -27,19 +51,11 @@ $skill = new Skill();
 $allSkillsData = $skill->getAllSkills();
 
 $selectedSkills = array();
-// echo "<pre>";
-// print_r($allSkillsData);
-// echo "</pre>";
-
-// echo "<pre>";
-// print_r($userSkillsData);
-// echo "</pre>";
 
 if (!$userData) header("location: login.php");
 
 ?>
 
-<!-- LEFT COLOURS IN FOR EASIER VIEW of whats going on -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -52,9 +68,6 @@ if (!$userData) header("location: login.php");
 <body>
     <!-- navbar -->
     <?php include("../components/navbar.php"); ?>
-    <script>
-        var arr = [];
-    </script>
     <div class="container mt-3">
         <div class="main-page">
             <div class="row">
@@ -83,21 +96,21 @@ if (!$userData) header("location: login.php");
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
                                             </div>
-                                            <div class="modal-body">
-                                                <form action="" method="POST">
+                                            <form action="" method="POST">
+                                                <div class="modal-body">
                                                     <label for="firstName" style="color:black">First name *</label> <input type="text" name="firstName" style="border-radius:5px;" value=<?php echo $userData['first_name'] ?> />
                                                     <br>
-                                                    <label for="LastName" style="color:black">Last name *</label> <input type="text" name="LastName" style="border-radius:5px;" value=<?php echo $userData['last_name'] ?> />
+                                                    <label for="lastName" style="color:black">Last name *</label> <input type="text" name="lastName" style="border-radius:5px;" value=<?php echo $userData['last_name'] ?> />
                                                     <br>
-                                                    <label for="DOB" style="color:black">Date of Birth *</label> <input type="text" name="DOB" style="border-radius:5px;" value="<?php echo $userData['date_of_birth'] ?>" />
+                                                    <label for="dateOfBirth" style="color:black">Date of Birth *</label> <input type="date" name="dateOfBirth" style="border-radius:5px;" value="<?php echo $userData['date_of_birth'] ?>" />
                                                     <br>
-                                                    <label for="Description" style="color:black">Description *</label> <input type="text" name="Description" style="margin-bottom:10px; height: 50px; width:95%; border-radius:5px;" maxlength="200" value="<?php echo $userData['description'] ?>" />
-                                                </form>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal" style="border-radius:15px; background-color: #876e8f; border-color:#876e8f">Close</button>
-                                                <button type="button" class="btn btn-primary" style="border-radius:15px; background-color: #a58aae; border-color:#876e8f">Save changes</button>
-                                            </div>
+                                                    <label for="description" style="color:black">Description *</label> <input type="text" name="description" style="margin-bottom:10px; height: 50px; width:95%; border-radius:5px;" maxlength="200" value="<?php echo $userData['description'] ?>" />
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal" style="border-radius:15px; background-color: #876e8f; border-color:#876e8f">Close</button>
+                                                    <button type="submit" name="updateAbout" class="btn btn-primary" style="border-radius:15px; background-color: #a58aae; border-color:#876e8f">Save changes</button>
+                                                </div>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
@@ -108,7 +121,7 @@ if (!$userData) header("location: login.php");
                                 <p class="mr-3 mt-5">Moon: Taurus</p>
                             </div>
                             <div class="row h-50">
-                                <div class="card-about text-center px-4">
+                                <div class="card-about text-center px-4" ]>
                                     <h8><strong>About</strong></h8>
                                     <p><?php echo $userData['description'] ?></p>
                                 </div>
@@ -121,13 +134,14 @@ if (!$userData) header("location: login.php");
                         // print_r($userQualificationData);
                         // echo "</pre>";
                         $qualificationData = $qualification->getQualificationFromId($value['qualification_id']);
-                        $id = $qualificationData['qualification_id'];
+                        $id = "qualificationModal" . $qualificationData['qualification_id'];
                     ?>
                         <div class="row mt-3">
                             <div class="card-qualifications">
                                 <div class="qualification">
-                                    <h8 class="size-change" id="margin-add"><strong><?php echo $qualificationData['institue'] ?></strong></h8><br>
+                                    <h8 class="size-change" id="margin-add"><strong><?php echo $qualificationData['institute'] ?></strong></h8><br>
                                     <h9><?php echo $qualificationData['title'] ?></h9><br>
+                                    <h9><?php echo $value['date_obtained'] ?></h9><br>
                                     <p><?php echo $qualificationData['description'] ?></p>
                                     <div class="row float-right">
                                         <button type="button" class="btn qualification-button btn-primary" data-toggle="modal" data-target="#<?php echo $id ?>" style="margin-right:20px; margin-bottom:10px;">
@@ -144,19 +158,14 @@ if (!$userData) header("location: login.php");
                                                     </div>
                                                     <div class="modal-body">
                                                         <form action="" method="POST">
-                                                            <label for="Institute" style="color:black">Institute *</label> <input type="text" name="firstName" style="border-radius:5px;" value="<?php echo $qualificationData['institue'] ?>" />
-                                                            <br>
-                                                            <label for="Title" style="color:black">Title *</label> <input type="text" name="LastName" style="border-radius:5px;" value="<?php echo $qualificationData['title'] ?> " />
-                                                            <br>
-                                                            <label for="Level" style="color:black">Level *</label> <input type="number" name="DOB" style="border-radius:5px;" value="<?php echo $qualificationData['level'] ?>" />
-                                                            <br>
-                                                            <label for="Description" style="color:black">Description *</label> <input type="text" name="Description" style="margin-bottom:10px; height: 50px; width:95%; border-radius:5px;" maxlength="200" value="<?php echo $qualificationData['description'] ?>" />
-                                                        </form>
+                                                            <label for="dateObtained" style="color:black">Date obtained *</label> <input type="date" name="dateObtained" style="border-radius:5px;" value=<?php echo $value['date_obtained'] ?> />
+                                                            <input type="hidden" name="userQualificationId" value=<?php echo $value['u_qualification_id'] ?> />
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary" data-dismiss="modal" style="border-radius:15px; background-color: #876e8f; border-color:#876e8f">Close</button>
-                                                        <button type="button" class="btn btn-primary" style="border-radius:15px; background-color: #a58aae; border-color:#876e8f">Save changes</button>
+                                                        <button type="submit" name="updateQualification" class="btn btn-primary" style="border-radius:15px; background-color: #a58aae; border-color:#876e8f">Save changes</button>
                                                     </div>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>
@@ -169,6 +178,7 @@ if (!$userData) header("location: login.php");
                     }
                     ?>
 
+                    <!-- Skills -->
                     <div class="row mt-3">
                         <?php
                         foreach ($userSkillsData as $key => $value) {
@@ -194,17 +204,15 @@ if (!$userData) header("location: login.php");
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
+
                                     <div class="modal-body">
                                         <?php foreach ($allSkillsData as $key => $value) {
-                                            //if ($hasSkill == true) {
                                             if (array_key_exists($key, $userSkillsData)) {
                                         ?>
-                                                <!-- <a type="button" id="inDB" class="badge badge-primary" style="background-color: #a58aae; border: 3px solid #000000">?php echo $value['title'] ?> <span aria-hidden="true"><i class="fa fa-times" aria-hidden="true"></i></span></a> -->
                                                 <input id="submitButton" type="submit" onclick="myFunction(this, ' <?php echo $value['skill_id'] ?>', '<?php echo $key ?>')" class="button_submit btn-sm" style="margin-top:5px; color: #ffffff; background-color: #a58aae; border: 3px solid black; border-radius: 10px" value="<?php echo $value['title'] ?>" />
                                             <?php
                                             } else {
                                             ?>
-                                                <!-- <a type="button" id="notInDB" class="badge badge-primary" style="background-color: #a58aae; border: 3px solid #a58aae">?php echo $value['title'] ?> <span aria-hidden="true"><i class="fa fa-times" aria-hidden="true"></i></span></a> -->
                                                 <input id="submitButton" type="submit" onclick="myFunction(this, ' <?php echo $value['skill_id'] ?>', '<?php echo $key ?>')" class="button_submit btn-sm" style="margin-top:10px; color: #ffffff;background-color: #a58aae; border: 3px solid #a58aae; border-radius: 10px" value="<?php echo $value['title'] ?>" />
                                         <?php
                                             }
@@ -212,39 +220,59 @@ if (!$userData) header("location: login.php");
                                         ?>
                                     </div>
 
+                                    <div class="modal-body">
+                                        <form action="" method="post" class="form-inline">
+                                            <div class="form-group">
+                                                <?php foreach ($allSkillsData as $key => $value) {
+                                                    //if ($hasSkill == true) {
+                                                    if (array_key_exists($key, $userSkillsData)) {
+                                                ?>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" name="selectedSkills[]" type="checkbox" value="<?php echo $key ?>" id="defaultCheck1" checked>
+                                                            <label class="form-check-label" for="defaultCheck1">
+                                                                <?php echo $value['title'] ?>
+                                                            </label>
+                                                        </div>
+                                                    <?php
+                                                    } else {
+                                                    ?>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" name="selectedSkills[]" type="checkbox" value="<?php echo $key ?>" id="defaultCheck1">
+                                                            <label class="form-check-label" for="defaultCheck1">
+                                                                <?php echo $value['title'] ?>
+                                                            </label>
+                                                        </div>
+                                                <?php
+                                                    }
+                                                }
+                                                ?>
+                                            </div>
+                                    </div>
+
                                     <script type="text/javascript">
                                         function myFunction(target, value, key) {
                                             console.log($(target).css("border-right-color"));
                                             if ($(target).css("border-right-color") == "rgb(0, 0, 0)") {
                                                 target.style.border = "3px solid #a58aae";
-                                                <?php unset($selectedSkills['<script>document.write(key)</script>']); ?>
                                                 //remove here
                                             } else {
                                                 //add here
                                                 target.style.border = "3px solid black";
-                                                <?php array_push($selectedSkills, '<script>document.write(value)</script>'); ?>
                                             }
-                                            <?php $userSkills = $selectedSkills; ?>
                                         }
-
-                                        // function myFunction() {
-                                        //     if (document.getElementById("submitButton").style.borderColor == "#a58aae") {
-                                        //         document.getElementById("submitButton").style.borderColor = "#000000";
-                                        //     } else if (document.getElementById("submitButton").style.borderColor == "#000000") {
-                                        //         document.getElementById("submitButton").style.borderColor = "#a58aae";
-                                        //     }
-                                        // }
                                     </script>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal" style="border-radius:15px; background-color: #876e8f; border-color:#876e8f">Close</button>
-                                        <button type="button" class="btn btn-primary" style="border-radius:15px; background-color: #a58aae; border-color:#876e8f">Save changes</button>
+                                        <button type="submit" name="updateSkills" class="btn btn-primary" style="border-radius:15px; background-color: #a58aae; border-color:#876e8f">Save changes</button>
                                     </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
+                <!-- Vacancies -->
                 <div class="col-sm-3">
                     <div class="card-vacancies text-center">
                         <h9>Recent Vacancies</h8>

@@ -5,7 +5,7 @@ class connections
 
     public function getPendingConnections($userid)
     {
-        $query = "SELECT connection_id, user_inviter FROM connection WHERE user_invited = $userid ORDER BY connection_id DESC";
+        $query = "SELECT connection_id, user_inviter FROM connection WHERE state='pending' AND user_invited = $userid ORDER BY connection_id DESC";
         $db = new Database();
         return $db->read($query);
     }
