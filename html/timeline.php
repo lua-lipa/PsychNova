@@ -170,9 +170,11 @@ $recommendedVacancies = $vacancy->getVacancies();
 
           ?>
               <div class="connection-row">
-                <img src="https://dummyimage.com/40x40/cfcfcf/000000" class="rounded-circle" alt="...">
+                <img src=<?php $vacancyOrgData['profile_picture'] ?> class="rounded-circle" alt="...">
                 <h9><?php echo $vacancyOrgData['name'] ?></h9><br>
                 <h9><?php echo $value['title'] ?></h9><br>
+                <h9><?php echo $value['description'] ?></h9><br>
+                <h9><?php echo $value['requirements'] ?></h9><br>
 
                 <br>
               </div>
