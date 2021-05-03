@@ -343,6 +343,7 @@ if (!$userData) header("location: login.php");
                                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                             <span aria-hidden="true">&times;</span>
                                                         </button>
+
                                                     </div>
                                                     <div class="modal-body">
                                                         <form action="" method="POST">
@@ -353,7 +354,6 @@ if (!$userData) header("location: login.php");
                                                             <label for="title" style="color:black">Title *</label><input type="text" name="title" style="border-radius:5px;" value='<?php echo $qualificationData['title'] ?>' />
                                                             <br>
                                                             <label for="description" style="color:black">Description *</label><input type="text" name="description" style="border-radius:5px;" value='<?php echo $qualificationData['description'] ?>' />
-
                                                             <input type="hidden" name="qualificationId" value=<?php echo $value['qualification_id'] ?> />
                                                             <input type="hidden" name="userId" value=<?php echo $value['user_id'] ?> />
                                                     </div>
