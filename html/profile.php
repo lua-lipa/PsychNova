@@ -37,6 +37,19 @@ if (isset($_POST['deleteEmploymentHistory'])) {
     $userEmploymentHistory->deleteEmploymentHistory($_POST);
 }
 
+if (isset($_POST['addQualification'])) {
+    $qualification = new Qualification();
+    $qualification->addUserQualification($_SESSION['userid'], $_POST);
+}
+
+if (isset($_POST['deleteQualification'])) {
+    $qualification = new Qualification();
+    $qualification->deleteQualification($_SESSION['userid'], $_POST);
+}
+// echo "<pre>";
+// print_r($_POST['updateQualification']);
+// echo "</pre>";
+
 $newSkills = array();
 if (isset($_POST['updateSkills'])) {
     $userSkills = new userSkills();
@@ -51,11 +64,9 @@ if (isset($_POST['updateSkills'])) {
 $user = new User();
 $userData = $user->getUserData($_SESSION['userid']);
 
-$userQualification = new userQualification();
-$userQualificationData = $userQualification->getUserQualificationData($_SESSION['userid']);
 $qualification = new Qualification();
-$userJoinQualifications = $qualification->userJoinQualification($_SESSION['userid']);
-$allQualifications = $qualification->getAllQualifications();
+$userQualificationData = $qualification->getUserQualificationData($_SESSION['userid']);
+$allQualifications = $qualification->getAllQualificationData();
 
 $userSkills = new userSkills();
 $userSkillsData = $userSkills->getUserSkills($_SESSION['userid']);
@@ -288,19 +299,11 @@ if (!$userData) header("location: login.php");
                                         </div>
                                         <div class="modal-body">
                                             <form action="" method="POST">
-                                                <label for="qualification" style="color:black">Institute *</label>
-                                                <select name="qualification" style="border-radius:5px;" value="<?php echo $value['name'] ?>">
-                                                    <?php foreach ($allQualifications as $key_1 => $value_1) {
-                                                    ?>
-                                                        <option value=""><?php echo $value_1['title'] ?></option>
-                                                    <?php
-                                                    }
-                                                    ?>
-                                                </select>
-                                                <br>
-                                                <label for="dateObtained" style="color:black">Date obtained *</label> <input type="date" name="dateObtained" style="border-radius:5px;" value="" />
+                                                <label for="institute" style="color:black">Institute *</label> <input type="text" name="institute" style="border-radius:5px;" value="" />
                                                 <br>
                                                 <label for="title" style="color:black">Title *</label><input type="text" name="title" style="border-radius:5px;" value="" />
+                                                <br>
+                                                <label for="dateObtained" style="color:black">Date obtained *</label> <input type="date" name="dateObtained" style="border-radius:5px;" value="" />
                                                 <br>
                                                 <label for="description" style="color:black">Description *</label><input type="text" name="description" style="border-radius:5px;" value="" />
                                                 <br>
@@ -358,6 +361,7 @@ if (!$userData) header("location: login.php");
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary" data-dismiss="modal" style="border-radius:15px; background-color: #876e8f; border-color:#876e8f">Close</button>
+                                                        <button type="delete" name="deleteQualification" class="btn btn-primary" style="border-radius:15px; background-color: #a58aae; border-color:#876e8f">Delete</button>
                                                         <button type="submit" name="updateQualification" class="btn btn-primary" style="border-radius:15px; background-color: #a58aae; border-color:#876e8f">Save changes</button>
                                                     </div>
                                                     </form>
@@ -463,19 +467,21 @@ if (!$userData) header("location: login.php");
                                         <img src=https://dummyimage.com/40x40/cfcfcf/000000 class="rounded-circle" alt="...">
                                         <div class="vacancy-title">
                                             <h9><?php echo $vacancyOrgData['name'] ?></h9><br>
-                                            <h9><?php echo $value['title'] ?></h9>
+                                            <h9><?php echo $value['title'] ?></h9><br>
                                         </div>
                                     </div>
-                                    <hr>
-                                    <h style="font-size:12px"><i><?php echo $value['description'] ?></i></h><br>
-                                </div>
-                                <a class="btn-small float-center" style="margin-top:5px" href="jobs.php">Apply</a>
+                                    <h9><?php echo $value['description'] ?></h9><br>
+                                    <h9><?php echo "Requirements: " . $value['required_experience'] ?></h9><br>
+                                    <br>
+                                    <a class="btn-small float-right" href="jobs.php">Apply</a>
 
+                                    <br>
+                                </div>
                         <?php
                             }
                         }
                         ?>
-                        <a class="btn-view-more float-center" href="jobs.php">View All</a>
+                        <a class="btn-small float-center" href="jobs.php"> More</a>
                     </div>
                 </div>
 
