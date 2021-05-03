@@ -15,7 +15,7 @@ if (isset($_POST['acceptConnection'])) {
 }
 
 if (isset($_POST['rejectConnection'])) {
-    $connection->rejectPendingConnection($_POST['acceptConnection']);
+    $connection->rejectPendingConnection($_POST['rejectConnection']);
 }
 
 $user = new User();
@@ -66,8 +66,8 @@ $connectionsNumber = count($connectionsData);
                                     </div>
                                     <div class="col-3">
                                         <form action="" method="POST">
-                                            <button type="submit" name="acceptConnection" value=<?php echo $value['connection_id'] ?>>Accept</button>
-                                            <button type="submit" name="rejectConnection" value=<?php echo $value['connection_id'] ?>>Reject</button>
+                                            <button class="btn-small" type="submit" name="acceptConnection" value=<?php echo $value['connection_id'] ?>>Accept</button>
+                                            <button class="btn-small" type="submit" name="rejectConnection" value=<?php echo $value['connection_id'] ?>>Reject</button>
                                         </form>
                                     </div>
                                 </div>
