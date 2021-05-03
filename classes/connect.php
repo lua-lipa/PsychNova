@@ -6,7 +6,7 @@ class Database
     private $host = "localhost";
     private $username = "root";
     private $password = "";
-    private $db = "psychnova3";
+    private $db = "psychnova";
 
     public function connect()
     {
