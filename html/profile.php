@@ -23,6 +23,11 @@ if (isset($_POST['updateEmploymentHistory'])) {
     $user->updateEmploymentHistoryOrg($_POST);
 }
 
+if (isset($_POST['deleteEmploymentHistory'])) {
+    $userEmploymentHistory = new employmentHistory();
+    $userEmploymentHistory->deleteEmploymentHistory($_POST);
+}
+
 $newSkills = array();
 if (isset($_POST['updateSkills'])) {
     $userSkills = new userSkills();
@@ -223,10 +228,12 @@ if (!$userData) header("location: login.php");
                                                             <br>
                                                             <label for="startDate" style="color:black">Start Date *</label> <input type="date" name="startDate" style="border-radius:5px;" value=<?php echo $value['start_date'] ?> />
                                                             <br>
-                                                            <input type="hidden" name="empHistoryId" value=<?php echo $value['emp_his_id'] ?> />
+                                                            <input type="hidden" name="empHisId" style="border-radius:5px;" value="<?php echo $value['emp_his_id'] ?>" />
+                                                            <input type="hidden" name="userId" style="border-radius:5px;" value="<?php echo $value['user_id'] ?>" />
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary" data-dismiss="modal" style="border-radius:15px; background-color: #876e8f; border-color:#876e8f">Close</button>
+                                                        <button type="delete" name="deleteEmploymentHistory" class="btn btn-primary" style="border-radius:15px; background-color: #a58aae; border-color:#876e8f">Delete</button>
                                                         <button type="submit" name="updateEmploymentHistory" class="btn btn-primary" style="border-radius:15px; background-color: #a58aae; border-color:#876e8f">Save changes</button>
                                                     </div>
                                                     </form>
