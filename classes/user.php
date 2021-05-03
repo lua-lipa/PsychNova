@@ -27,15 +27,27 @@ class User
         return $db->exists($query);
     }
 
-    public function updateQualification($data)
+    public function updateEmploymentHistory($data)
     {
-        $dateObtained = $data['dateObtained'];
-        $userQualificationId = $data['userQualificationId'];
+        $position = $data['position'];
+        $startDate = $data['startDate'];
+        $endDate = $data['endDate'];
+        $empHistoryId = $data['empHistoryId'];
 
-        $query = "UPDATE user_qualification 
-        SET date_obtained='$dateObtained'
-        WHERE u_qualification_id='$userQualificationId';";
+        $query = "UPDATE employment_history 
+        SET position='$position', start_date='$startDate', end_date='$endDate'
+        WHERE emp_his_id='$empHistoryId';";
 
+        $DB = new Database();
+        $DB->save($query);
+    }
+
+    public function updateEmploymentHistoryOrg($data)
+    {
+        $orgId = $data['org_id'];
+        $name = $data['name'];
+        $query = "UPDATE employment_history 
+                SET org_id=$orgId, name='$name';";
         $DB = new Database();
         $DB->save($query);
     }

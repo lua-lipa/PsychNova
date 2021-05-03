@@ -31,21 +31,21 @@ class organisation
         return $db->read($query);
     }
 
-    public function createOrg($data, $userId){
+    public function createOrg($data, $userId)
+    {
         $error = "";
         $name = $data['name'];
         $DE = $data['dateEstablished'];
         $desc = $data['description'];
         $email = $data['email'];
         $number = $data['contactNo'];
-    
+
         $query = "insert into organisation 
                             (name, date_established, description, user_id, email, contact_number) 
-                    values ('$name' , '$DE' , '$desc' , '$userId' , '$email' , '$contact_number')";
+                    values ('$name' , '$DE' , '$desc' , '$userId' , '$email' , '$number')";
         $DB = new Database();
         $DB->save($query);
 
         return $this->error;
-
     }
 }
