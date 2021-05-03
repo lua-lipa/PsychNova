@@ -52,25 +52,37 @@ class Search
                 $query .= "AND ";
                 $whereAdded = true;
             }
-            $query .= "user_skills.user_id = user.user_id 
-                        AND user_skills.skill_id = '" . $get['skill'] . "'";
+            $query .= "vacancy.title LIKE '%" . $get['title'] . "%'";
         }
         if(!empty($get['companyName'])) {
-            $query .= "employment_history.user_id = user.user_id
-                        AND organisation.org_id = employment_history.org_id 
-                        AND organisation.name LIKE '" . $get['company'] . "'";
+            if ($whereAdded == false) {
+                $query .= "WHERE ";
+            } else {
+                $query .= "AND ";
+                $whereAdded = true;
+            }
+            $query .= "organisation.name LIKE '%" . $get['companyName'] . "%'";
         }
         if(!empty($get['dateCreated'])) {
-            $query .= "employment_history.user_id = user.user_id
-                        AND organisation.org_id = employment_history.org_id 
-                        AND organisation.name LIKE '" . $get['company'] . "'";
+            if ($whereAdded == false) {
+                $query .= "WHERE ";
+            } else {
+                $query .= "AND ";
+                $whereAdded = true;
+            }
+            $query .= "vacancy.date_created >= '" . $get['dateCreated'] . "'";
         }
         if(!empty($get['skill'])) {
-            $query .= "employment_history.user_id = user.user_id
-                        AND organisation.org_id = employment_history.org_id 
-                        AND organisation.name LIKE '" . $get['company'] . "'";
+            if ($whereAdded == false) {
+                $query .= "WHERE ";
+            } else {
+                $query .= "AND ";
+                $whereAdded = true;
+            }
+            $query .= "AND vacancy_skills.vacancy_id = vacancy.vacancy_id 
+            AND vacancy_skills.v_skill_id  = '" . $get['skill'] . "%'";
         }
-        //$query .= "GROUP BY user.user_id ";
+        $query .= " GROUP BY vacancy.vacancy_id";
 
         $db = new Database();
         return $db->read($query);

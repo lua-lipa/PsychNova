@@ -48,9 +48,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                 <div class="filters-wrapper">
                     <form action="" method="GET" class="form-inline">
                         <div class="form-group">
-                            <input class="form-control mr-sm-2" name="title" type="search" value="<?php if(isset($_GET['title'])) echo $_GET['title']; ?>"  placeholder="Job Title" >
-                            <input class="form-control mr-sm-2" name="companyName" type="search" value="<?php if(isset($_GET['companyName'])) echo $_GET['companyName']; ?>"  placeholder="Company Name" >
-                            <input class="form-control mr-sm-2" name="dateCreated" type="date" value="<?php if(isset($_GET['dateCreated'])) echo $_GET['dateCreated']; ?>"  placeholder="Date Created" >
+                            <input class="form-control mr-sm-2" onkeydown="if (event.keyCode == 13) { this.form.submit(); return false; }" name="title" onsubmit='this.form.submit()' type="search" value="<?php if(isset($_GET['title'])) echo $_GET['title']; ?>"  placeholder="Job Title" >
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control mr-sm-2" onkeydown="if (event.keyCode == 13) { this.form.submit(); return false; }" name="companyName" onsubmit='this.form.submit()' type="search" value="<?php if(isset($_GET['title'])) echo $_GET['companyName']; ?>"  placeholder="Job Title" >
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control mr-sm-2" onkeydown="if (event.keyCode == 13) { this.form.submit(); return false; }" name="dateCreated" type="date" value="<?php if(isset($_GET['dateCreated'])) echo $_GET['dateCreated']; ?>"  placeholder="Company Name" >
+                        </div>
+                        <div class="form-group">
                             <select class="form-control skill-form" onchange='this.form.submit()' name="skill">
                                 <option value="" selected disabled hidden>Required Skill</option>
                                 <?php foreach ($skillsData as $key => $value) {
@@ -67,8 +73,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                                 ?>
                             </select>
                             <noscript><input type="submit" value="Submit"></noscript>
-                            
                         </div>
+                            
+                        
 
                         
                     </form>
