@@ -13,32 +13,16 @@ if (!isset($_SESSION['userid'])) {
 $skill = new Skill();
 $skillsData = $skill->getAllSkills();
 
-/*
-//if user logged in redirect to timeline
-if (isset($_SESSION['userid'])) {
-    header("location: timeline.php");
-}
-
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $SignUp = new SignUp();
-    $result = $SignUp->createUser($_POST);
-
-    if ($result != "") {
-        //show error
-        echo $result;
-    } else {
-        header("Location: timeline.php");
-    }
-}
-*/
 
 $searchResults = null;
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $search = new Search();
-    $searchResults = $search->searchUsers($_GET);
+    $searchResults = $search->searchVacancy($_GET);
 }
 
-
+// echo "<pre>";
+// print_r($searchResults);
+// echo "</pre>";
 
 
 ?>
@@ -57,15 +41,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     ?>
     <div class="container">
         <div class="row">
-            <div class="col-3"></div>
-            <div class="col-lg-6">
+            <div class="col-1"></div>
+            <div class="col-lg-9">
 
                 <!-- filters -->
                 <div class="filters-wrapper">
                     <form action="" method="GET" class="form-inline">
                         <div class="form-group">
+                            <input class="form-control mr-sm-2" onkeydown="if (event.keyCode == 13) { this.form.submit(); return false; }" name="title" onsubmit='this.form.submit()' type="search" value="<?php if(isset($_GET['title'])) echo $_GET['title']; ?>"  placeholder="Job Title" >
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control mr-sm-2" onkeydown="if (event.keyCode == 13) { this.form.submit(); return false; }" name="companyName" onsubmit='this.form.submit()' type="search" value="<?php if(isset($_GET['title'])) echo $_GET['companyName']; ?>"  placeholder="Job Title" >
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control mr-sm-2" onkeydown="if (event.keyCode == 13) { this.form.submit(); return false; }" name="dateCreated" type="date" value="<?php if(isset($_GET['dateCreated'])) echo $_GET['dateCreated']; ?>"  placeholder="Company Name" >
+                        </div>
+                        <div class="form-group">
                             <select class="form-control skill-form" onchange='this.form.submit()' name="skill">
-                                <option value="" selected disabled hidden>Skill</option>
+                                <option value="" selected disabled hidden>Required Skill</option>
                                 <?php foreach ($skillsData as $key => $value) {
                                     if ($key == $_GET['skill']) {
                                 ?>
@@ -79,10 +72,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                                 }
                                 ?>
                             </select>
-                            <input type="hidden" name="name" value="<?php echo $_GET['name'] ?>" />
                             <noscript><input type="submit" value="Submit"></noscript>
-                            <input class="form-control mr-sm-2" value="<?php if(isset($_GET['company'])) echo $_GET['company']; ?>" type="search" placeholder="Companies worked for" name="company">
                         </div>
+                            
+                        
 
                         
                     </form>
@@ -108,10 +101,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                                 </div>
                                 <div class="col-9">
                                     <div class="row">
-                                        <h6><?php echo $value['first_name'] . " " . $value['last_name'] ?></h6>
+                                        <h6><?php echo $value['title'] ?></h6>
                                     </div>
                                     <div class="row">
-                                        <h7><?php echo $value['profession'] ?></h7>
+                                        <h7><?php echo $value['description'] ?></h7>
                                     </div>
                                 </div>
                             </div>
