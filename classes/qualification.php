@@ -15,4 +15,22 @@ class Qualification
         $db = new Database();
         return $db->readOne($query);
     }
+
+    public function userJoinQualification($userId)
+    {
+        $query = "SELECT * FROM user_qualification 
+                INNER JOIN qualification 
+                WHERE user_qualification.qualification_id = qualification.qualification_id AND user_id=6";
+
+        $db = new Database();
+        return $db->readOne($query);
+    }
+
+    public function getAllQualifications()
+    {
+        $query = "SELECT * FROM qualification;";
+
+        $db = new Database();
+        return $db->readOne($query);
+    }
 }

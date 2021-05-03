@@ -2,6 +2,8 @@
 session_start();
 include("../classes/connect.php");
 include("../classes/user.php");
+include("../classes/userQualification.php");
+include("../classes/qualification.php");
 include("../classes/userSkills.php");
 include("../classes/skills.php");
 include("../classes/star_sign.php");
@@ -20,7 +22,12 @@ if (isset($_POST['updateAbout'])) {
 if (isset($_POST['updateEmploymentHistory'])) {
     $user = new User();
     $user->updateEmploymentHistory($_POST);
-    $user->updateEmploymentHistoryOrg($_POST);
+    // $user->updateEmploymentHistoryOrg($_POST);
+}
+
+if (isset($_POST['updateQualification'])) {
+    $user = new User();
+    $user->updateQualification($_POST);
 }
 
 if (isset($_POST['deleteEmploymentHistory'])) {
@@ -42,6 +49,12 @@ if (isset($_POST['updateSkills'])) {
 $user = new User();
 $userData = $user->getUserData($_SESSION['userid']);
 
+$userQualification = new userQualification();
+$userQualificationData = $userQualification->getUserQualificationData($_SESSION['userid']);
+$qualification = new Qualification();
+$userJoinQualifications = $qualification->userJoinQualification($_SESSION['userid']);
+$allQualifications = $qualification->getAllQualifications();
+
 $userSkills = new userSkills();
 $userSkillsData = $userSkills->getUserSkills($_SESSION['userid']);
 $skill = new Skill();
@@ -52,9 +65,9 @@ $userEmploymentHistoryData = $userEmploymentHistory->getEmploymentHistoryData($_
 $allEmploymentHistoryData = $userEmploymentHistory->getAllEmploymentOptions();
 $employmentHistoryJoinOrganisation = $userEmploymentHistory->employmentHistoryJoinOrganisation($_SESSION['userid']);
 
-echo "<pre>";
-print_r($employmentHistoryJoinOrganisation);
-echo "</pre>";
+// echo "<pre>";
+// print_r($allQualifications);
+// echo "</pre>";
 
 $selectedSkills = array();
 
@@ -136,9 +149,10 @@ if (!$userData) header("location: login.php");
                         </div>
                     </div>
 
-                    <!-- Employment History -->
+                    <!-- ADD Employment History -->
                     <div class="row mt-3">
                         <div class="addEmpoymentHistory">
+                            Employment History
                             <button type="button" style="margin-right: 30px; margin-top: 10px; background-color: #ffffff; color: #000000; height: 35px; border-color: #876e8f; border-radius:50px;" class="btn btn-primary" data-toggle="modal" data-target="#addEmploymentHistoryModal">
                                 <i class="bi bi-plus"></i>
                             </button>
@@ -182,7 +196,7 @@ if (!$userData) header("location: login.php");
                         </div>
                     </div>
 
-                    <!-- Qualifications -->
+                    <!-- Employment History DISPLAY -->
                     <?php
                     foreach ($employmentHistoryJoinOrganisation as $key => $value) {
                         // echo "<pre>";
@@ -241,7 +255,6 @@ if (!$userData) header("location: login.php");
                                             </div>
                                         </div>
                                     </div>
-                                    <hr>
                                 </div>
                             </div>
                         </div>
@@ -249,6 +262,108 @@ if (!$userData) header("location: login.php");
                     }
                     ?>
 
+                    <!-- ADD qualification -->
+                    <div class="row mt-3">
+                        <div class="addQualificaiton">
+                            Qualifications
+                            <button type="button" style="margin-right: 30px; margin-top: 10px; background-color: #ffffff; color: #000000; height: 35px; border-color: #876e8f; border-radius:50px;" class="btn btn-primary" data-toggle="modal" data-target="#addQualificationModal">
+                                <i class="bi bi-plus"></i>
+                            </button>
+                            <div class="modal fade" id="addQualificationModal" tabindex=" -1" role="dialog" aria-labelledby="qualificationModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="qualificationModalLabel">Add a Qualifaction</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form action="" method="POST">
+                                                <label for="qualification" style="color:black">Institute *</label>
+                                                <select name="qualification" style="border-radius:5px;" value="<?php echo $value['name'] ?>">
+                                                    <?php foreach ($allQualifications as $key_1 => $value_1) {
+                                                    ?>
+                                                        <option value=""><?php echo $value_1['title'] ?></option>
+                                                    <?php
+                                                    }
+                                                    ?>
+                                                </select>
+                                                <br>
+                                                <label for="dateObtained" style="color:black">Date obtained *</label> <input type="date" name="dateObtained" style="border-radius:5px;" value="" />
+                                                <br>
+                                                <label for="title" style="color:black">Title *</label><input type="text" name="title" style="border-radius:5px;" value="" />
+                                                <br>
+                                                <label for="description" style="color:black">Description *</label><input type="text" name="description" style="border-radius:5px;" value="" />
+                                                <br>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal" style="border-radius:15px; background-color: #876e8f; border-color:#876e8f">Close</button>
+                                            <button type="submit" name="addQualification" class="btn btn-primary" style="border-radius:15px; background-color: #a58aae; border-color:#876e8f">Save changes</button>
+                                        </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- Qualifications DISPLAY -->
+                    <?php
+                    foreach ($userQualificationData as $key => $value) {
+                        // echo "<pre>";
+                        // print_r($userQualificationData);
+                        // echo "</pre>";
+                        $qualificationData = $qualification->getQualificationFromId($value['qualification_id']);
+                        $id = "qualificationModal" . $qualificationData['qualification_id'];
+                    ?>
+                        <div class="row mt-3">
+                            <div class="card-qualification">
+                                <div class="qualification">
+                                    <h8 class="size-change" id="margin-add"><strong><?php echo $qualificationData['institute'] ?></strong></h8><br>
+                                    <h9><?php echo $qualificationData['title'] ?></h9><br>
+                                    <h9><?php echo $value['date_obtained'] ?></h9><br>
+                                    <p><?php echo $qualificationData['description'] ?></p>
+                                    <div class="row float-right">
+                                        <button type="button" class="btn qualification-button btn-primary" data-toggle="modal" data-target="#<?php echo $id ?>" style="margin-right:20px; margin-bottom:10px;">
+                                            <i class="bi bi-pencil"></i>
+                                        </button>
+                                        <div class="modal fade" id="<?php echo $id ?>" tabindex=" -1" role="dialog" aria-labelledby="qualificationModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="qualificationModalLabel">Edit Qualifications</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form action="" method="POST">
+                                                            <label for="dateObtained" style="color:black">Date obtained *</label> <input type="date" name="dateObtained" style="border-radius:5px;" value=<?php echo $value['date_obtained'] ?> />
+                                                            <input type="hidden" name="userQualificationId" value=<?php echo $value['u_qualification_id'] ?> />
+                                                            <br>
+                                                            <label for="institute" style="color:black">Institute *</label><input type="text" name="institute" style="border-radius:5px;" value='<?php echo $qualificationData['institute'] ?>' />
+                                                            <br>
+                                                            <label for="title" style="color:black">Title *</label><input type="text" name="title" style="border-radius:5px;" value='<?php echo $qualificationData['title'] ?>' />
+                                                            <br>
+                                                            <label for="description" style="color:black">Description *</label><input type="text" name="description" style="border-radius:5px;" value='<?php echo $qualificationData['description'] ?>' />
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal" style="border-radius:15px; background-color: #876e8f; border-color:#876e8f">Close</button>
+                                                        <button type="submit" name="updateQualification" class="btn btn-primary" style="border-radius:15px; background-color: #a58aae; border-color:#876e8f">Save changes</button>
+                                                    </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <?php
+                    }
+                    ?>
 
                     <!-- Skills -->
                     <div class="row mt-3">
@@ -275,21 +390,6 @@ if (!$userData) header("location: login.php");
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
-                                    </div>
-
-                                    <div class="modal-body">
-                                        <?php foreach ($allSkillsData as $key => $value) {
-                                            if (array_key_exists($key, $userSkillsData)) {
-                                        ?>
-                                                <input id="submitButton" type="submit" onclick="myFunction(this, ' <?php echo $value['skill_id'] ?>', '<?php echo $key ?>' )" class="button_submit btn-sm" style="margin-top:5px; color: #ffffff; background-color: #a58aae; border: 3px solid black; border-radius: 10px" value="<?php echo $value['title'] ?>" />
-                                            <?php
-                                            } else {
-                                            ?>
-                                                <input id="submitButton" type="submit" onclick="myFunction(this, ' <?php echo $value['skill_id'] ?>', '<?php echo $key ?>')" class="button_submit btn-sm" style="margin-top:10px; color: #ffffff;background-color: #a58aae; border: 3px solid #a58aae; border-radius: 10px" value="<?php echo $value['title'] ?>" />
-                                        <?php
-                                            }
-                                        }
-                                        ?>
                                     </div>
 
                                     <div class="modal-body">
@@ -320,18 +420,6 @@ if (!$userData) header("location: login.php");
                                                 ?>
                                             </div>
                                     </div>
-
-                                    <script type="text/javascript">
-                                        function myFunction(target, value, key) {
-                                            console.log($(target).css("border-right-color"));
-                                            if ($(target).css("border-right-color") == "rgb(0, 0, 0)") {
-                                                target.style.border = "3px solid #a58aae";
-                                                //remove here
-                                            } else {
-                                                //add here
-                                                target.style.border = "3px solid black";
-                                            }
-                                        }
                                     </script>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal" style="border-radius:15px; background-color: #876e8f; border-color:#876e8f">Close</button>
