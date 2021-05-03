@@ -181,11 +181,17 @@ $recommendedVacancies = $vacancy->getVacancies();
 
           ?>
               <div class="connection-row">
-                <img src=<?php $vacancyOrgData['profile_picture'] ?> class="rounded-circle" alt="...">
-                <h9><?php echo $vacancyOrgData['name'] ?></h9><br>
-                <h9><?php echo $value['title'] ?></h9><br>
+                <div class="vacancy-header">
+                  <img src=https://dummyimage.com/40x40/cfcfcf/000000 class="rounded-circle" alt="...">
+                  <div class="vacancy-title">
+                    <h9><?php echo $vacancyOrgData['name'] ?></h9><br>
+                    <h9><?php echo $value['title'] ?></h9><br>
+                  </div>
+                </div>
                 <h9><?php echo $value['description'] ?></h9><br>
                 <h9><?php echo "Requirements: " . $value['required_experience'] ?></h9><br>
+                <br>
+                <a class="btn-small float-right" href="jobs.php">Apply</a>
 
                 <br>
               </div>

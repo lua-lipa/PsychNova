@@ -111,6 +111,7 @@ h9 {
 .post-user-title {
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
 }
 
 .vacancies-card {
@@ -122,4 +123,13 @@ h9 {
     justify-content: center;
     flex-direction: column;
     flex-wrap: wrap;
+}
+
+.vacancy-header {
+    display: flex;
+    flex-direction: row;
+}
+
+.vacancy-title {
+    margin-left: 10px;
 }
