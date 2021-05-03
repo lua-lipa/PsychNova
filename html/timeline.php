@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 
 if (isset($_POST['connectWithUser'])) {
-  $connection->sendConnectionRequest($_SESSION['user_id'], $_POST['connectWithUser']);
+  $connection->sendConnectionRequest($_SESSION['userid'], $_POST['connectWithUser']);
 }
 
 $postsData = $post->getPostsData();
@@ -151,7 +151,6 @@ $recommendedVacancies = $vacancy->getVacancies();
                 <form action="" method="POST">
                   <button class="btn-small" type="submit" name="connectWithUser" value=<?php echo $postUserData['user_id'] ?>>+</button>
                 </form>
-
 
                 <p><?php echo $value['post'] ?></p>
               </div>
