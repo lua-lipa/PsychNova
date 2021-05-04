@@ -27,6 +27,12 @@ if (isset($_POST['updateEmploymentHistory'])) {
     // $user->updateEmploymentHistoryOrg($_POST);
 }
 
+if (isset($_POST['addEmploymentHistory'])) {
+    $employmentHistory = new employmentHistory();
+    $employmentHistory->addEmploymentHistory($_SESSION['userid'], $_POST);
+    // $user->updateEmploymentHistoryOrg($_POST);
+}
+
 if (isset($_POST['updateQualification'])) {
     $user = new User();
     $user->updateQualification($_POST);
@@ -201,28 +207,64 @@ if (!$userData) header("location: login.php");
                                         </div>
                                         <div class="modal-body">
                                             <form action="" method="POST">
-                                                <!-- DROP DOWNNN -->
-                                                <label for="organisation" style="color:black">Organisation *</label>
-                                                <select name="organisation" style="border-radius:5px;" value="<?php echo $value['position'] ?>">
-                                                    <?php foreach ($allEmploymentHistoryData as $key_1 => $value_1) {
-                                                    ?>
-                                                        <option value=""><?php echo $value_1['org_id'] . ". " . $value_1['name'] ?></option>
-                                                    <?php
-                                                    }
-                                                    ?>
-                                                </select>
+                                            <div class="form-group">
+                                                <!-- DROP DOWN -->
+                                                <label id="searchLabel" for="organisation" style="color:black">Organisation *</label>
+                                                <input autocomplete="off" class="form-control" value="" id="search" type="search" placeholder="" name="organisation">
+                                                <div class="list-group" id="show-list">
+                                                    <!-- <a href="#" class="list-group-item list-group-item-action">List 1</a> -->
+                                                </div>
+                                                <input name="orgId" id="orgId" type=text>
                                                 <br>
-                                                <label for="position" style="color:black">Position *</label> <input type="text" name="position" style="border-radius:5px;" value="" />
+                                                <label for="position" style="color:black">Position *</label> 
+                                                <input class="form-control" type="text" name="position" style="border-radius:5px;" value="" />
                                                 <br>
-                                                <label for="startDate" style="color:black">Start Date *</label> <input type="date" name="startDate" style="border-radius:5px;" value="" />
+                                                <label for="startDate" style="color:black">Start Date *</label> 
+                                                <input class="form-control" type="date" name="startDate" style="border-radius:5px;" value="" />
                                                 <br>
-                                                <label for="endDate" style="color:black">End Date *</label> <input type="date" name="endDate" style="border-radius:5px;" value="" />
-                                        </div>
+                                                <label for="endDate" style="color:black">End Date *</label> 
+                                                <input class="form-control" type="date" name="endDate" style="border-radius:5px;" value="" />
+                                            </div>
+                                            </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal" style="border-radius:15px; background-color: #876e8f; border-color:#876e8f">Close</button>
-                                            <button type="submit" name="updateEmploymentHistory" class="btn btn-primary" style="border-radius:15px; background-color: #a58aae; border-color:#876e8f">Save changes</button>
+                                            <button type="submit" name="addEmploymentHistory" class="btn btn-primary" style="border-radius:15px; background-color: #a58aae; border-color:#876e8f">Save changes</button>
                                         </div>
                                         </form>
+                                        <script type="text/javascript">
+                                            let orgId
+                                            $(document).ready(function(){
+                                                $("#search").keyup(function () {
+                                                    $("#searchLabel").text("Organisation *")
+                                                    $("#orgId").val(0);
+                                                    $("#orgId").text(0);
+                                                    let searchText = $(this).val();
+                                                    if (searchText != "") {
+                                                    $.ajax({
+                                                        url: "autocomplete.php",
+                                                        method: "post",
+                                                        data: {
+                                                        query: searchText,
+                                                        },
+                                                        success: function (response) {
+                                                        $("#show-list").html(response);
+                                                        },
+                                                    });
+                                                    } else {
+                                                    $("#show-list").html("");
+                                                    }
+                                                });
+                                                // Set searched text in input field on click of search button
+                                                $(document).on("click", "a", function () {
+                                                    $("#search").val($(this).text());
+                                                    $("#orgId").val($(this).attr("value"));
+                                                    $("#orgId").text($(this).attr("value"));
+                                                    $("#show-list").html("");
+                                                    $("#searchLabel").text("Organisation * PsychNova")
+                                                    
+                                                });
+                                            });
+                                        </script>
                                     </div>
                                 </div>
                             </div>
@@ -240,7 +282,7 @@ if (!$userData) header("location: login.php");
                         <div class="row mt-3">
                             <div class="card-employmentHistory">
                                 <div class="employmentHistory">
-                                    <h8 class="size-change" style="font-size: 18px" id="margin-add"><strong><?php echo $value['name'] ?></strong></h8><br>
+                                    <h8 class="size-change" style="font-size: 18px" id="margin-add"><strong><?php if($value['org_id'] == 0) { echo $value['organisation_name']; } else { echo $value['name']; } ?></strong></h8><br>
                                     <h9 style="font-size: 12px"><?php echo $value['position'] ?></h9><br>
                                     <h9><?php echo $value['start_date'] . " - " .  $value['end_date']  ?></h9><br>
                                     <div class="row float-right">
@@ -258,7 +300,6 @@ if (!$userData) header("location: login.php");
                                                     </div>
                                                     <div class="modal-body">
                                                         <form action="" method="POST">
-
                                                             <label for="organisation" style="color:black">Organisation *</label>
                                                             <select name="organisation" style="border-radius:5px;" value="<?php echo $value['name'] ?>">
                                                                 <?php foreach ($allEmploymentHistoryData as $key_1 => $value_1) {
