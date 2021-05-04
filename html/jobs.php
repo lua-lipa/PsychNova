@@ -107,7 +107,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                                             <h5><?php echo $value['title'] ?></h5>
                                         </div>
                                         <div class="row">
-                                            <h8><a style="text-decoration: none;" href="organisation_profile.php?id=<?php echo $value['org_id']?>" type="submit" name="view"><?php echo $value['name'] ?></a></h7>
+                                            <h8><a style="color: black; text-decoration: none;" href="organisation_profile.php?id=<?php echo $value['org_id']?>" type="submit" name="view"><?php echo $value['name'] ?></a></h7>
                                         </div>
                                         <div class="row result-card-date">
                                             <h9><?php echo $value['date_created'] ?></h9>
