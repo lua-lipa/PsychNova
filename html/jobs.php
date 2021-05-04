@@ -99,7 +99,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                         <div class="result-card">
                             <div class="result-container">
                                 <div class="result-image-container">
-                                    <img src="https://dummyimage.com/64x64/cfcfcf/000000" class="rounded-circle" alt="...">
+                                    <img src="<?php echo $value['profile_picture'] ?>" width="64" height="64" class="rounded-circle" alt="...">
                                 </div>
                                 <div class="result-text-container">
                                     <div class="col">
@@ -107,7 +107,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                                             <h5><?php echo $value['title'] ?></h5>
                                         </div>
                                         <div class="row">
-                                            <h8><?php echo $value['name'] ?></h7>
+                                            <h8><a style="text-decoration: none;" href="organisation_profile.php?id=<?php echo $value['org_id']?>" type="submit" name="view"><?php echo $value['name'] ?></a></h7>
                                         </div>
                                         <div class="row result-card-date">
                                             <h9><?php echo $value['date_created'] ?></h9>
