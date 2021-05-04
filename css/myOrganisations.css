@@ -1,6 +1,7 @@
 body {
     background-color: #f5f5f5f5;
 }
+
 .org-card {
     height: 300px;
     margin-bottom: 20px;
@@ -31,23 +32,28 @@ body {
     justify-content: center;
     align-items: center;
 }
+
 .linkedOrgname{
     padding-top: 20px;
     padding-left: 20px;
     padding-right: 20px;
 }
+
 .modal {
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-  }
+}
+
 .yourOrgname{
     color: #A58AAE;
 }
+
 .yourOrgDesc{
     font-size: 12px;
 }
+
 .notLinkedMsg{
     font-size: 12px;
     justify-content: center;
@@ -55,34 +61,41 @@ body {
     padding-top: 130px;
     
 }
+
 label {
     color: #A58AAE;
     font-size: 15px;
 }
+
 h5{
     padding: 20px;
     font-family: 'Arial';
 }
+
 .modal-title{
     color: #A58AAE;
     padding: 0px !important;
     font-size: 30px !important
 }
+
 .scrollPrompt{
     text-align: right;
     font-size: 10px;
 }
+
 .linkedOrgTitle{
     padding-left: 10px;
     color: #A58AAE;
     font-size: 20px;
 }
+
 .yourOrgTitle{
     padding-left: 10px;
     padding-bottom: 20px;
     color: #A58AAE;
     font-size: 20px;
 }
+
 .myBtn{
     background-color: white;
     border-radius: 100px !important;

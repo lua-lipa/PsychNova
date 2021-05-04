@@ -2,21 +2,21 @@ body {
     background-color: #f5f5f5f5;
 }
 
-.btn {
+.btn-search {
     background-color: #A58AAE;
     border-radius: 100px !important;
     color: white;
     width: 100px;
+    border: none;
 }
 
 .btn-small {
     background-color: #A58AAE;
     border-radius: 100px !important;
     color: white;
-    width: auto;
+    width: 70px;
     padding: 3px;
     font-size: 10px;
-    margin: auto;
     display: block;
     text-align: center;
     margin-bottom: 10px;
@@ -70,6 +70,12 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.name-and-button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 }
 
 .profile-image {
@@ -163,4 +169,5 @@ h9 {
 
 .vacancy-title {
     margin-left: 10px;
+    align-items: left;
 }
