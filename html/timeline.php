@@ -68,10 +68,10 @@ $recommendedVacancies = $vacancy->getVacancies();
         <div class="profile-card">
           <div class="profile-container">
             <div class="profile-image">
-              <img src="https://dummyimage.com/70x70/cfcfcf/000000" class="rounded-circle" alt="...">
+              <img src="https://dummyimage.com/70x70/cfcfcf/000000" href="profile.php?id=<?php echo $userData['user_id'] ?>" class=" rounded-circle" alt="...">
             </div>
             <div class="profile-name">
-              <h6><?php echo $userData['first_name'] . " " . $userData['last_name'] ?></h6>
+              <h5 class="mt-0"><a style="color: white; text-decoration: none;" href="profile.php?id=<?php echo $userData['user_id'] ?>" type="submit" name="view"><?php echo $userData['first_name'] . " " . $userData['last_name'] ?></a></h5>
             </div>
             <div class="profile-profession">
               <h7><i><?php echo $userData['profession'] ?></i></h7>
@@ -116,7 +116,8 @@ $recommendedVacancies = $vacancy->getVacancies();
               ?>
                 <div class="connection-row">
                   <img src="https://dummyimage.com/40x40/cfcfcf/000000" class="rounded-circle" alt="...">
-                  <h9><?php echo $pendingConnectionUserData['first_name'] . " " . $pendingConnectionUserData['last_name'] ?></h9><br>
+                  <h9 class="mt-0"><a style="color: black; text-decoration: none;" href="userprofile.php?id=<?php echo $pendingConnectionUserData['user_id'] ?>" type="submit" name="view"><?php echo $pendingConnectionUserData['first_name'] . " " . $pendingConnectionUserData['last_name'] ?></a></h9><br>
+
                   <br>
                 </div>
             <?php
@@ -155,7 +156,7 @@ $recommendedVacancies = $vacancy->getVacancies();
               <img src="https://dummyimage.com/64x64/cfcfcf/000000" class="mr-3" alt="...">
               <div class="media-body">
                 <div class="post-user-title">
-                  <h5 class="mt-0"><a style="color: #A58AAE; text-decoration: none;" href="userprofile.php?id=<?php echo $postUserData['user_id'] ?>" type="submit" name="view"><?php echo $postUserData['first_name'] . " " . $postUserData['last_name'] ?></a></h5> 
+                  <h5 class="mt-0"><a style="color: #A58AAE; text-decoration: none;" href="userprofile.php?id=<?php echo $postUserData['user_id'] ?>" type="submit" name="view"><?php echo $postUserData['first_name'] . " " . $postUserData['last_name'] ?></a></h5>
                   <!-- if the users are not connected, the connect button gets displayed -->
                   <?php if (count($connection->areConnected($postUserData['user_id'], $_SESSION['userid'])) == 0 && $postUserData['user_id'] != $_SESSION['userid']) { ?>
                     <form action="" method="POST">
