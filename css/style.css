@@ -4,7 +4,7 @@ body {
 
 
 
-.navbar .nav > .active > a {
+/* .navbar .nav > .active > a {
   border-radius: 25px;
   background: purple;
   width: 50;
@@ -12,8 +12,8 @@ body {
   /* background: purple;
     -moz-border-radius: 70px;
     -webkit-border-radius: 50px;
-    border-radius: 50px; */
-}
+    border-radius: 50px; 
+} */
 
 textarea {
   width: 100%;
@@ -33,10 +33,10 @@ textarea {
     margin: auto;
 } */
 
-.navbar .nav > .active > a:hover {
+/* .navbar .nav > .active > a:hover {
   background: purple;
 }
 
 .navbar .nav > .active > a:focus {
   background: purple;
-}
+} */

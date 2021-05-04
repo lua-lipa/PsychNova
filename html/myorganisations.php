@@ -33,8 +33,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <head>
     <title> PsychNova </title>
     <?php include("../components/head.php"); ?>
-    <link href="../css/myOrganisations.css" rel="stylesheet">
-    <link href="../css/searchresult.css" rel="stylesheet">
+    <link href="../css/myOrganisations.css" type="text/css" rel="stylesheet">
+    <link href="../css/searchresult.css" type="text/css" rel="stylesheet">
 </head>
 
 <body>
