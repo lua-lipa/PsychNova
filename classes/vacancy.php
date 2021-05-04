@@ -2,7 +2,7 @@
 
 class vacancy
 {
-
+    
     public function getVacancies()
     {
         $query = "SELECT * FROM vacancy";
@@ -100,5 +100,37 @@ class vacancy
                     VALUES ($vacancyId, $skillId);";
         $db = new Database();
         return $db->save($query);
+    }
+
+    public function getVacancyWithSkill($vacancyId, $skillId){
+        $query = "SELECT * FROM vacancy_skills WHERE vacancy_id = '$vacancyId' AND skill_id = '$skillId';";
+        $db = new Database();
+        return $db->read($query);
+    }
+
+    public function skills($userId)
+    {
+        $query = "SELECT skills.skill_id FROM user_skills INNER JOIN skills ON skills.skill_id=user_skills.skill_id WHERE user_id=$userId";
+        $db = new Database();
+        return $db->read($query);
+    }
+
+    public function suggestedVacancies($userId){
+        $userSkillsData = $this->skills($userId);
+        $vacancies = $this->getVacancies();
+        $suggestedVacancies = array();
+        foreach($userSkillsData as $key => $value){
+            $skill = $value['skill_id'];
+            foreach($vacancies as $key => $vac){
+                $vacancy = $vac['vacancy_id'];
+                $vacSkill = $this->getVacancyWithSkill($vacancy, $skill);
+                if(!empty($vacSkill)){
+                    if(!in_array($vacancy, $suggestedVacancies)){    
+                        array_push($suggestedVacancies, $vac);
+                    }
+                }
+            }
+        }
+        return $suggestedVacancies;
     }
 }
