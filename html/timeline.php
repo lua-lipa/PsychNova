@@ -204,8 +204,8 @@ $recommendedVacancies = $vacancy->getVacancies();
                   </div>
 
                 </div>
-                <hr>
                 <h style="font-size:12px"><i><?php echo $value['description'] ?></i></h><br>
+                <hr>
               </div>
               <!-- <a class="btn-small float-center" style="margin-top:5px" href="jobs.php">Apply</a> -->
 
