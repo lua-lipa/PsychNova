@@ -57,11 +57,11 @@ class Search
         }
         if(!empty($get['skill'])) {
             $query .= " AND vacancy_skills.vacancy_id = vacancy.vacancy_id 
-                        AND vacancy_skills.v_skill_id  = '" . $get['skill'] . "%'";
+                        AND vacancy_skills.skill_id  = '" . $get['skill'] . "'";
         }
         $query .= " GROUP BY vacancy.vacancy_id";
 
-        echo $query;
+        //echo $query;
 
         $db = new Database();
         return $db->read($query);
