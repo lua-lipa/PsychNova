@@ -6,6 +6,7 @@ include("../classes/post.php");
 include("../classes/user.php");
 include("../classes/connections.php");
 include("../classes/vacancy.php");
+include("../classes/star_sign.php");
 include("../classes/organisation.php");
 
 //if user not logged in redirect to login
@@ -67,13 +68,19 @@ $recommendedVacancies = $vacancy->getVacancies();
         <div class="profile-card">
           <div class="profile-container">
             <div class="profile-image">
-              <img src="https://dummyimage.com/100x100/cfcfcf/000000" class="rounded-circle" alt="...">
+              <img src="https://dummyimage.com/70x70/cfcfcf/000000" class="rounded-circle" alt="...">
             </div>
             <div class="profile-name">
               <h6><?php echo $userData['first_name'] . " " . $userData['last_name'] ?></h6>
             </div>
             <div class="profile-profession">
-              <h7><?php echo $userData['profession'] ?></h7>
+              <h7><i><?php echo $userData['profession'] ?></i></h7>
+            </div>
+            <hr>
+            <div class="star-signs">
+              <p class="mr-3" style="color: white; font-size: 14px;"><i class="bi bi-sun" style="color:white"></i> <?php echo calcStarSign($userData['date_of_birth']) ?> </p>
+              <p class="mr-3" style="color: white; font-size: 14px;"><i class="bi bi-sunrise" style="color:white"></i> Cancer</p>
+              <p class="mr-3" style="color: white; font-size: 14px;"><i class="bi bi-moon" style="color:white"></i> Taurus</p>
             </div>
             <hr />
           </div>
