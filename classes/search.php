@@ -26,11 +26,11 @@ class Search
         WHERE user.first_name LIKE '%" . $get['name'] . "%' ";
 
         if(!empty($get['skill'])) {
-            $query .= "AND user_skills.user_id = user.user_id 
+            $query .= " AND user_skills.user_id = user.user_id 
                         AND user_skills.skill_id = '" . $get['skill'] . "'";
         }
         if(!empty($get['company'])) {
-            $query .= "AND employment_history.user_id = user.user_id
+            $query .= " AND employment_history.user_id = user.user_id
                         AND organisation.org_id = employment_history.org_id 
                         AND organisation.name LIKE '" . $get['company'] . "'";
         }
@@ -42,47 +42,26 @@ class Search
 
     public function searchVacancy($get) {
         $query = "SELECT vacancy.vacancy_id, vacancy.title, vacancy.description, vacancy.date_created, organisation.org_id, organisation.name
-        FROM vacancy, vacancy_skills, organisation";
+        FROM vacancy, vacancy_skills, organisation
+        WHERE vacancy.org_id = organisation.org_id";
 
         $whereAdded = false;
         if(!empty($get['title'])) {
-            if ($whereAdded == false) {
-                $query .= "WHERE ";
-            } else {
-                $query .= "AND ";
-                $whereAdded = true;
-            }
-            $query .= "vacancy.title LIKE '%" . $get['title'] . "%'";
+            $query .= " AND vacancy.title LIKE '%" . $get['title'] . "%'";
         }
         if(!empty($get['companyName'])) {
-            if ($whereAdded == false) {
-                $query .= "WHERE ";
-            } else {
-                $query .= "AND ";
-                $whereAdded = true;
-            }
-            $query .= "organisation.name LIKE '%" . $get['companyName'] . "%'";
+            $query .= " AND organisation.name LIKE '%" . $get['companyName'] . "%'";
         }
         if(!empty($get['dateCreated'])) {
-            if ($whereAdded == false) {
-                $query .= "WHERE ";
-            } else {
-                $query .= "AND ";
-                $whereAdded = true;
-            }
-            $query .= "vacancy.date_created >= '" . $get['dateCreated'] . "'";
+            $query .= " AND vacancy.date_created >= '" . $get['dateCreated'] . "'";
         }
         if(!empty($get['skill'])) {
-            if ($whereAdded == false) {
-                $query .= "WHERE ";
-            } else {
-                $query .= "AND ";
-                $whereAdded = true;
-            }
-            $query .= "AND vacancy_skills.vacancy_id = vacancy.vacancy_id 
-            AND vacancy_skills.v_skill_id  = '" . $get['skill'] . "%'";
+            $query .= " AND vacancy_skills.vacancy_id = vacancy.vacancy_id 
+                        AND vacancy_skills.v_skill_id  = '" . $get['skill'] . "%'";
         }
         $query .= " GROUP BY vacancy.vacancy_id";
+
+        echo $query;
 
         $db = new Database();
         return $db->read($query);
