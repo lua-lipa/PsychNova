@@ -10,6 +10,13 @@ class userSkills
         return $db->readById($query, "skill_id");
     }
 
+    public function skills($userId)
+    {
+        $query = "SELECT * FROM user_skills INNER JOIN skills ON skills.skill_id=user_skills.skill_id WHERE user_id=$userId";
+        $db = new Database();
+        return $db->read($query);
+    }
+
     public function removeAllSkills($userId)
     {
         $query = "DELETE FROM user_skills WHERE user_id=$userId;";

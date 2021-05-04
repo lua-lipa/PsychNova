@@ -34,8 +34,8 @@ $postsData = $post->getPostsData();
 $userData = $user->getUserData($_SESSION['userid']);
 $pendingConnectionsData = $connection->getPendingConnections($_SESSION['userid']);
 $numberOfConections = count($pendingConnectionsData);
-$recommendedVacancies = $vacancy->getVacancies();
-
+$recommendedVacancies = $vacancy->suggestedVacancies($_SESSION['userid']);
+// $recommendedVacancies = $vacancy->getVacancies();
 // $numberOfConections = 1;
 
 /*
