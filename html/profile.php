@@ -106,7 +106,7 @@ if (!$userData) header("location: login.php");
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html >
 
 <head>
     <?php include("../components/head.php"); ?>
