@@ -208,7 +208,7 @@ $recommendedVacancies = $vacancy->suggestedVacancies($_SESSION['userid']);
             }
           }
           ?>
-          <a class="btn-view-more float-center" href="jobs.php">Explore</a>
+          <a class="btn-view-more float-center" href="suggested_vacancies.php">Explore</a>
         </div>
       </div>
     </div>
