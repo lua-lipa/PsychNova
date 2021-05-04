@@ -68,7 +68,7 @@ $recommendedVacancies = $vacancy->getVacancies();
         <div class="profile-card">
           <div class="profile-container">
             <div class="profile-image">
-              <img src="<?php echo $userData['profile_picture'] ?>" href="profile.php?id=<?php echo $userData['user_id'] ?>" class=" rounded-circle" alt="...">
+              <img src="<?php echo $userData['profile_picture'] ?>" href="profile.php?id=<?php echo $userData['user_id'] ?>" class=" rounded-circle" width="70" height="70" alt="...">
             </div>
             <div class="profile-name">
               <h5 class="mt-0"><a style="color: white; text-decoration: none;" href="profile.php?id=<?php echo $userData['user_id'] ?>" type="submit" name="view"><?php echo $userData['first_name'] . " " . $userData['last_name'] ?></a></h5>
