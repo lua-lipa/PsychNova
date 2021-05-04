@@ -115,7 +115,7 @@ $recommendedVacancies = $vacancy->getVacancies();
                 }
               ?>
                 <div class="connection-row">
-                  <img src="<?php echo $pendingConnectionUserData['profile_picture'] ?>" class="rounded-circle" alt="...">
+                  <img src="<?php echo $pendingConnectionUserData['profile_picture'] ?>" class="rounded-circle" width="30" height="30" alt="...">
                   <h9 class="mt-0"><a style="color: black; text-decoration: none;" href="userprofile.php?id=<?php echo $pendingConnectionUserData['user_id'] ?>" type="submit" name="view"><?php echo $pendingConnectionUserData['first_name'] . " " . $pendingConnectionUserData['last_name'] ?></a></h9><br>
 
                   <br>
@@ -153,7 +153,7 @@ $recommendedVacancies = $vacancy->getVacancies();
 
           <div class="media-card">
             <div class="media">
-              <img src="<?php echo $postUserData['profile_picture'] ?>" class="mr-3" alt="...">
+              <img src="<?php echo $postUserData['profile_picture'] ?>" width="64" height="64" class="mr-3" alt="...">
               <div class="media-body">
                 <div class="post-user-title">
                   <h5 class="mt-0"><a style="color: #A58AAE; text-decoration: none;" href="userprofile.php?id=<?php echo $postUserData['user_id'] ?>" type="submit" name="view"><?php echo $postUserData['first_name'] . " " . $postUserData['last_name'] ?></a></h5>
@@ -192,7 +192,7 @@ $recommendedVacancies = $vacancy->getVacancies();
           ?>
               <div class="connection-row">
                 <div class="vacancy-header">
-                  <img src="<?php echo $vacancyOrgData['profile_picture'] ?>" class=" rounded-circle" alt="...">
+                  <img src="<?php echo $vacancyOrgData['profile_picture'] ?>" width="60" height="60" class=" rounded-circle" alt="...">
                   <div class="vacancy-title">
                     <h9><?php echo $vacancyOrgData['name'] ?></h9><br>
                     <h9><?php echo $value['title'] ?></h9>
