@@ -78,6 +78,7 @@ class vacancy
     {
         $query = "SELECT vacancy_skills.vacancy_id, vacancy_skills.skill_id, skills.skill_id, skills.title
                 FROM vacancy_skills, skills
+                -- vacancy ID not orgId
                 WHERE vacancy_skills.vacancy_id = '$orgId' AND vacancy_skills.skill_id = skills.skill_id
                 GROUP BY vacancy_skills.skill_id;";
 
