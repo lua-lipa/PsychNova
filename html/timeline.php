@@ -70,11 +70,12 @@ $recommendedVacancies = $vacancy->getVacancies();
             <div class="profile-image">
               <img src="<?php echo $userData['profile_picture'] ?>" href="profile.php?id=<?php echo $userData['user_id'] ?>" class=" rounded-circle" width="70" height="70" alt="...">
             </div>
+            <br>
             <div class="profile-name">
-              <h5 class="mt-0"><a style="color: white; text-decoration: none;" href="profile.php?id=<?php echo $userData['user_id'] ?>" type="submit" name="view"><?php echo $userData['first_name'] . " " . $userData['last_name'] ?></a></h5>
+              <h5 class="mt-0"><a style="color: white; text-decoration: none; font-size: 15px" href="profile.php?id=<?php echo $userData['user_id'] ?>" type="submit" name="view"><?php echo $userData['first_name'] . " " . $userData['last_name'] ?></a></h5>
             </div>
             <div class="profile-profession">
-              <h7><i><?php echo $userData['profession'] ?></i></h7>
+              <h7 style="font-size: 13px"><i><?php echo $userData['profession'] ?></i></h7>
             </div>
             <hr>
             <div class="star-signs">
@@ -89,13 +90,13 @@ $recommendedVacancies = $vacancy->getVacancies();
 
         <div class="connections-card">
           <?php if ($numberOfConections > 1) { ?>
-            <h class="connections-title" style="text-align:center"><?php echo $numberOfConections . " connection requests" ?></h>
+            <h class="connections-title" style="text-align:center"><b><?php echo $numberOfConections . " connection requests" ?></b></h>
 
           <?php } else if ($numberOfConections == 1) { ?>
-            <h class="connections-title" style="text-align:center"><?php echo $numberOfConections . " connection request" ?></h>
+            <h class="connections-title" style="text-align:center"><b><?php echo $numberOfConections . " connection request" ?></b></h>
           <?php
           } else { ?>
-            <h class="connections-title" style="text-align:center">Connection requests</h>
+            <h class="connections-title" style="text-align:center"><b>Connection requests</b></h>
           <?php } ?>
 
           <div class="connections-container">
@@ -177,9 +178,11 @@ $recommendedVacancies = $vacancy->getVacancies();
       </div>
       <div class="col-lg-3">
         <div class="vacancies-card">
-          <h class="connections-title" style="text-align:center">Recommended Vacancies</h>
-          <?php if (count($recommendedVacancies) == 0) {
-            echo "no vacancies to show.";
+          <h class="connections-title" style="text-align:center; font-size: 12px"><b>Recommended Vacancies</b></h>
+          <br>
+          <?php if (count($recommendedVacancies) == 0) { ?>
+            <p style="text-align:center">No requests yet!</p><br>
+            <?php
           } else {
             $numberOfVacanciesDisplayed = 0;
             foreach ($recommendedVacancies as $key => $value) {
@@ -189,7 +192,7 @@ $recommendedVacancies = $vacancy->getVacancies();
                 $numberOfVacanciesDisplayed += 1;
               }
 
-          ?>
+            ?>
               <div class="connection-row">
                 <div class="vacancy-header">
                   <img src="<?php echo $vacancyOrgData['profile_picture'] ?>" width="60" height="60" class=" rounded-circle" alt="...">
@@ -207,7 +210,7 @@ $recommendedVacancies = $vacancy->getVacancies();
             }
           }
           ?>
-          <a class="btn-view-more float-center" href="jobs.php">View All</a>
+          <a class="btn-view-more float-center" href="jobs.php">Explore</a>
         </div>
       </div>
     </div>
