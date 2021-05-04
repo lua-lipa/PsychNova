@@ -18,9 +18,11 @@ class employmentHistory
 
     public function employmentHistoryJoinOrganisation($userId)
     {
-        $query = "SELECT * FROM organisation 
-                  INNER JOIN employment_history ON organisation.org_id = employment_history.org_id 
-                  AND employment_history.user_id='$userId'";
+        $query = "SELECT employment_history.emp_his_id, employment_history.user_id, employment_history.org_id, employment_history.start_date, employment_history.end_date, employment_history.position, employment_history.organisation_name, organisation.name
+                    FROM employment_history, organisation
+                    WHERE employment_history.user_id = '" . $userId . "'
+                    GROUP BY employment_history.emp_his_id";
+
 
         $db = new Database();
         return $db->read($query);
@@ -35,5 +37,27 @@ class employmentHistory
 
         $db = new Database();
         return $db->save($query);
+    }
+
+    public function addEmploymentHistory($userId, $data)
+    {
+        $orgId = $data['orgId'];
+        $startDate = $data['startDate'];
+        $endDate = $data['endDate'];
+        $position = $data['position'];
+        $name = $data['organisation'];
+
+        if ($orgId == 0) {
+            $query = "INSERT INTO employment_history 
+                            (user_id , org_id , start_date , end_date, position, organisation_name) 
+                    values ('$userId' , '$orgId' , '$startDate' , '$endDate' , '$position', '$name')";
+        } else {
+            $query = "INSERT INTO employment_history 
+                            (user_id , org_id , start_date , end_date, position) 
+                    values ('$userId' , '$orgId' , '$startDate' , '$endDate' , '$position')";
+        }
+
+        $DB = new Database();
+        return $DB->save($query);
     }
 }
