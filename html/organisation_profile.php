@@ -36,6 +36,11 @@ if (isset($_POST['updateVacancy'])) {
 if (isset($_POST['addVacancy'])) {
     $vacancy = new vacancy();
     $vacancy->addVacancy($org_id, $_POST);
+
+    foreach ($_POST['selectedSkills'] as $selected) {
+        array_push($newSkills, $selected);
+        $vacancy->addVacancySkills($_POST, $selected);
+    }
 }
 
 // $organisationData = $organisation->getOrganisationData($_SESSION['userid']);
@@ -170,6 +175,38 @@ $organisationVacancies = $vacancy->getVacanciesOrg($org_id);
                                             <label for="title" style="color:black">Title *</label><input class="form-control" type="text" name="title" style="border-radius:5px;" value='' />
                                             <br>
                                             <label for="description" style="color:black">Description *</label><input class="form-control" type="text" name="description" style="margin-bottom:10px; height: 50px; width:95%; border-radius:5px;" maxlength="200" value='' />
+                                            <?php ?>
+                                            <label for="requiredSkills" style="color:black">Required Skills *</label>
+                                            <div class="form-group">
+                                                <?php
+                                                foreach ($allSkillsData as $key => $value) {
+                                                    $vacancySkillsData;
+                                                    foreach ($organisationVacancies as $key => $value_1) {
+                                                        $vacancySkillsData = $vacancy->vacancySkills($value_1['vacancy_id']);
+                                                    }
+                                                    if (array_key_exists($key, $vacancySkillsData)) {
+                                                        print_r($vacancySkillsData);
+                                                ?>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" name="selectedSkills[]" type="checkbox" value="<?php echo $key ?>" id="defaultCheck1" checked>
+                                                            <label class="form-check-label" for="defaultCheck1">
+                                                                <?php echo $value['title'] ?>
+                                                            </label>
+                                                        </div>
+                                                    <?php
+                                                    } else {
+                                                    ?>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" name="selectedSkills[]" type="checkbox" value="<?php echo $key ?>" id="defaultCheck1">
+                                                            <label class="form-check-label" for="defaultCheck1">
+                                                                <?php echo $value['title'] ?>
+                                                            </label>
+                                                        </div>
+                                                <?php
+                                                    }
+                                                }
+                                                ?>
+                                            </div>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal" style="border-radius:15px; background-color: #876e8f; border-color:#876e8f">Close</button>
@@ -224,9 +261,9 @@ $organisationVacancies = $vacancy->getVacanciesOrg($org_id);
                                                 </div>
                                                 <div class="modal-body">
                                                     <form action="" method="POST">
-                                                        <label for="title" style="color:black">Title *</label> <input class="form-control" type="text" name="title" style="border-radius:5px;" value='<?php echo $value_1['title'] ?>' />
-                                                        <br>
                                                         <label for="dateCreated" style="color:black">Date Created *</label><input class="form-control" type="date" name="dateCreated" style="border-radius:5px;" value='<?php echo $value_1['date_created'] ?>' />
+                                                        <br>
+                                                        <label for="title" style="color:black">Title *</label> <input class="form-control" type="text" name="title" style="border-radius:5px;" value='<?php echo $value_1['title'] ?>' />
                                                         <br>
                                                         <label for="description" style="color:black">Description *</label><input class="form-control" type="text" name="description" style="margin-bottom:10px; height: 50px; width:95%; border-radius:5px;" maxlength="200" value='<?php echo $value_1['description'] ?>' />
                                                         <input type="hidden" name="vacancyId" value='<?php echo $value_1['vacancy_id'] ?>' />

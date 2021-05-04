@@ -30,12 +30,16 @@ if (isset($_POST['connectWithUser'])) {
   $connection->sendConnectionRequest($_SESSION['userid'], $_POST['connectWithUser']);
 }
 
+if (isset($_POST['deletePost'])) {
+  $post->deletePost($_POST['deletePost']);
+}
+
 $postsData = $post->getPostsData();
 $userData = $user->getUserData($_SESSION['userid']);
 $pendingConnectionsData = $connection->getPendingConnections($_SESSION['userid']);
 $numberOfConections = count($pendingConnectionsData);
-$recommendedVacancies = $vacancy->getVacancies();
-
+$recommendedVacancies = $vacancy->suggestedVacancies($_SESSION['userid']);
+// $recommendedVacancies = $vacancy->getVacancies();
 // $numberOfConections = 1;
 
 /*
@@ -47,6 +51,7 @@ $recommendedVacancies = $vacancy->getVacancies();
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <?php include("../components/head.php"); ?>
   <title>PsychNova</title>
@@ -158,7 +163,14 @@ $recommendedVacancies = $vacancy->getVacancies();
                     <form action="" method="POST">
                       <button class="connect-btn" type="submit" name="connectWithUser" value=<?php echo $postUserData['user_id'] ?>>+</button>
                     </form>
-                  <?php } ?>
+                  <?php }
+                  if ($userData['type'] == 'administrator' or $postUserData['user_id'] == $userData['user_id']) { ?>
+                    <form action="" method="POST">
+                      <button class="connect-btn" type="submit" name="deletePost" value=<?php echo $value['post_id'] ?>>delete post</button>
+                    </form>
+                  <?php
+                  }
+                  ?>
                 </div>
 
                 <p style="font-size: 13px;"><?php echo $value['post'] ?></p>
@@ -181,7 +193,7 @@ $recommendedVacancies = $vacancy->getVacancies();
           } else {
             $numberOfVacanciesDisplayed = 0;
             foreach ($recommendedVacancies as $key => $value) {
-              if ($numberOfVacanciesDisplayed == 4) break;
+              if ($numberOfVacanciesDisplayed == 3) break;
               else {
                 $vacancyOrgData = $organisation->getOrganisationData($value['org_id']);
                 $numberOfVacanciesDisplayed += 1;
@@ -192,7 +204,7 @@ $recommendedVacancies = $vacancy->getVacancies();
                 <div class="vacancy-header">
                   <img src="<?php echo $vacancyOrgData['profile_picture'] ?>" width="60" height="60" class=" rounded-circle" alt="...">
                   <div class="vacancy-title">
-                    <h9><a style="color: #A58AAE; text-decoration: none;" href="organisation_profile.php?id=<?php echo $vacancyOrgData['org_id']?>" type="submit" name="view"><?php echo $vacancyOrgData['name'] ?></a></h9><br>
+                    <h9><a style="color: #A58AAE; text-decoration: none;" href="organisation_profile.php?id=<?php echo $vacancyOrgData['org_id'] ?>" type="submit" name="view"><?php echo $vacancyOrgData['name'] ?></a></h9><br>
                     <h9><?php echo $value['title'] ?></h9>
                     <a href="mailto:<?php echo str_replace(' ', '', $vacancyOrgData['name']) ?>@psychnova.com?subject=Job Application" class="btn-small float-center" target="https://jobs.ie/" rel="noopener noreferrer">Apply</a>
 
@@ -208,7 +220,7 @@ $recommendedVacancies = $vacancy->getVacancies();
             }
           }
           ?>
-          <a class="btn-view-more float-center" href="jobs.php">Explore</a>
+          <a class="btn-view-more float-center" href="suggested_vacancies.php">Explore</a>
         </div>
       </div>
     </div>
