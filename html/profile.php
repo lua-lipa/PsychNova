@@ -120,12 +120,11 @@ if (!$userData) header("location: login.php");
         <div class="main-page">
             <div class="row">
                 <div class="col-sm-9 pr-5">
-                    <!--  style=" border: 2px solid green" -->
                     <div class="row card-profile">
-                        <div class="col-sm-3">
-                            <img src="<?php echo $userData['profile_picture'] ?>" class="img-circle" style="border: 1px solid black;" />
+                        <div class="col-3">
+                            <img src="<?php echo $userData['profile_picture'] ?>" class="img-circle"/>
                         </div>
-                        <div class=" col-sm-9">
+                        <div class="col-9">
                             <div class="row float-right">
                                 <button type="button" style="margin-right: 10px; margin-top: 10px; background-color: #ffffff; color: #000000; height: 35px; border-color: #876e8f; border-radius:50px;" class="btn btn-primary" data-toggle="modal" data-target="#editAboutModal">
                                     <i class="bi bi-pencil"></i>
@@ -159,18 +158,18 @@ if (!$userData) header("location: login.php");
                                 </div>
                             </div>
                             <div class="row">
-                                <h4 style="color: white;"><?php echo $userData['first_name'] . " " . $userData['last_name'] ?></h4>
+                                <h4 class="user-name"><?php echo $userData['first_name'] . " " . $userData['last_name'] ?></h4>
                             </div>
                             <div class="row">
-                                <p style="color: white; font-size: 16px;"><?php echo $userData['profession'] ?></p>
+                                <p class="user-profession"><?php echo $userData['profession'] ?></p>
                             </div>
                             <div class="row">
-                                <p class="mr-3" style="color: white; font-size: 14px;"><i class="bi bi-sun" style="color:white"></i> <?php echo calcStarSign($userData['date_of_birth']) ?> </p>
-                                <p class="mr-3" style="color: white; font-size: 14px;"><i class="bi bi-sunrise" style="color:white"></i> Cancer</p>
-                                <p class="mr-3" style="color: white; font-size: 14px;"><i class="bi bi-moon" style="color:white"></i> Taurus</p>
+                                <p class="astro-sun"><i class="bi bi-sun"></i> <?php echo calcStarSign($userData['date_of_birth']) ?> </p>
+                                <p class="astro-rising"><i class="bi bi-sunrise"></i> <?php echo calcRising() ?></p>
+                                <p class="astro-moon"><i class="bi bi-moon"></i> <?php echo calcMoon() ?></p>
                             </div>
                             <div class="row">
-                                <p style="color: white; font-size: 12px;">Connections: <?php echo $connectionsNumber ?> </p>
+                                <p class="user-connections">Connections: <?php echo $connectionsNumber ?> </p>
                             </div>
                             <!-- <div class="row h-50 justify-content-center" style="margin-right:15%; margin-bottom:15%;">
                                 <p class="mr-3 mt-5" style="font-size: 18px;"><i class="bi bi-sun" style="color:white"></i> <?php echo calcStarSign($userData['date_of_birth']) ?> </p>
@@ -191,7 +190,7 @@ if (!$userData) header("location: login.php");
                     <!-- ADD Employment History -->
                     <div class="row mt-3">
                         <div class="addEmpoymentHistory">
-                            Employment History
+                            <h8>Employment History</h8>
                             <button type="button" style="margin-right: 30px; margin-top: 10px; background-color: #ffffff; color: #000000; height: 35px; border-color: #876e8f; border-radius:50px;" class="btn btn-primary" data-toggle="modal" data-target="#addEmploymentHistoryModal">
                                 <i class="bi bi-plus"></i>
                             </button>
@@ -339,7 +338,7 @@ if (!$userData) header("location: login.php");
                     <!-- ADD qualification -->
                     <div class="row mt-3">
                         <div class="addQualificaiton">
-                            Qualifications
+                            <h8>Qualifications</h8>
                             <button type="button" style="margin-right: 30px; margin-top: 10px; background-color: #ffffff; color: #000000; height: 35px; border-color: #876e8f; border-radius:50px;" class="btn btn-primary" data-toggle="modal" data-target="#addQualificationModal">
                                 <i class="bi bi-plus"></i>
                             </button>
@@ -430,12 +429,12 @@ if (!$userData) header("location: login.php");
                     <?php
                     }
                     ?>
-
                     <!-- Skills -->
-                    <br>
-                    Skills
-                    <div class="row mt-3">
 
+                <div class="row mt-3">
+                    <h8>Skills</h8>
+                </div>
+                <div class="row mt-3">
                         <?php
                         foreach ($userSkillsData as $key => $value) {
                             $skillsData = $skill->getSkillFromId($value['skill_id']);
@@ -502,7 +501,7 @@ if (!$userData) header("location: login.php");
                 </div>
 
                 <!-- Vacancies -->
-                <div class="col-3">
+                <div class="col-lg-3">
                     <div class="vacancies-card">
                         <h class="connections-title" style="text-align:center">Recommended Vacancies</h>
                         <?php if (count($recommendedVacancies) == 0) {
