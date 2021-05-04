@@ -68,11 +68,11 @@ $recommendedVacancies = $vacancy->suggestedVacancies($_SESSION['userid']);
         <div class="profile-card">
           <div class="profile-container">
             <div class="profile-image">
-              <img src="<?php echo $userData['profile_picture'] ?>" href="profile.php?id=<?php echo $userData['user_id'] ?>" class=" rounded-circle" width="70" height="70" alt="...">
+              <img src="<?php echo $userData['profile_picture'] ?>" href="profile.php?userid=<?php echo $userData['user_id'] ?>" class=" rounded-circle" width="70" height="70" alt="...">
             </div>
             <br>
             <div class="profile-name">
-              <h5 class="mt-0"><a style="color: white; text-decoration: none; font-size: 15px" href="profile.php?id=<?php echo $userData['user_id'] ?>" type="submit" name="view"><?php echo $userData['first_name'] . " " . $userData['last_name'] ?></a></h5>
+              <h5 class="mt-0"><a style="color: white; text-decoration: none; font-size: 15px" href="profile.php?userid=<?php echo $userData['user_id'] ?>" type="submit" name="view"><?php echo $userData['first_name'] . " " . $userData['last_name'] ?></a></h5>
             </div>
             <div class="profile-profession">
               <h7 style="font-size: 13px"><i><?php echo $userData['profession'] ?></i></h7>
@@ -117,7 +117,7 @@ $recommendedVacancies = $vacancy->suggestedVacancies($_SESSION['userid']);
               ?>
                 <div class="connection-row">
                   <img src="<?php echo $pendingConnectionUserData['profile_picture'] ?>" class="rounded-circle" width="30" height="30" alt="...">
-                  <h9 class="mt-0"><a style="color: black; text-decoration: none;" href="userprofile.php?id=<?php echo $pendingConnectionUserData['user_id'] ?>" type="submit" name="view"><?php echo $pendingConnectionUserData['first_name'] . " " . $pendingConnectionUserData['last_name'] ?></a></h9><br>
+                  <h9 class="mt-0"><a style="color: black; text-decoration: none;" href="profile.php?userid=<?php echo $pendingConnectionUserData['user_id'] ?>" type="submit" name="view"><?php echo $pendingConnectionUserData['first_name'] . " " . $pendingConnectionUserData['last_name'] ?></a></h9><br>
 
                   <br>
                 </div>
@@ -157,7 +157,7 @@ $recommendedVacancies = $vacancy->suggestedVacancies($_SESSION['userid']);
               <img src="<?php echo $postUserData['profile_picture'] ?>" width="64" height="64" class="mr-3" alt="...">
               <div class="media-body">
                 <div class="post-user-title">
-                  <h5 class="mt-0"><a style="color: #A58AAE; text-decoration: none;" href="userprofile.php?id=<?php echo $postUserData['user_id'] ?>" type="submit" name="view"><?php echo $postUserData['first_name'] . " " . $postUserData['last_name'] ?></a></h5>
+                  <h5 class="mt-0"><a style="color: #A58AAE; text-decoration: none;" href="profile.php?userid=<?php echo $postUserData['user_id'] ?>" type="submit" name="view"><?php echo $postUserData['first_name'] . " " . $postUserData['last_name'] ?></a></h5>
                   <!-- if the users are not connected, the connect button gets displayed -->
                   <?php if (count($connection->areConnected($postUserData['user_id'], $_SESSION['userid'])) == 0 && $postUserData['user_id'] != $_SESSION['userid']) { ?>
                     <form action="" method="POST">
@@ -204,7 +204,7 @@ $recommendedVacancies = $vacancy->suggestedVacancies($_SESSION['userid']);
                 <div class="vacancy-header">
                   <img src="<?php echo $vacancyOrgData['profile_picture'] ?>" width="60" height="60" class=" rounded-circle" alt="...">
                   <div class="vacancy-title">
-                    <h9><a style="color: #A58AAE; text-decoration: none;" href="organisation_profile.php?id=<?php echo $vacancyOrgData['org_id'] ?>" type="submit" name="view"><?php echo $vacancyOrgData['name'] ?></a></h9><br>
+                    <h9><a style="color: #A58AAE; text-decoration: none;" href="organisation_profile.php?userid=<?php echo $vacancyOrgData['org_id'] ?>" type="submit" name="view"><?php echo $vacancyOrgData['name'] ?></a></h9><br>
                     <h9><?php echo $value['title'] ?></h9>
                     <a href="mailto:<?php echo str_replace(' ', '', $vacancyOrgData['name']) ?>@psychnova.com?subject=Job Application" class="btn-small float-center" target="https://jobs.ie/" rel="noopener noreferrer">Apply</a>
 
