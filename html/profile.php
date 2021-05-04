@@ -123,10 +123,10 @@ if (!$userData) header("location: login.php");
             <div class="row">
                 <div class="col-lg-9 pr-5">
                     <div class="row card-profile">
-                        <div class="col-3 mt-4">
-                            <img src="<?php echo $userData['profile_picture'] ?>" class="img-circle" />
+                        <div class="col-3 d-flex justify-content-center align-items-center">
+                            <img src="<?php echo $userData['profile_picture'] ?>" class="img-fluid img-circle" />
                         </div>
-                        <div class="col-7 mt-4">
+                        <div class="col-6 ml-3 d-flex justify-content-center align-items-start flex-column">
                             <div class="row">
                                 <div class="modal fade" id="editAboutModal" tabindex="-1" role="dialog">
                                     <div class="modal-dialog" role="document">
@@ -179,7 +179,7 @@ if (!$userData) header("location: login.php");
                         <?php
                         if ($userType == 'administrator' || $_SESSION['userid'] == $_GET['userid']) {
                         ?>
-                            <div class="col-2 d-flex justify-content-end">
+                            <div class="col-3 d-flex justify-content-end">
                                 <button type="button" style="margin-right: 10px; margin-top: 10px; background-color: #ffffff; color: #000000; height: 35px; border-color: #876e8f; border-radius:50px;" class="btn btn-primary" data-toggle="modal" data-target="#editAboutModal">
                                     <i class="bi bi-pencil"></i>
                                 </button>
@@ -192,8 +192,8 @@ if (!$userData) header("location: login.php");
                         <div class="mb-3">
                             <h8 class="mb-3">About</h8>
                         </div>
-                        <div class="card-about px-4 pt-4 pb-4" ]>
-                            <p style="font-size: 14px"><?php echo $userData['description'] ?></p>
+                        <div class="card-about" ]>
+                            <p style=""><?php echo $userData['description'] ?></p>
                         </div>
                     </div>
 
@@ -386,7 +386,7 @@ if (!$userData) header("location: login.php");
                     <div class="row mt-3">
                         <div class="col-9">
                             <div class="row">
-                                <h8>Qualification</h8>
+                                <h8>Qualifications</h8>
                             </div>
                         </div>
                         <?php
@@ -634,7 +634,7 @@ if (!$userData) header("location: login.php");
                             }
                         }
                         ?>
-                        <a class="btn-small float-center" href="jobs.php"> More</a>
+                        <a class="btn float-center" href="jobs.php"> More</a>
                     </div>
                 </div>
 

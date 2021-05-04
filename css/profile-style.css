@@ -29,6 +29,10 @@ body {
 
 .img-circle {
     border-radius: 100px;
+    max-height: 130px;
+    max-width: 130px;
+    width: auto;
+    height: auto;
 }
 
 .card-profile-info {
@@ -59,9 +63,8 @@ body {
     border: none;
     /* margin-left: 10px;
   margin-right: 10px; */
-    width: 100%;
-    height: 30%;
     color: #000000;
+    padding: 15px;
 }
 
 
