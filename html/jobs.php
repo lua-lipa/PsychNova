@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 <head>
     <title> PsychNova </title>
     <?php include("../components/head.php"); ?>
-    <link href="../css/searchresult.css" rel="stylesheet">
+    <link href="../css/jobs.css" rel="stylesheet">
 </head>
 
 <body>
@@ -40,21 +40,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     include("../components/navbar.php");
     ?>
     <div class="container">
-        <div class="row">
-            <div class="col-1"></div>
-            <div class="col-lg-9">
+        <div class="row title">
+            <h2>Search for your Dream Job</h2>
+        </div>
+        <div class="row main-column">
+            <div class="col-lg-12">
 
                 <!-- filters -->
                 <div class="filters-wrapper">
                     <form action="" method="GET" class="form-inline">
                         <div class="form-group">
-                            <input class="form-control mr-sm-2" onkeydown="if (event.keyCode == 13) { this.form.submit(); return false; }" name="title" onsubmit='this.form.submit()' type="search" value="<?php if(isset($_GET['title'])) echo $_GET['title']; ?>"  placeholder="Job Title" >
+                            <input class="form-control mr-sm-2" onkeydown="if (event.keyCode == 13) { this.form.submit(); return false; }" name="title" onsubmit='this.form.submit()' type="search" value="<?php if (isset($_GET['title'])) echo $_GET['title']; ?>" placeholder="Job Title">
                         </div>
                         <div class="form-group">
-                            <input class="form-control mr-sm-2" onkeydown="if (event.keyCode == 13) { this.form.submit(); return false; }" name="companyName" onsubmit='this.form.submit()' type="search" value="<?php if(isset($_GET['title'])) echo $_GET['companyName']; ?>"  placeholder="Job Title" >
+                            <input class="form-control mr-sm-2" onkeydown="if (event.keyCode == 13) { this.form.submit(); return false; }" name="companyName" onsubmit='this.form.submit()' type="search" value="<?php if (isset($_GET['title'])) echo $_GET['companyName']; ?>" placeholder="Organisation Name">
                         </div>
                         <div class="form-group">
-                            <input class="form-control mr-sm-2" onkeydown="if (event.keyCode == 13) { this.form.submit(); return false; }" name="dateCreated" type="date" value="<?php if(isset($_GET['dateCreated'])) echo $_GET['dateCreated']; ?>"  placeholder="Company Name" >
+                            <input class="form-control mr-sm-2" onkeydown="if (event.keyCode == 13) { this.form.submit(); return false; }" name="dateCreated" type="date" value="<?php if (isset($_GET['dateCreated'])) echo $_GET['dateCreated']; ?>" placeholder="Company Name">
                         </div>
                         <div class="form-group">
                             <select class="form-control skill-form" onchange='this.form.submit()' name="skill">
@@ -74,10 +76,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                             </select>
                             <noscript><input type="submit" value="Submit"></noscript>
                         </div>
-                            
-                        
 
-                        
+
+
+
                     </form>
                 </div>
 
@@ -96,16 +98,29 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                 ?>
                         <div class="result-card">
                             <div class="result-container">
-                                <div class="col-3">
+                                <div class="result-image-container">
                                     <img src="https://dummyimage.com/64x64/cfcfcf/000000" class="rounded-circle" alt="...">
                                 </div>
-                                <div class="col-9">
-                                    <div class="row">
-                                        <h6><?php echo $value['title'] ?></h6>
+                                <div class="result-text-container">
+                                    <div class="col">
+                                        <div class="row">
+                                            <h5><?php echo $value['title'] ?></h5>
+                                        </div>
+                                        <div class="row">
+                                            <h8><?php echo $value['name'] ?></h7>
+                                        </div>
+                                        <div class="row result-card-date">
+                                            <h9><?php echo $value['date_created'] ?></h9>
+                                        </div>
+                                        <div class="row result-card-description">
+                                            <h7><?php echo $value['description'] ?></h7>
+                                        </div>
+                                        
                                     </div>
-                                    <div class="row">
-                                        <h7><?php echo $value['description'] ?></h7>
-                                    </div>
+                                    
+                                </div>
+                                <div class="col">
+                                        <button type="submit" class="btn float-right">Apply</button>
                                 </div>
                             </div>
                         </div>
