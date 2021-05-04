@@ -268,125 +268,125 @@ body {
   .user-name{
     padding-left: 20px;
   }
-  .user-profession{
+  .user-profession {
     padding-left: 20px;
   }
-  .astro-sun{
+  .astro-sun {
     color: white;
     font-size: 14px;
     padding-left: 20px;
   }
-  
-  .astro-rising{
+
+  .astro-rising {
     color: white;
     font-size: 14px;
     padding-left: 10px;
   }
-  
-  .astro-moon{
+
+  .astro-moon {
     color: white;
     font-size: 14px;
     padding-left: 10px;
   }
-  .user-connections{
+  .user-connections {
     padding-left: 20px;
   }
 }
 
-@media screen and (max-width: 992px){
-  .user-name{
+@media screen and (max-width: 992px) {
+  .user-name {
     padding-left: 90px;
     font-size: 18px;
   }
-  .user-profession{
+  .user-profession {
     padding-left: 90px;
     font-size: 14px;
   }
-  .astro-sun{
+  .astro-sun {
     color: white;
     font-size: 12px;
     padding-left: 90px;
   }
-  
-  .astro-rising{
+
+  .astro-rising {
     color: white;
     font-size: 12px;
     padding-left: 10px;
   }
-  
-  .astro-moon{
+
+  .astro-moon {
     color: white;
     font-size: 12px;
     padding-left: 10px;
   }
-  .user-connections{
+  .user-connections {
     padding-left: 90px;
     font-size: 10px;
   }
 }
 
-@media screen and (max-width: 768px){
-  .user-name{
+@media screen and (max-width: 768px) {
+  .user-name {
     padding-left: 95px;
     font-size: 16px;
   }
-  .user-profession{
+  .user-profession {
     padding-left: 95px;
     font-size: 12px;
   }
-  .astro-sun{
+  .astro-sun {
     color: white;
     font-size: 10px;
     padding-left: 90px;
   }
-  
-  .astro-rising{
+
+  .astro-rising {
     color: white;
     font-size: 10px;
     padding-left: 10px;
   }
-  
-  .astro-moon{
+
+  .astro-moon {
     color: white;
     font-size: 10px;
     padding-left: 10px;
   }
-  .user-connections{
+  .user-connections {
     padding-left: 95px;
     font-size: 10px;
   }
 }
 
-@media screen and (max-width: 576px){
-  body{
+@media screen and (max-width: 576px) {
+  body {
     padding-left: 10px;
   }
-  .user-name{
+  .user-name {
     padding-left: 95px;
     font-size: 18px;
   }
-  .user-profession{
+  .user-profession {
     padding-left: 95px;
     font-size: 14px;
   }
-  .astro-sun{
+  .astro-sun {
     color: white;
     font-size: 12px;
     padding-left: 90px;
   }
-  
-  .astro-rising{
+
+  .astro-rising {
     color: white;
     font-size: 12px;
     padding-left: 10px;
   }
-  
-  .astro-moon{
+
+  .astro-moon {
     color: white;
     font-size: 12px;
     padding-left: 10px;
   }
-  .user-connections{
+  .user-connections {
     padding-left: 95px;
     font-size: 12px;
   }

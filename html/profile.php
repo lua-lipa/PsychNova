@@ -192,8 +192,13 @@ if (!$userData) header("location: login.php");
                         <div class="mb-3">
                             <h8 class="mb-3">About</h8>
                         </div>
+<<<<<<< HEAD
                         <div class="card-about" ]>
                             <p style=""><?php echo $userData['description'] ?></p>
+=======
+                        <div class="card-about px-4 pt-4 pb-4">
+                            <p style="font-size: 14px"><?php echo $userData['description'] ?></p>
+>>>>>>> 110b64d2b276a8daa47a0a437c8058aeefff7c7d
                         </div>
                     </div>
 
@@ -303,6 +308,7 @@ if (!$userData) header("location: login.php");
                         <div class="row mt-3">
                             <div class="card-employmentHistory">
                                 <div class="employmentHistory">
+<<<<<<< HEAD
                                     <div class="col-lg-9">
                                         <div class="row">
                                             <h8 class="size-change" style="font-size: 18px" id="margin-add"><strong><?php if ($value['org_id'] == 0) {
@@ -366,6 +372,56 @@ if (!$userData) header("location: login.php");
                                                     <br>
                                                     <input type="hidden" name="empHisId" style="border-radius:5px;" value="<?php echo $value['emp_his_id'] ?>" />
                                                     <input type="hidden" name="userId" style="border-radius:5px;" value="<?php echo $value['user_id'] ?>" />
+=======
+                                    <h8 class="size-change" style="font-size: 18px" id="margin-add"><strong><?php if ($value['org_id'] == 0) {
+                                                                                                                echo $value['organisation_name'];
+                                                                                                            } else {
+                                                                                                                echo $value['name'];
+                                                                                                            } ?></strong></h8><br>
+                                    <h9 style="font-size: 12px"><?php echo $value['position'] ?></h9><br>
+                                    <h9><?php echo $value['start_date'] . " - " .  $value['end_date']  ?></h9><br>
+                                    <div class="row float-right">
+                                        <button type="button" class="btn employmentHistory-button btn-primary" data-toggle="modal" data-target="#<?php echo $id ?>" style="margin-right:20px; margin-bottom:10px;">
+                                            <i class="bi bi-pencil"></i>
+                                        </button>
+                                        <div class="modal fade" id="<?php echo $id ?>" tabindex=" -1" role="dialog" aria-labelledby="employmentHistoryModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="employmentHistoryModalLabel">Edit Employment History</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form action="" method="POST">
+                                                            <label for="organisation" style="color:black">Organisation *</label>
+                                                            <select name="organisation" style="border-radius:5px;" value="<?php echo $value['name'] ?>">
+                                                                <?php foreach ($allEmploymentHistoryData as $key_1 => $value_1) {
+                                                                ?>
+                                                                    <option value="<?php echo $value_1['name'] ?>"><?php echo $value_1['name'] ?></option>
+                                                                <?php
+                                                                }
+                                                                ?>
+                                                            </select>
+                                                            <br>
+                                                            <label for="position" style="color:black">Position *</label> <input type="text" name="position" style="border-radius:5px;" value='<?php echo $value['position'] ?>' />
+                                                            <br>
+                                                            <label for="startDate" style="color:black">Start Date *</label> <input type="date" name="startDate" style="border-radius:5px;" value=<?php echo $value['start_date'] ?> />
+                                                            <br>
+                                                            <label for="endDate" style="color:black">End Date *</label> <input type="date" name="endDate" style="border-radius:5px;" value=<?php echo $value['end_date'] ?> />
+                                                            <br>
+                                                            <input type="hidden" name="empHisId" style="border-radius:5px;" value="<?php echo $value['emp_his_id'] ?>" />
+                                                            <input type="hidden" name="userId" style="border-radius:5px;" value="<?php echo $value['user_id'] ?>" />
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal" style="border-radius:15px; background-color: #876e8f; border-color:#876e8f">Close</button>
+                                                        <button type="delete" name="deleteEmploymentHistory" class="btn btn-primary" style="border-radius:15px; background-color: #a58aae; border-color:#876e8f">Delete</button>
+                                                        <button type="submit" name="updateEmploymentHistory" class="btn btn-primary" style="border-radius:15px; background-color: #a58aae; border-color:#876e8f">Save changes</button>
+                                                    </div>
+                                                    </form>
+                                                </div>
+>>>>>>> 110b64d2b276a8daa47a0a437c8058aeefff7c7d
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal" style="border-radius:15px; background-color: #876e8f; border-color:#876e8f">Close</button>
