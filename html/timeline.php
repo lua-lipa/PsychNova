@@ -197,7 +197,7 @@ $recommendedVacancies = $vacancy->getVacancies();
                 <div class="vacancy-header">
                   <img src="<?php echo $vacancyOrgData['profile_picture'] ?>" width="60" height="60" class=" rounded-circle" alt="...">
                   <div class="vacancy-title">
-                    <h9><?php echo $vacancyOrgData['name'] ?></h9><br>
+                    <h9><a style="color: #A58AAE; text-decoration: none;" href="organisation_profile.php?id=<?php echo $vacancyOrgData['org_id']?>" type="submit" name="view"><?php echo $vacancyOrgData['name'] ?></a></h9><br>
                     <h9><?php echo $value['title'] ?></h9>
                   </div>
                 </div>
