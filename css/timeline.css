@@ -94,6 +94,7 @@ body {
     display: flex;
     justify-content: center;
     flex-direction: column;
+    margin-bottom: 20px;
 }
 
 .connections-container {
@@ -150,6 +151,8 @@ h9 {
     justify-content: center;
     flex-direction: column;
     flex-wrap: wrap;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .vacancy-header {
