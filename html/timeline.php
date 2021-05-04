@@ -47,15 +47,10 @@ $recommendedVacancies = $vacancy->getVacancies();
 ?>
 
 <html lang="en">
-
-
-
 <head>
   <?php include("../components/head.php"); ?>
   <title>PsychNova</title>
   <link href="../css/timeline.css" rel="stylesheet">
-
-
 </head>
 
 <body>
@@ -141,7 +136,7 @@ $recommendedVacancies = $vacancy->getVacancies();
             <div class="form-group">
               <input type="text" name="postcontent" class="form-control" required>
             </div>
-            <button type="submit" class="btn float-right">Post</button>
+            <button type="submit" class="btn-search float-right">Post</button>
           </form>
         </div>
 
