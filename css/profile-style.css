@@ -1,303 +1,267 @@
 body {
-  background-color: #f5f5f5f5;
+    background-color: #f5f5f5f5;
 }
 
 .form-inline .form-control {
-  width: 300px;
-  border-radius: 50px;
+    width: 300px;
+    border-radius: 50px;
 }
 
 #search-btn {
-  border-radius: 50px;
+    border-radius: 50px;
 }
 
+
 /* profile */
+
 .card-profile {
-  background: -webkit-linear-gradient(top left, #876e8f, #a58aae);
-  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.15);
-  border-radius: 10px;
-  height: 220px;
-  color: #ffffff;
+    background: -webkit-linear-gradient(top left, #876e8f, #a58aae);
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+    height: 220px;
+    color: #ffffff;
 }
 
 .profile-pic {
-  display: flex;
-  justify-content: center;
+    display: flex;
+    justify-content: center;
 }
 
 .img-circle {
-  margin-top: 25px;
-  height: 150px;
-  width: 150px;
-  border-radius: 100px;
-  margin-left: 10px;
-  margin-right: 20px;
-  margin-bottom: 20px;
+    border-radius: 100px;
 }
 
 .card-profile-info {
-  margin-left: 10%;
-  color: white;
+    margin-left: 10%;
+    color: white;
 }
 
 .card-profile-info p {
-  text-align: left;
-  margin: 0;
-  color: #ffffff;
-  font-weight: lighter;
+    text-align: left;
+    margin: 0;
+    color: #ffffff;
+    font-weight: lighter;
 }
 
 .card-profile-info h7 {
-  font-size: 10px;
-  margin-top: 0px;
-  margin-left: 10px;
-  margin-right: 20px;
-  color: #ffffff;
-  font-weight: lighter;
+    font-size: 10px;
+    margin-top: 0px;
+    margin-left: 10px;
+    margin-right: 20px;
+    color: #ffffff;
+    font-weight: lighter;
 }
 
 .card-about {
-  background-color: #ffffff;
-  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.15);
-  border-radius: 10px;
-  border: none;
-  /* margin-left: 10px;
+    background-color: #ffffff;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+    border: none;
+    /* margin-left: 10px;
   margin-right: 10px; */
-  width: 100%;
-  height: 30%;
-  color: #000000;
+    width: 100%;
+    height: 30%;
+    color: #000000;
 }
+
 
 /*card backgrounds */
+
 .purple-background-card {
-  background-color: #a890b1;
-  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.15);
-  border-radius: 10px;
-  width: 100%;
-  border: none;
+    background-color: #a890b1;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+    width: 100%;
+    border: none;
 }
 
+
 /* employmentHistorys */
+
 .card-employmentHistory {
-  background-color: #ffffff;
-  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.15);
-  border-radius: 10px;
-  width: 100%;
-  border: none;
+    background-color: #ffffff;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+    width: 100%;
+    padding: 20px;
 }
 
 .size-change {
-  font-size: 10px;
-}
-
-.employmentHistory #margin-add {
-  margin-top: 10px;
-  display: inline-block;
-}
-
-.employmentHistory {
-  margin-top: 20px;
-  margin-left: 30px;
-}
-
-.employmentHistory p {
-  margin-bottom: 20px;
-}
-
-.employmentHistory h9 {
-  font-size: 10px;
+    font-size: 10px;
 }
 
 .employmentHistory .employmentHistory-button {
-  background-color: #876e8f;
-  border-color: #876e8f;
-  border-radius: 50px;
+    background-color: #876e8f;
+    border-color: #876e8f;
+    border-radius: 50px;
 }
 
+
 /* Qualifications*/
+
 .card-qualification {
-  background-color: #ffffff;
-  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.15);
-  border-radius: 10px;
-  width: 100%;
-  border: none;
+    background-color: #ffffff;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+    width: 100%;
+    border: none;
 }
 
 .size-change {
-  font-size: 10px;
+    font-size: 10px;
 }
 
 .qualification #margin-add {
-  margin-top: 10px;
-  display: inline-block;
+    margin-top: 10px;
+    display: inline-block;
 }
 
 .qualification {
-  margin-top: 20px;
-  margin-left: 30px;
+    margin-top: 20px;
+    margin-left: 30px;
 }
 
 .qualification p {
-  margin-bottom: 20px;
+    margin-bottom: 20px;
 }
 
 .qualification h9 {
-  font-size: 10px;
+    font-size: 10px;
 }
 
 .qualification .qualification-button {
-  background-color: #876e8f;
-  border-color: #876e8f;
-  border-radius: 50px;
+    background-color: #876e8f;
+    border-color: #876e8f;
+    border-radius: 50px;
 }
 
+
 /* skills */
+
 .skills {
-  padding-left: 3px;
-  padding-right: 3px;
-  padding-top: 3px;
+    padding-left: 3px;
+    padding-right: 3px;
+    padding-top: 3px;
 }
 
 .skills .badge-skill {
-  background-color: #876e8f;
-  color: #ffffff;
-  text-align: center;
-  font-size: 12px;
-  padding-left: 10px;
-  padding-right: 10px;
-  padding-top: 2px;
-  padding-bottom: 2px;
-  width: auto;
-  border-radius: 10px;
-  border-color: #876e8f;
-  border-width: 0px;
+    background-color: #876e8f;
+    color: #ffffff;
+    text-align: center;
+    font-size: 12px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    width: auto;
+    border-radius: 10px;
+    border-color: #876e8f;
+    border-width: 0px;
 }
 
+
 /* vacancies  */
+
 .vacancies-card {
-  padding: 15px;
-  border-radius: 20px;
-  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.15);
-  background-color: white;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  flex-wrap: wrap;
+    padding: 20px;
+    padding-left: 30px;
+    border-radius: 20px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.15);
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 }
 
 .vacancy-header {
-  display: flex;
-  flex-direction: row;
+    display: flex;
+    flex-direction: row;
 }
 
 .vacancy-title {
-  margin-left: 10px;
-}
-
-.connections-card {
-  margin-top: 20px;
-  flex-wrap: wrap;
-  border-radius: 20px;
-  box-shadow: 0px 4px 27px -5px #333333;
-  background-color: white;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-}
-
-.connections-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  font-size: 12px;
-  margin-left: 5px;
-}
-
-.connections-title {
-  margin-top: 10px;
-  margin-bottom: 10px;
-  font-size: 10px;
+    margin-left: 10px;
 }
 
 .connect-btn {
-  background-color: #a58aae;
-  border-radius: 100px !important;
-  color: white;
-  width: auto;
-  height: auto;
-  margin: auto;
-  display: block;
-  text-align: center;
+    background-color: #a58aae;
+    border-radius: 100px !important;
+    color: white;
+    width: auto;
+    height: auto;
+    margin: auto;
+    display: block;
+    text-align: center;
 }
 
 .btn-small {
-  background-color: #a58aae;
-  border-radius: 100px !important;
-  color: white;
-  width: auto;
-  padding: 3px;
-  font-size: 10px;
-  margin: auto;
-  display: block;
-  text-align: center;
-  margin-bottom: 10px;
+    background-color: #a58aae;
+    border-radius: 100px !important;
+    color: white;
+    width: auto;
+    padding: 3px;
+    font-size: 10px;
+    margin: auto;
+    display: block;
+    text-align: center;
+    margin-bottom: 10px;
 }
 
 .btn-view-more {
-  background-color: white;
-  border-radius: 100px !important;
-  color: #a58aae;
-  width: auto;
-  padding: 3px;
-  font-size: 10px;
-  margin: auto;
-  display: block;
-  text-align: center;
-  margin-bottom: 10px;
+    background-color: white;
+    border-radius: 100px !important;
+    color: #a58aae;
+    width: auto;
+    padding: 3px;
+    font-size: 10px;
+    margin: auto;
+    display: block;
+    text-align: center;
+    margin-bottom: 10px;
 }
 
-.editWhiteBtn{
-  margin-right: 10px;
-  margin-top: 10px;
-  background-color: #ffffff !important;
-  color: #000000 !important;
-  height: 35px !important;
-  border-color: #876e8f !important;
-  border-radius:50px !important;
+.editWhiteBtn {
+    margin-right: 10px;
+    margin-top: 10px;
+    background-color: #ffffff !important;
+    color: #000000 !important;
+    height: 35px !important;
+    border-color: #876e8f !important;
+    border-radius: 50px !important;
 }
 
-.user-name{
-  color: white;
+.user-name {
+    color: white;
 }
 
-.user-profession{
-  color: white;
-  font-size: 16px;
+.user-profession {
+    color: white;
+    font-size: 16px;
 }
 
-.astro-sun{
-  color: white;
-  font-size: 14px;
+.astro-sun {
+    color: white;
+    font-size: 14px;
 }
 
-.astro-rising{
-  color: white;
-  font-size: 14px;
-  padding-left: 10px;
+.astro-rising {
+    color: white;
+    font-size: 14px;
+    padding-left: 10px;
 }
 
-.astro-moon{
-  color: white;
-  font-size: 14px;
-  padding-left: 10px;
+.astro-moon {
+    color: white;
+    font-size: 14px;
+    padding-left: 10px;
 }
 
-.user-connections{
-  color: white;
-  font-size: 12px;
+.user-connections {
+    color: white;
+    font-size: 12px;
 }
 
-@media screen and (max-width: 1199px){
+
+/* @media screen and (max-width: 1199px){
   .user-name{
     padding-left: 20px;
   }
@@ -423,4 +387,4 @@ body {
     padding-left: 95px;
     font-size: 12px;
   }
-}
+} */
