@@ -199,12 +199,14 @@ $recommendedVacancies = $vacancy->getVacancies();
                   <div class="vacancy-title">
                     <h9><?php echo $vacancyOrgData['name'] ?></h9><br>
                     <h9><?php echo $value['title'] ?></h9>
+                    <a href="mailto:<?php echo str_replace(' ', '', $vacancyOrgData['name']) ?>@psychnova.com?subject=Job Application" class="btn-small float-center" target=" _blank" rel="noopener noreferrer">Apply</a>
+
                   </div>
+
                 </div>
                 <hr>
                 <h style="font-size:12px"><i><?php echo $value['description'] ?></i></h><br>
               </div>
-              <a href="mailto:<?php echo str_replace(' ', '', $vacancyOrgData['name']) ?>@psychnova.com?subject=Job Application" class="btn-small float-center" target=" _blank" rel="noopener noreferrer">Apply</a>
               <!-- <a class="btn-small float-center" style="margin-top:5px" href="jobs.php">Apply</a> -->
 
           <?php
