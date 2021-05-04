@@ -16,24 +16,24 @@ if (!isset($_SESSION['userid'])) {
     header("location: login.php");
 }
 
-$user = new User();
-$userData = $user->getUserData($_GET['userid']);
 
-$userQualification = new userQualification();
-$userQualificationData = $userQualification->getUserQualificationData($_GET['userid']);
+
+$user = new User();
+$userData = $user->getUserData($_GET['id']);
+
 $qualification = new Qualification();
-$userQualificationData = $qualification->getUserQualificationData($_GET['userid']);
+$userQualificationData = $qualification->getUserQualificationData($_GET['id']);
 $allQualifications = $qualification->getAllQualificationData();
 
 $userSkills = new userSkills();
-$userSkillsData = $userSkills->getUserSkills($_GET['userid']);
+$userSkillsData = $userSkills->getUserSkills($_GET['id']);
 $skill = new Skill();
 $allSkillsData = $skill->getAllSkills();
 
 $userEmploymentHistory = new employmentHistory();
-$userEmploymentHistoryData = $userEmploymentHistory->getEmploymentHistoryData($_GET['userid']);
+$userEmploymentHistoryData = $userEmploymentHistory->getEmploymentHistoryData($_GET['id']);
 $allEmploymentHistoryData = $userEmploymentHistory->getAllEmploymentOptions();
-$employmentHistoryJoinOrganisation = $userEmploymentHistory->employmentHistoryJoinOrganisation($_GET['userid']);
+$employmentHistoryJoinOrganisation = $userEmploymentHistory->employmentHistoryJoinOrganisation($_GET['id']);
 
 $vacancy = new vacancy();
 $recommendedVacancies = $vacancy->getVacancies();
@@ -41,7 +41,7 @@ $recommendedVacancies = $vacancy->getVacancies();
 $organisation = new organisation();
 
 $connections = new connections();
-$connectionsData = $connections->getUserConnections($_GET['userid']);
+$connectionsData = $connections->getUserConnections($_GET['id']);
 $connectionsNumber = count($connectionsData);
 
 // echo "<pre>";
@@ -49,6 +49,7 @@ $connectionsNumber = count($connectionsData);
 // echo "</pre>";
 
 $selectedSkills = array();
+
 
 ?>
 
@@ -121,6 +122,11 @@ $selectedSkills = array();
                             <div class="row">
                                 <p style="color: white; font-size: 12px;">Connections: <?php echo $connectionsNumber ?> </p>
                             </div>
+                            <!-- <div class="row h-50 justify-content-center" style="margin-right:15%; margin-bottom:15%;">
+                                <p class="mr-3 mt-5" style="font-size: 18px;"><i class="bi bi-sun" style="color:white"></i> <?php echo calcStarSign($userData['date_of_birth']) ?> </p>
+                                <p class="mr-3 mt-5" style="font-size: 18px;"><i class="bi bi-sunrise" style="color:white"></i> Cancer</p>
+                                <p class="mr-3 mt-5" style="font-size: 18px;"><i class="bi bi-moon" style="color:white"></i> Taurus</p>
+                            </div> -->
                         </div>
                     </div>
                     <div class="row h-22 mt-3">
