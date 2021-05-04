@@ -16,15 +16,13 @@ if (!isset($_SESSION['userid'])) {
     header("location: login.php");
 }
 
-
-
 $user = new User();
 $userData = $user->getUserData($_GET['id']);
 
 $userQualification = new userQualification();
 $userQualificationData = $userQualification->getUserQualificationData($_GET['id']);
 $qualification = new Qualification();
-$userQualificationData = $qualification->getUserQualificationData($_SESSION['userid']);
+$userQualificationData = $qualification->getUserQualificationData($_GET['id']);
 $allQualifications = $qualification->getAllQualificationData();
 
 $userSkills = new userSkills();
@@ -51,7 +49,6 @@ $connectionsNumber = count($connectionsData);
 // echo "</pre>";
 
 $selectedSkills = array();
-
 
 ?>
 
