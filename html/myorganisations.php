@@ -27,14 +27,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 
 ?>
-
+<!DOCTYPE html>
 <html>
 
 <head>
     <title> PsychNova </title>
     <?php include("../components/head.php"); ?>
-    <link href="../css/myOrganisations.css" rel="stylesheet">
-    <link href="../css/searchresult.css" rel="stylesheet">
+    <link href="../css/myOrganisations.css" type="text/css" rel="stylesheet">
+    <link href="../css/searchresult.css" type="text/css" rel="stylesheet">
 </head>
 
 <body>
@@ -65,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                     <div class="modal-body">
                                         <div class="form-group">
                                             <label> Name </label>
-                                            <input type="text" name="name" class="form-control" pattern="[A-Za-z]+" title="Must contain only letters" required>
+                                            <input type="text" name="name" class="form-control" required>
                                         </div>
                                         <div class="form-group">
                                             <label> Date Established </label>

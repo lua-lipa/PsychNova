@@ -41,7 +41,7 @@ class Search
     }
 
     public function searchVacancy($get) {
-        $query = "SELECT vacancy.vacancy_id, vacancy.title, vacancy.description, vacancy.date_created, organisation.org_id, organisation.name
+        $query = "SELECT vacancy.vacancy_id, vacancy.title, vacancy.description, vacancy.date_created, organisation.org_id, organisation.name, organisation.profile_picture
         FROM vacancy, vacancy_skills, organisation
         WHERE vacancy.org_id = organisation.org_id";
 
@@ -57,11 +57,11 @@ class Search
         }
         if(!empty($get['skill'])) {
             $query .= " AND vacancy_skills.vacancy_id = vacancy.vacancy_id 
-                        AND vacancy_skills.v_skill_id  = '" . $get['skill'] . "%'";
+                        AND vacancy_skills.skill_id  = '" . $get['skill'] . "'";
         }
         $query .= " GROUP BY vacancy.vacancy_id";
 
-        echo $query;
+        //echo $query;
 
         $db = new Database();
         return $db->read($query);

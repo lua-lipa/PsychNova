@@ -28,7 +28,6 @@ body {
     margin-right: 10px;
 }
 
-
 .result-container {
     display: flex;
     align-items: center;
@@ -49,7 +48,7 @@ body {
 .org-card {
     height: 300px;
     margin-bottom: 20px;
-    border-radius: 20px; 
+    border-radius: 20px;
     box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.15);
     background-color: white;
 }
@@ -103,7 +102,6 @@ body {
     justify-content: center;
     padding-left: 20px;
     padding-top: 130px;
-
 }
 
 label {
@@ -170,7 +168,6 @@ h5 {
     text-align: center;
     margin-bottom: 10px;
     margin-right: 10px;
-
 }
 
 .orgBtn {

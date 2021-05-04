@@ -27,10 +27,10 @@ $connectionsNumber = count($connectionsData);
 $connectedUsersData = $connections->getUserConnections($_SESSION['userid']);
 ?>
 
+<!DOCTYPE html>
 <html>
 
 <head>
-    <title> PsychNova </title>
     <?php include("../components/head.php"); ?>
     <link href="../css/pending-connections.css" rel="stylesheet">
 </head>
@@ -41,7 +41,7 @@ $connectedUsersData = $connections->getUserConnections($_SESSION['userid']);
     <?php
     include("../components/navbar.php");
     ?>
-
+  <div class="container-fluid">
     <div class="row">
         <HR>
     </div>
@@ -93,13 +93,18 @@ $connectedUsersData = $connections->getUserConnections($_SESSION['userid']);
         <div class="col-sm-3"></div>
     </div>
     </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-3"></div>
-            <div class="col-6">
-                <br>
-                <h6 class="linkedOrgTitle">Pending Connections</h6>
-                <br><br>
+    <div class="row">
+        <div class="col-sm-3"></div>
+        <div class="col-lg-6">
+            <br>
+            <h6 class="linkedOrgTitle">Pending Connections</h6>
+            <br><br>
+        </div>
+        <div class="col-sm-3"></div>
+    </div>
+    <div class="row">
+            <div class="col-sm-3"></div>
+            <div class="col-lg-6">
                 <?php
                 if ($connectionsNumber == 0) {
                     echo "You don't have any pending connections."; // . $_SESSION['searchinput'] ;
@@ -108,40 +113,36 @@ $connectedUsersData = $connections->getUserConnections($_SESSION['userid']);
 
                         $pendingConnectionUserData = $user->getUserData($value['user_inviter']);
                 ?>
-                        <div class="result-card">
-                            <div class="result-container">
-                                <div class="col-2">
-                                    <img src="<?php echo $pendingConnectionUserData['profile_picture'] ?>" class="rounded-circle" alt="..." width="64" height="64">
+                    <div class="result-card">
+                        <div class="result-container">
+                            <div class="col-2">
+                                <img src="<?php echo $pendingConnectionUserData['profile_picture'] ?>" class="rounded-circle" alt="..." width="64" height="64">
+                            </div>
+                            <div class="col-6 result-card-content">
+                                <div class="row">
+                                    <h6 class="yourOrgname"><a style="color: #A58AAE; text-decoration: none;" class="yourOrgname" href="userprofile.php?id=<?php echo $pendingConnectionUserData['user_id'] ?>" type="submit" name="view"> <?php echo $pendingConnectionUserData['first_name'] .  " " . $pendingConnectionUserData['last_name'] ?></a></h6>
                                 </div>
-                                <div class="col-6 result-card-content">
-                                    <div class="row">
-                                        <h6 class="yourOrgname"><a style="color: #A58AAE; text-decoration: none;" class="yourOrgname" href="userprofile.php?id=<?php echo $pendingConnectionUserData['user_id'] ?>" type="submit" name="view"> <?php echo $pendingConnectionUserData['first_name'] .  " " . $pendingConnectionUserData['last_name'] ?></a></h6>
-                                    </div>
-                                    <div class="row">
-                                        <h7 class="yourOrgDesc"><?php echo $userOrganisationsData['description'] ?></h7>
-                                    </div>
-                                </div>
-                                <div class="col-3">
-                                    <form action="" method="POST">
-                                        <button class="btn-small" type="submit" name="acceptConnection" value=<?php echo $value['connection_id'] ?>>Accept</button>
-                                        <button class="btn-small-empty" type="submit" name="rejectConnection" value=<?php echo $value['connection_id'] ?>>Reject</button>
-                                    </form>
+                                <div class="row">
+                                    <h7 class="yourOrgDesc"><?php echo $userOrganisationsData['description'] ?></h7>
                                 </div>
                             </div>
+                            <div class="col-3">
+                                <form action="" method="POST">
+                                    <button class="btn-small" type="submit" name="acceptConnection" value=<?php echo $value['connection_id'] ?>>Accept</button>
+                                    <button class="btn-small-empty" type="submit" name="rejectConnection" value=<?php echo $value['connection_id'] ?>>Reject</button>
+                                </form>
+                            </div>
                         </div>
+                    </div>
 
                 <?php
                     }
                 }
                 ?>
             </div>
-        </div>
-        <div class="col-2"></div>
+        <div class="col-sm-3"></div>
     </div>
-
-    </div>
-    </div>
-
+</div>
 
 </body>
 

@@ -26,7 +26,7 @@ $connectionsData = $connections->getPendingConnections($_SESSION['userid']);
 $connectionsNumber = count($connectionsData);
 
 ?>
-
+<!DOCTYPE html>
 <html>
 
 <head>
