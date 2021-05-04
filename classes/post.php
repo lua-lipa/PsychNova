@@ -23,4 +23,11 @@ class Post
         $db = new Database();
         return $db->save($query);
     }
+
+    public function deletePost($post_id)
+    {
+        $query = "DELETE FROM posts WHERE post_id=$post_id";
+        $db = new Database();
+        return $db->save($query);
+    }
 }
