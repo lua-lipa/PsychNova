@@ -193,7 +193,7 @@ $recommendedVacancies = $vacancy->getVacancies();
           } else {
             $numberOfVacanciesDisplayed = 0;
             foreach ($recommendedVacancies as $key => $value) {
-              if ($numberOfVacanciesDisplayed == 4) break;
+              if ($numberOfVacanciesDisplayed == 3) break;
               else {
                 $vacancyOrgData = $organisation->getOrganisationData($value['org_id']);
                 $numberOfVacanciesDisplayed += 1;
