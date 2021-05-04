@@ -192,13 +192,13 @@ if (!$userData) header("location: login.php");
                         <div class="mb-3">
                             <h8 class="mb-3">About</h8>
                         </div>
-<<<<<<< HEAD
+
                         <div class="card-about" ]>
                             <p style=""><?php echo $userData['description'] ?></p>
-=======
+
                         <div class="card-about px-4 pt-4 pb-4">
                             <p style="font-size: 14px"><?php echo $userData['description'] ?></p>
->>>>>>> 110b64d2b276a8daa47a0a437c8058aeefff7c7d
+
                         </div>
                     </div>
 
