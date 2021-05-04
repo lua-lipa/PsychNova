@@ -2,6 +2,10 @@ body {
     background-color: #f5f5f5f5;
 }
 
+html {
+    overflow-y: overlay;
+}
+
 .org-card {
     height: 300px;
     margin-bottom: 20px;
@@ -10,18 +14,18 @@ body {
     background-color: white;
 }
 
-.scrolling-wrapper{
-	overflow-x: auto;
+.scrolling-wrapper {
+    overflow-x: auto;
 }
 
-.card-block{
-	height: 250px;
+.card-block {
+    height: 250px;
     background-color: #A58AAE;
     color: white;
-	border: none;
-	background-position: center;
-	background-size: cover;
-	transition: all 0.2s ease-in-out !important;
+    border: none;
+    background-position: center;
+    background-size: cover;
+    transition: all 0.2s ease-in-out !important;
     border-radius: 24px;
     margin-left: 15px;
     margin-right: 15px;
@@ -33,7 +37,7 @@ body {
     align-items: center;
 }
 
-.linkedOrgname{
+.linkedOrgname {
     padding-top: 20px;
     padding-left: 20px;
     padding-right: 20px;
@@ -46,20 +50,19 @@ body {
     transform: translate(-50%, -50%);
 }
 
-.yourOrgname{
+.yourOrgname {
     color: #A58AAE;
 }
 
-.yourOrgDesc{
+.yourOrgDesc {
     font-size: 12px;
 }
 
-.notLinkedMsg{
+.notLinkedMsg {
     font-size: 12px;
     justify-content: center;
     padding-left: 20px;
     padding-top: 130px;
-    
 }
 
 label {
@@ -67,64 +70,64 @@ label {
     font-size: 15px;
 }
 
-h5{
+h5 {
     padding: 20px;
     font-family: 'Arial';
 }
 
-.modal-title{
+.modal-title {
     color: #A58AAE;
     padding: 0px !important;
     font-size: 30px !important
 }
 
-.scrollPrompt{
+.scrollPrompt {
     text-align: right;
     font-size: 10px;
 }
 
-.linkedOrgTitle{
+.linkedOrgTitle {
     padding-left: 10px;
     color: #A58AAE;
     font-size: 20px;
 }
 
-.yourOrgTitle{
+.yourOrgTitle {
     padding-left: 10px;
     padding-bottom: 20px;
     color: #A58AAE;
     font-size: 20px;
 }
 
-.myBtn{
+.myBtn {
     background-color: white;
     border-radius: 100px !important;
     color: #A58AAE;
-    height:25px;
-    width:100px;
+    height: 25px;
+    width: 100px;
     border: none;
     margin: 25px;
 }
 
-.modalBtn{
+.modalBtn {
     background-color: #A58AAE;
     border-radius: 100px !important;
     color: white;
-    height:30px;
-    width:100px;
+    height: 30px;
+    width: 100px;
     border: none;
 }
 
-.orgBtn{
-    background-color: #A58AAE;;
+.orgBtn {
+    background-color: #A58AAE;
+    ;
     border-radius: 100px !important;
     color: white;
-    height:50px;
+    height: 50px;
     margin-top: 20px;
     border: none;
 }
 
-.result-card-content{
+.result-card-content {
     margin-left: 10px;
 }
-
