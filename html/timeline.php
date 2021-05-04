@@ -63,7 +63,7 @@ $recommendedVacancies = $vacancy->getVacancies();
   <div class="container">
     <!-- profile -->
     <div class="row">
-      <div class="col-2">
+      <div class="col-lg-2">
         <div class="profile-card">
           <div class="profile-container">
             <div class="profile-image">
@@ -123,7 +123,7 @@ $recommendedVacancies = $vacancy->getVacancies();
 
       </div>
 
-      <div class="col-7">
+      <div class="col-lg-7">
         <div class="post-card">
           <div class="post-title">
             <h7>What's on your mind?</h7>
@@ -148,7 +148,7 @@ $recommendedVacancies = $vacancy->getVacancies();
               <img src="https://dummyimage.com/64x64/cfcfcf/000000" class="mr-3" alt="...">
               <div class="media-body">
                 <div class="post-user-title">
-                  <h5 class="mt-0"><b><?php echo $postUserData['first_name'] . " " . $postUserData['last_name'] ?></b></h5>
+                  <h5 class="mt-0"><a style="color: #A58AAE; text-decoration: none;" href="userprofile.php?id=<?php echo $postUserData['user_id'] ?>" type="submit" name="view"><?php echo $postUserData['first_name'] . " " . $postUserData['last_name'] ?></a></h5> 
                   <!-- if the users are not connected, the connect button gets displayed -->
                   <?php if (count($connection->areConnected($postUserData['user_id'], $_SESSION['userid'])) == 0 && $postUserData['user_id'] != $_SESSION['userid']) { ?>
                     <form action="" method="POST">
@@ -157,7 +157,7 @@ $recommendedVacancies = $vacancy->getVacancies();
                   <?php } ?>
                 </div>
 
-                <p><?php echo $value['post'] ?></p>
+                <p style="font-size: 13px;"><?php echo $value['post'] ?></p>
               </div>
             </div>
           </div>
@@ -167,7 +167,7 @@ $recommendedVacancies = $vacancy->getVacancies();
         ?>
 
       </div>
-      <div class="col-3">
+      <div class="col-lg-3">
         <div class="vacancies-card">
           <h class="connections-title" style="text-align:center">Recommended Vacancies</h>
           <?php if (count($recommendedVacancies) == 0) {

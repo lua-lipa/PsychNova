@@ -22,19 +22,19 @@ $user = new User();
 $userData = $user->getUserData($_GET['id']);
 
 $userQualification = new userQualification();
-$userQualificationData = $userQualification->getUserQualificationData($_SESSION['userid']);
+$userQualificationData = $userQualification->getUserQualificationData($_GET['id']);
 $qualification = new Qualification();
 $allQualifications = $qualification->getAllQualificationData();
 
 $userSkills = new userSkills();
-$userSkillsData = $userSkills->getUserSkills($_SESSION['userid']);
+$userSkillsData = $userSkills->getUserSkills($_GET['id']);
 $skill = new Skill();
 $allSkillsData = $skill->getAllSkills();
 
 $userEmploymentHistory = new employmentHistory();
-$userEmploymentHistoryData = $userEmploymentHistory->getEmploymentHistoryData($_SESSION['userid']);
+$userEmploymentHistoryData = $userEmploymentHistory->getEmploymentHistoryData($_GET['id']);
 $allEmploymentHistoryData = $userEmploymentHistory->getAllEmploymentOptions();
-$employmentHistoryJoinOrganisation = $userEmploymentHistory->employmentHistoryJoinOrganisation($_SESSION['userid']);
+$employmentHistoryJoinOrganisation = $userEmploymentHistory->employmentHistoryJoinOrganisation($_GET['id']);
 
 $vacancy = new vacancy();
 $recommendedVacancies = $vacancy->getVacancies();
