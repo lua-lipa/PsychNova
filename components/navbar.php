@@ -82,10 +82,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             </div>
                             <script type="text/javascript">
                                 $(".dropdown-menu").on('click', 'li a', function() {
-                                    $(".btn:first-child").text($(this).text());
-                                    $(".btn:first-child").val($(this).text());
+                                    $(".dropdown .btn:first-child").text($(this).text());
+                                    $(".dropdown .btn:first-child").val($(this).text());
                                     $("#dropdowninput").val($(this).text());
-
                                 });
                             </script>
                         </div>
