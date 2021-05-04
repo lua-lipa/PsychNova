@@ -2,6 +2,10 @@ body {
     background-color: #f5f5f5f5;
 }
 
+html {
+    overflow-y: overlay;
+}
+
 .btn-search {
     background-color: #A58AAE;
     border-radius: 100px !important;
@@ -17,7 +21,6 @@ body {
     width: 70px;
     padding: 3px;
     font-size: 10px;
-    margin: auto;
     display: block;
     text-align: center;
     margin-bottom: 10px;
@@ -170,4 +173,5 @@ h9 {
 
 .vacancy-title {
     margin-left: 10px;
+    align-items: left;
 }

@@ -1,4 +1,4 @@
-body{
+body {
     background-color: #A58AAE !important;
     background-image: url(../images/login2.png);
     background-position: center center;
@@ -6,7 +6,11 @@ body{
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-clip: border-box;
-    }
+}
+
+html {
+    overflow-y: overlay;
+}
 
 h1 {
     padding-top: 50px;
@@ -14,16 +18,17 @@ h1 {
     color: #fff;
     font-family: 'Monaco';
     text-shadow: 0 0 5px #F5F5F5, 0 0 10px #F5F5F5, 0 0 15px #F5F5F5, 0 0 20px #A58AAE, 0 0 25px #A58AAE, 0 0 30px #A58AAE, 0 0 35px #A58AAE;
-  }
+}
 
-#more {display: none;}
+#more {
+    display: none;
+}
 
 .slogan {
     font-size: 15px;
     padding-top: 30px;
     padding-bottom: 20px;
     color: #fff;
-
 }
 
 label {
@@ -41,55 +46,56 @@ h6 {
     text-align: center;
 }
 
-.btn{
+.btn {
     background-color: #A58AAE;
     border-radius: 100px !important;
     color: white;
-    height:40px;
-    width:200px;
+    height: 40px;
+    width: 200px;
 }
 
-.myBtn{
+.myBtn {
     background-color: white;
     border-radius: 100px !important;
     color: #A58AAE;
-    height:30px;
-    width:100px;
+    height: 30px;
+    width: 100px;
     border: none;
     margin-bottom: 30px;
 }
 
-.login-registration-box{
+.login-registration-box {
     max-width: 800px;
     float: none;
     margin: 150px auto;
 }
 
-.login-box{
-    border-radius: 25px;
-    background-color: white;
-    padding: 30px;
-}
-.registration-box{
+.login-box {
     border-radius: 25px;
     background-color: white;
     padding: 30px;
 }
 
-.form-control{
+.registration-box {
+    border-radius: 25px;
+    background-color: white;
+    padding: 30px;
+}
+
+.form-control {
     background-color: transparent !important;
 }
 
-.text-muted{
+.text-muted {
     font-size: 11px;
     padding-left: 5px;
 }
 
-@media screen and (max-width: 767px){
-    .login-registration-box{
+@media screen and (max-width: 767px) {
+    .login-registration-box {
         max-width: 400px;
     }
-    h1{
+    h1 {
         padding-top: 0px;
     }
 }

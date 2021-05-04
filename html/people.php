@@ -27,10 +27,10 @@ $connectionsNumber = count($connectionsData);
 $connectedUsersData = $connections->getUserConnections($_SESSION['userid']);
 ?>
 
+<!DOCTYPE html>
 <html>
 
 <head>
-    <title> PsychNova </title>
     <?php include("../components/head.php"); ?>
     <link href="../css/pending-connections.css" rel="stylesheet">
 </head>
