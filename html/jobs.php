@@ -4,6 +4,7 @@ include("../classes/connect.php");
 include("../classes/user.php");
 include("../classes/skills.php");
 include("../classes/search.php");
+include("../classes/vacancy.php");
 
 //if user not logged in redirect to login
 if (!isset($_SESSION['userid'])) {
