@@ -24,6 +24,7 @@ body {
     margin: auto;
     display: block;
     text-align: center;
+    margin-top: 20px;
     margin-bottom: 10px;
     margin-right: 10px;
 }
@@ -126,6 +127,14 @@ h5 {
 }
 
 .linkedOrgTitle {
+    padding-left: 0px;
+    color: #A58AAE;
+    font-size: 20px;
+    margin-bottom: 30px;
+    margin-top: 20px;
+}
+
+.connectionsTitle {
     padding-left: 0px;
     color: #A58AAE;
     font-size: 20px;

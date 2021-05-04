@@ -48,7 +48,7 @@ $connectedUsersData = $connections->getUserConnections($_SESSION['userid']);
     <div class="row">
         <div class="col-sm-3"></div>
         <div class="col-lg-6">
-            <h6 class="linkedOrgTitle">Connections</h6>
+            <h6 class="connectionsTitle">Connections</h6>
         </div>
         <div class="col-sm-3"></div>
     </div>
@@ -96,9 +96,7 @@ $connectedUsersData = $connections->getUserConnections($_SESSION['userid']);
     <div class="row">
         <div class="col-sm-3"></div>
         <div class="col-lg-6">
-            <br>
             <h6 class="linkedOrgTitle">Pending Connections</h6>
-            <br><br>
         </div>
         <div class="col-sm-3"></div>
     </div>
@@ -119,14 +117,9 @@ $connectedUsersData = $connections->getUserConnections($_SESSION['userid']);
                                 <img src="<?php echo $pendingConnectionUserData['profile_picture'] ?>" class="rounded-circle" alt="..." width="64" height="64">
                             </div>
                             <div class="col-6 result-card-content">
-                                <div class="row">
-                                    <h6 class="yourOrgname"><a style="color: #A58AAE; text-decoration: none;" class="yourOrgname" href="userprofile.php?id=<?php echo $pendingConnectionUserData['user_id'] ?>" type="submit" name="view"> <?php echo $pendingConnectionUserData['first_name'] .  " " . $pendingConnectionUserData['last_name'] ?></a></h6>
-                                </div>
-                                <div class="row">
-                                    <h7 class="yourOrgDesc"><?php echo $userOrganisationsData['description'] ?></h7>
-                                </div>
+                                <h6 class="yourOrgname"><a style="color: #A58AAE; text-decoration: none;" class="yourOrgname" href="userprofile.php?id=<?php echo $pendingConnectionUserData['user_id'] ?>" type="submit" name="view"> <?php echo $pendingConnectionUserData['first_name'] .  " " . $pendingConnectionUserData['last_name'] ?></a></h6>
                             </div>
-                            <div class="col-3">
+                            <div class="col-4">
                                 <form action="" method="POST">
                                     <button class="btn-small" type="submit" name="acceptConnection" value=<?php echo $value['connection_id'] ?>>Accept</button>
                                     <button class="btn-small-empty" type="submit" name="rejectConnection" value=<?php echo $value['connection_id'] ?>>Reject</button>
