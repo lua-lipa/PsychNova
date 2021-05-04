@@ -47,15 +47,10 @@ $recommendedVacancies = $vacancy->getVacancies();
 ?>
 
 <html lang="en">
-
-
-
 <head>
   <?php include("../components/head.php"); ?>
   <title>PsychNova</title>
   <link href="../css/timeline.css" rel="stylesheet">
-
-
 </head>
 
 <body>
@@ -68,13 +63,14 @@ $recommendedVacancies = $vacancy->getVacancies();
         <div class="profile-card">
           <div class="profile-container">
             <div class="profile-image">
-              <img src="https://dummyimage.com/70x70/cfcfcf/000000" href="profile.php?id=<?php echo $userData['user_id'] ?>" class=" rounded-circle" alt="...">
+              <img src="<?php echo $userData['profile_picture'] ?>" href="profile.php?id=<?php echo $userData['user_id'] ?>" class=" rounded-circle" width="70" height="70" alt="...">
             </div>
+            <br>
             <div class="profile-name">
-              <h5 class="mt-0"><a style="color: white; text-decoration: none;" href="profile.php?id=<?php echo $userData['user_id'] ?>" type="submit" name="view"><?php echo $userData['first_name'] . " " . $userData['last_name'] ?></a></h5>
+              <h5 class="mt-0"><a style="color: white; text-decoration: none; font-size: 15px" href="profile.php?id=<?php echo $userData['user_id'] ?>" type="submit" name="view"><?php echo $userData['first_name'] . " " . $userData['last_name'] ?></a></h5>
             </div>
             <div class="profile-profession">
-              <h7><i><?php echo $userData['profession'] ?></i></h7>
+              <h7 style="font-size: 13px"><i><?php echo $userData['profession'] ?></i></h7>
             </div>
             <hr>
             <div class="star-signs">
@@ -89,13 +85,13 @@ $recommendedVacancies = $vacancy->getVacancies();
 
         <div class="connections-card">
           <?php if ($numberOfConections > 1) { ?>
-            <h class="connections-title" style="text-align:center"><?php echo $numberOfConections . " connection requests" ?></h>
+            <h class="connections-title" style="text-align:center"><b><?php echo $numberOfConections . " connection requests" ?></b></h>
 
           <?php } else if ($numberOfConections == 1) { ?>
-            <h class="connections-title" style="text-align:center"><?php echo $numberOfConections . " connection request" ?></h>
+            <h class="connections-title" style="text-align:center"><b><?php echo $numberOfConections . " connection request" ?></b></h>
           <?php
           } else { ?>
-            <h class="connections-title" style="text-align:center">Connection requests</h>
+            <h class="connections-title" style="text-align:center"><b>Connection requests</b></h>
           <?php } ?>
 
           <div class="connections-container">
@@ -115,7 +111,7 @@ $recommendedVacancies = $vacancy->getVacancies();
                 }
               ?>
                 <div class="connection-row">
-                  <img src="https://dummyimage.com/40x40/cfcfcf/000000" class="rounded-circle" alt="...">
+                  <img src="<?php echo $pendingConnectionUserData['profile_picture'] ?>" class="rounded-circle" width="30" height="30" alt="...">
                   <h9 class="mt-0"><a style="color: black; text-decoration: none;" href="userprofile.php?id=<?php echo $pendingConnectionUserData['user_id'] ?>" type="submit" name="view"><?php echo $pendingConnectionUserData['first_name'] . " " . $pendingConnectionUserData['last_name'] ?></a></h9><br>
 
                   <br>
@@ -140,7 +136,7 @@ $recommendedVacancies = $vacancy->getVacancies();
             <div class="form-group">
               <input type="text" name="postcontent" class="form-control" required>
             </div>
-            <button type="submit" class="btn float-right">Post</button>
+            <button type="submit" class="btn-search float-right">Post</button>
           </form>
         </div>
 
@@ -153,7 +149,7 @@ $recommendedVacancies = $vacancy->getVacancies();
 
           <div class="media-card">
             <div class="media">
-              <img src="https://dummyimage.com/64x64/cfcfcf/000000" class="mr-3" alt="...">
+              <img src="<?php echo $postUserData['profile_picture'] ?>" width="64" height="64" class="mr-3" alt="...">
               <div class="media-body">
                 <div class="post-user-title">
                   <h5 class="mt-0"><a style="color: #A58AAE; text-decoration: none;" href="userprofile.php?id=<?php echo $postUserData['user_id'] ?>" type="submit" name="view"><?php echo $postUserData['first_name'] . " " . $postUserData['last_name'] ?></a></h5>
@@ -177,9 +173,11 @@ $recommendedVacancies = $vacancy->getVacancies();
       </div>
       <div class="col-lg-3">
         <div class="vacancies-card">
-          <h class="connections-title" style="text-align:center">Recommended Vacancies</h>
-          <?php if (count($recommendedVacancies) == 0) {
-            echo "no vacancies to show.";
+          <h class="connections-title" style="text-align:center; font-size: 12px"><b>Recommended Vacancies</b></h>
+          <br>
+          <?php if (count($recommendedVacancies) == 0) { ?>
+            <p style="text-align:center">No vacancies to show</p><br>
+            <?php
           } else {
             $numberOfVacanciesDisplayed = 0;
             foreach ($recommendedVacancies as $key => $value) {
@@ -189,25 +187,28 @@ $recommendedVacancies = $vacancy->getVacancies();
                 $numberOfVacanciesDisplayed += 1;
               }
 
-          ?>
+            ?>
               <div class="connection-row">
                 <div class="vacancy-header">
-                  <img src=https://dummyimage.com/40x40/cfcfcf/000000 class="rounded-circle" alt="...">
+                  <img src="<?php echo $vacancyOrgData['profile_picture'] ?>" width="60" height="60" class=" rounded-circle" alt="...">
                   <div class="vacancy-title">
-                    <h9><?php echo $vacancyOrgData['name'] ?></h9><br>
+                    <h9><a style="color: #A58AAE; text-decoration: none;" href="organisation_profile.php?id=<?php echo $vacancyOrgData['org_id']?>" type="submit" name="view"><?php echo $vacancyOrgData['name'] ?></a></h9><br>
                     <h9><?php echo $value['title'] ?></h9>
+                    <a href="mailto:<?php echo str_replace(' ', '', $vacancyOrgData['name']) ?>@psychnova.com?subject=Job Application" class="btn-small float-center" target="https://jobs.ie/" rel="noopener noreferrer">Apply</a>
+
                   </div>
+
                 </div>
-                <hr>
                 <h style="font-size:12px"><i><?php echo $value['description'] ?></i></h><br>
+                <hr>
               </div>
-              <a class="btn-small float-center" style="margin-top:5px" href="jobs.php">Apply</a>
+              <!-- <a class="btn-small float-center" style="margin-top:5px" href="jobs.php">Apply</a> -->
 
           <?php
             }
           }
           ?>
-          <a class="btn-view-more float-center" href="jobs.php">View All</a>
+          <a class="btn-view-more float-center" href="jobs.php">Explore</a>
         </div>
       </div>
     </div>

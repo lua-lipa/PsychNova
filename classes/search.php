@@ -41,7 +41,7 @@ class Search
     }
 
     public function searchVacancy($get) {
-        $query = "SELECT vacancy.vacancy_id, vacancy.title, vacancy.description, vacancy.date_created, organisation.org_id, organisation.name
+        $query = "SELECT vacancy.vacancy_id, vacancy.title, vacancy.description, vacancy.date_created, organisation.org_id, organisation.name, organisation.profile_picture
         FROM vacancy, vacancy_skills, organisation
         WHERE vacancy.org_id = organisation.org_id";
 
