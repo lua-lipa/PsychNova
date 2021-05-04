@@ -23,13 +23,11 @@ $organisation = new organisation();
 
 $newSkills = array();
 if (isset($_POST['updateVacancy'])) {
-    echo "update";
     $vacancy = new vacancy();
     $vacancy->updateVacancy($org_id, $_POST);
 
     $vacancy->removeAllVacancySkills($_POST);
     foreach ($_POST['selectedSkills'] as $selected) {
-        echo ($selected);
         array_push($newSkills, $selected);
         $vacancy->addVacancySkills($_POST, $selected);
     }
@@ -46,7 +44,7 @@ $user = new User();
 $userData = $user->getUserData($_SESSION['userid']);
 
 $vacancy = new vacancy();
-$recommendedVacancies = $vacancy->getVacanciesOrg($org_id);
+$recommendedVacancies = $vacancy->getVacancies();
 
 $qualification = new Qualification();
 $userQualificationData = $qualification->getUserQualificationData($_SESSION['userid']);
@@ -57,7 +55,6 @@ if (isset($_POST['updateSkills'])) {
     $userSkills = new userSkills();
     $userSkills->removeAllSkills($_SESSION['userid']);
     foreach ($_POST['selectedSkills'] as $selected) {
-        echo ($selected);
         array_push($newSkills, $selected);
         $userSkills->addUserSkill($_SESSION['userid'], $selected);
     }
@@ -73,9 +70,9 @@ $selectedSkills = array();
 
 $vacancy = new vacancy();
 $organisationVacancies = $vacancy->getVacanciesOrg($org_id);
-echo "<pre>";
-print_r($organisationVacancies);
-echo "</pre>";
+// echo "<pre>";
+// print_r($organisationVacancies);
+// echo "</pre>";
 
 
 
@@ -190,7 +187,6 @@ echo "</pre>";
                 foreach ($organisationVacancies as $key => $value_1) {
                     $organisationid = "vacancyModal" . $value_1['vacancy_id'];
                     $vacancySkillsData = $vacancy->vacancySkills($value_1['vacancy_id']);
-                    echo $value_1['vacancy_id'];
                 ?>
                     <div class="row mt-3">
                         <div class="card-qualification">
