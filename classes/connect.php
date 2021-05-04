@@ -88,6 +88,11 @@ class Database
             return true;
         }
     }
+
+    public function validateInput($query) {
+        $conn = $this->connect();
+        return mysqli_real_escape_string($conn, $query);
+    }
 }
 
 /*

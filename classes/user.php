@@ -54,18 +54,20 @@ class User
 
     public function updateAbout($userId, $data)
     {
-        $firstName = $data['firstName'];
-        $lastName = $data['lastName'];
-        $dateOfBirth = $data['dateOfBirth'];
-        $description = $data['description'];
+        $db = new Database();
+
+        $firstName = $db->validateInput($data['firstName']);
+        $lastName = $db->validateInput($data['lastName']);
+        $dateOfBirth = $db->validateInput($data['dateOfBirth']);
+        $description = $db->validateInput($data['description']);
 
         $query = "UPDATE user 
                   SET first_name='$firstName', last_name='$lastName', 
                       date_of_birth='$dateOfBirth', description='$description'
                   WHERE user_id='$userId';";
 
-        $DB = new Database();
-        $DB->save($query);
+        
+        return $db->save($query);
     }
 
 
