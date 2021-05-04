@@ -107,6 +107,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <a class="nav-link" href="jobs.php">Jobs</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="<?php echo "profile.php?userid= " . $_SESSION['userid'] ?> ">Profile</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="myorganisations.php">My Organisations</a>
                     </li>
                     <li class="nav-item">

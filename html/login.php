@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 ?>
 
 <html>
-
+<!DOCTYPE html>
 <head>
     <title> PsychNova login </title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
