@@ -181,7 +181,7 @@ $recommendedVacancies = $vacancy->getVacancies();
           <h class="connections-title" style="text-align:center; font-size: 12px"><b>Recommended Vacancies</b></h>
           <br>
           <?php if (count($recommendedVacancies) == 0) { ?>
-            <p style="text-align:center">No requests yet!</p><br>
+            <p style="text-align:center">No vacancies to show</p><br>
             <?php
           } else {
             $numberOfVacanciesDisplayed = 0;
