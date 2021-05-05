@@ -66,7 +66,6 @@ $recommendedVacancies = $vacancy->suggestedVacancies($_SESSION['userid']);
                                         <div class="row result-card-description">
                                             <h7><?php echo $value['description'] ?></h7>
                                         </div>
-<<<<<<< HEAD
                                         <div class="row result-card-date">
                                             <h9 class="mt-3">Required Skills</h9><br>
                                         </div>
@@ -82,9 +81,6 @@ $recommendedVacancies = $vacancy->suggestedVacancies($_SESSION['userid']);
                                             }
                                             ?>
                                         </div>
-=======
-
->>>>>>> 95ee275008926eeaaafbe0b389871fd1c2566033
                                     </div>
 
                                 </div>
