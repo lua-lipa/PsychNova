@@ -325,7 +325,7 @@ if (!$userData) header("location: login.php");
 
                     <!-- Employment History DISPLAY -->
                     <?php
-                    if (empty($searchResults)) {
+                    if (empty($employmentHistoryJoinOrganisation)) {
                     ?>
                         <div class="row mt-3">
                             <div class="card-no-result d-flex align-items-center">
