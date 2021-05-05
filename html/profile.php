@@ -53,8 +53,9 @@ if (isset($_POST['deleteQualification'])) {
     $qualification->deleteQualification($_GET['userid'], $_POST);
 }
 
-if (isset($_POST['connectButton'])) {
-    $connections->sendConnectionRequest($_SESSION['userid'], $_GET['userid']);
+if (isset($_POST['connectWithUser'])) {
+    $connection = new Connections();
+    $connection->sendConnectionRequest($_SESSION['userid'], $_GET['userid']);
 }
 
 // echo "<pre>";
@@ -197,8 +198,7 @@ if (!$userData) header("location: login.php");
                             <div class="row d-flex justify-content-end align-items-end">
                                 <?php if (count($connections->areConnected($_GET['userid'], $_SESSION['userid'])) == 0 && $_GET['userid'] != $_SESSION['userid']) { ?>
                                     <form action="" method="POST">
-                                        <button style="margin-bottom: 15px; margin-right: 15px; margin-top: 10px; background-color: #ffffff; color: #000000; height: 35px; border-color: #876e8f; border-radius:50px;" class="btn btn-primary" type="submit" name="connectButton" value="<?php $_GET['userid'] ?>">Connect</button>
-
+                                        <button style="margin-bottom: 15px; margin-right: 15px; margin-top: 10px; background-color: #ffffff; color: #000000; height: 35px; border-color: #876e8f; border-radius:50px;" class="btn btn-primary" type="submit" name="connectWithUser" value=<?php echo $$_GET['userid'] ?>>Connect</button>
                                         <!-- <button type="button" name="connectButton" style="margin-bottom: 15px; margin-right: 15px; margin-top: 10px; background-color: #ffffff; color: #000000; height: 35px; border-color: #876e8f; border-radius:50px;" class="btn btn-primary">
                                             Connect
                                         </button> -->
@@ -677,42 +677,42 @@ if (!$userData) header("location: login.php");
                 <!-- Vacancies -->
                 <div class="col-lg-3">
                     <div class="vacancies-card">
-                    <h class="connections-title" style="text-align:center; font-size: 12px"><b>Recommended Vacancies</b></h>
-                    <br>
-                    <?php if (count($recommendedVacancies) == 0) { ?>
-                        <p style="text-align:center">No vacancies to show</p><br>
+                        <h class="connections-title" style="text-align:center; font-size: 12px"><b>Recommended Vacancies</b></h>
+                        <br>
+                        <?php if (count($recommendedVacancies) == 0) { ?>
+                            <p style="text-align:center">No vacancies to show</p><br>
+                            <?php
+                        } else {
+                            $numberOfVacanciesDisplayed = 0;
+                            foreach ($recommendedVacancies as $key => $value) {
+                                if ($numberOfVacanciesDisplayed == 3) break;
+                                else {
+                                    $vacancyOrgData = $organisation->getOrganisationData($value['org_id']);
+                                    $numberOfVacanciesDisplayed += 1;
+                                }
+
+                            ?>
+                                <div class="connection-row">
+                                    <div class="vacancy-header">
+                                        <img src="<?php echo $vacancyOrgData['profile_picture'] ?>" width="60" height="60" class=" rounded-circle" alt="...">
+                                        <div class="vacancy-title">
+                                            <h9><a style="color: #A58AAE; text-decoration: none;" href="organisation_profile.php?id=<?php echo $vacancyOrgData['org_id'] ?>" type="submit" name="view"><?php echo $vacancyOrgData['name'] ?></a></h9><br>
+                                            <h9><?php echo $value['title'] ?></h9>
+                                            <a href="mailto:<?php echo str_replace(' ', '', $vacancyOrgData['name']) ?>@psychnova.com?subject=Job Application" class="btn-small float-center" target="https://jobs.ie/" rel="noopener noreferrer">Apply</a>
+
+                                        </div>
+
+                                    </div>
+                                    <h style="font-size:12px"><i><?php echo $value['description'] ?></i></h><br>
+                                    <hr>
+                                </div>
+                                <!-- <a class="btn-small float-center" style="margin-top:5px" href="jobs.php">Apply</a> -->
+
                         <?php
-                    } else {
-                        $numberOfVacanciesDisplayed = 0;
-                        foreach ($recommendedVacancies as $key => $value) {
-                        if ($numberOfVacanciesDisplayed == 3) break;
-                        else {
-                            $vacancyOrgData = $organisation->getOrganisationData($value['org_id']);
-                            $numberOfVacanciesDisplayed += 1;
+                            }
                         }
-
                         ?>
-                        <div class="connection-row">
-                            <div class="vacancy-header">
-                            <img src="<?php echo $vacancyOrgData['profile_picture'] ?>" width="60" height="60" class=" rounded-circle" alt="...">
-                            <div class="vacancy-title">
-                                <h9><a style="color: #A58AAE; text-decoration: none;" href="organisation_profile.php?id=<?php echo $vacancyOrgData['org_id'] ?>" type="submit" name="view"><?php echo $vacancyOrgData['name'] ?></a></h9><br>
-                                <h9><?php echo $value['title'] ?></h9>
-                                <a href="mailto:<?php echo str_replace(' ', '', $vacancyOrgData['name']) ?>@psychnova.com?subject=Job Application" class="btn-small float-center" target="https://jobs.ie/" rel="noopener noreferrer">Apply</a>
-
-                            </div>
-
-                            </div>
-                            <h style="font-size:12px"><i><?php echo $value['description'] ?></i></h><br>
-                            <hr>
-                        </div>
-                        <!-- <a class="btn-small float-center" style="margin-top:5px" href="jobs.php">Apply</a> -->
-
-                    <?php
-                        }
-                    }
-                    ?>
-                    <a class="btn-view-more float-center" href="suggested_vacancies.php">Explore</a>
+                        <a class="btn-view-more float-center" href="suggested_vacancies.php">Explore</a>
                     </div>
                 </div>
 
