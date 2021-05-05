@@ -27,6 +27,16 @@ class vacancy
                 VALUES ('$title', '$description', '$dateCreated', '$orgId');";
 
         $db = new Database();
+        return $db->saveAndReturnId($query);
+    }
+
+    public function addNewVacancySkills($vacancyId, $skillId)
+    {
+        
+        $query = "INSERT INTO vacancy_skills(vacancy_id, skill_id)
+                    VALUES ($vacancyId, $skillId);";
+
+        $db = new Database();
         return $db->save($query);
     }
 

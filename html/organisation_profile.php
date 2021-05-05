@@ -31,12 +31,11 @@ if (isset($_POST['updateVacancy'])) {
 
 if (isset($_POST['addVacancy'])) {
     $vacancy = new vacancy();
-    $add = $vacancy->addVacancy($_GET['id'], $_POST);
+    $vacancyId = $vacancy->addVacancy($_GET['id'], $_POST);
 
-    //$vacancy->removeAllVacancySkills($_POST);
-    //foreach ($_POST['selectedSkills'] as $selected) {
-    //$vacancy->addVacancySkills($_POST, $selected);
-    //}
+    foreach ($_POST['selectedSkills'] as $selected) {
+        $vacancy->addNewVacancySkills($vacancyId, $selected);
+    }
 }
 
 if (isset($_POST['updateAbout'])) {
@@ -204,21 +203,12 @@ $recommendedVacancies = $vacancy->suggestedVacancies($_SESSION['userid']);
                                                 <?php
                                                 foreach ($allSkillsData as $key => $value) {
                                                     $vacancySkillsData;
-                                                    foreach ($organisationVacancies as $key => $value_1) {
+                                                    foreach ($organisationVacancies as $key_1 => $value_1) {
                                                         $vacancySkillsData = $vacancy->vacancySkills($value_1['vacancy_id']);
                                                     }
-                                                    if (array_key_exists($key, $vacancySkillsData)) {
-                                                        print_r($vacancySkillsData);
+                                                        
                                                 ?>
-                                                        <div class="form-check">
-                                                            <input class="form-check-input" name="selectedSkills[]" type="checkbox" value="<?php echo $key ?>" id="defaultCheck1" checked>
-                                                            <label class="form-check-label" for="defaultCheck1">
-                                                                <?php echo $value['title'] ?>
-                                                            </label>
-                                                        </div>
-                                                    <?php
-                                                    } else {
-                                                    ?>
+                                                     
                                                         <div class="form-check">
                                                             <input class="form-check-input" name="selectedSkills[]" type="checkbox" value="<?php echo $key ?>" id="defaultCheck1">
                                                             <label class="form-check-label" for="defaultCheck1">
@@ -226,7 +216,6 @@ $recommendedVacancies = $vacancy->suggestedVacancies($_SESSION['userid']);
                                                             </label>
                                                         </div>
                                                 <?php
-                                                    }
                                                 }
                                                 ?>
                                             </div>
