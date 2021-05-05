@@ -363,7 +363,7 @@ $recommendedVacancies = $vacancy->suggestedVacancies($_SESSION['userid']);
                         <div class="vacancy-header">
                         <img src="<?php echo $vacancyOrgData['profile_picture'] ?>" width="60" height="60" class=" rounded-circle" alt="...">
                         <div class="vacancy-title">
-                            <h9><a style="color: #A58AAE; text-decoration: none;" href="organisation_profile.php?userid=<?php echo $vacancyOrgData['org_id'] ?>" type="submit" name="view"><?php echo $vacancyOrgData['name'] ?></a></h9><br>
+                            <h9><a style="color: #A58AAE; text-decoration: none;" href="organisation_profile.php?id=<?php echo $vacancyOrgData['org_id'] ?>" type="submit" name="view"><?php echo $vacancyOrgData['name'] ?></a></h9><br>
                             <h9><?php echo $value['title'] ?></h9>
                             <a href="mailto:<?php echo str_replace(' ', '', $vacancyOrgData['name']) ?>@psychnova.com?subject=Job Application" class="btn-small float-center" target="https://jobs.ie/" rel="noopener noreferrer">Apply</a>
 
