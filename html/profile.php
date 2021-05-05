@@ -614,12 +614,13 @@ if (!$userData) header("location: login.php");
                                     </div>
 
                                     <div class="modal-body">
-                                        <form action="" method="post" class="form-inline">
+                                        <form action="" method="post">
                                             <div class="form-group">
                                                 <?php foreach ($allSkillsData as $key => $value) {
                                                     //if ($hasSkill == true) {
                                                     if (array_key_exists($key, $userSkillsData)) {
                                                 ?>
+                                                        <BR/>
                                                         <div class="form-check">
                                                             <input class="form-check-input" name="selectedSkills[]" type="checkbox" value="<?php echo $key ?>" id="defaultCheck1" checked>
                                                             <label class="form-check-label" for="defaultCheck1">
@@ -629,6 +630,7 @@ if (!$userData) header("location: login.php");
                                                     <?php
                                                     } else {
                                                     ?>
+                                                        <BR/>
                                                         <div class="form-check">
                                                             <input class="form-check-input" name="selectedSkills[]" type="checkbox" value="<?php echo $key ?>" id="defaultCheck1">
                                                             <label class="form-check-label" for="defaultCheck1">
@@ -641,7 +643,6 @@ if (!$userData) header("location: login.php");
                                                 ?>
                                             </div>
                                     </div>
-                                    </script>
                                     <div class="modal-footer">
                                         <button type="submit" name="updateSkills" class="btn btn-primary" style="border-radius:15px; background-color: #a58aae; border-color:#876e8f">Save changes</button>
                                     </div>
