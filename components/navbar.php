@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if ($_POST['dropdowninput'] == 'Users') {
             header("location: usersearch.php?name=" . $_POST['searchinput']);
         } else if ($_POST['dropdowninput'] == 'Organisations') {
-            header("location: usersearch.php");
+            header("location: organisationsearch.php?name=" . $_POST['searchinput']);
         }
     }
 }
