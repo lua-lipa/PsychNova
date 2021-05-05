@@ -35,7 +35,7 @@ if (isset($_POST['addVacancy'])) {
 
     //$vacancy->removeAllVacancySkills($_POST);
     //foreach ($_POST['selectedSkills'] as $selected) {
-        //$vacancy->addVacancySkills($_POST, $selected);
+    //$vacancy->addVacancySkills($_POST, $selected);
     //}
 }
 
@@ -128,7 +128,7 @@ $recommendedVacancies = $vacancy->suggestedVacancies($_SESSION['userid']);
                             </div>
                         </div>
                         <div class="row">
-                            <h4 class="user-name"><?php echo $organisationData['name']?></h4>
+                            <h4 class="user-name"><?php echo $organisationData['name'] ?></h4>
                         </div>
                         <div class="row">
                             <p class="astro-sun"><i class="bi bi-sun"></i> <?php echo calcStarSign($organisationData['date_established']) ?> </p>
@@ -143,38 +143,45 @@ $recommendedVacancies = $vacancy->suggestedVacancies($_SESSION['userid']);
                         </div>
                     </div>
                     <div class="col-3 d-flex flex-column justify-content-between">
-                            <?php
-                            if ($userType == 'administrator' || $_SESSION['userid'] == $organisationData['user_id']) {
-                            ?>
-                                <div class="row d-flex justify-content-end">
-                                    <button type="button" style="margin-right: 10px; margin-top: 10px; background-color: #ffffff; color: #000000; height: 35px; border-color: #876e8f; border-radius:50px;" class="btn btn-primary" data-toggle="modal" data-target="#editAboutModal">
-                                        <i class="bi bi-pencil"></i>
-                                    </button>
-                                </div>
-                            <?php
-                            }
-                            ?>
-                    </div> 
+                        <?php
+                        if ($userType == 'administrator' || $_SESSION['userid'] == $organisationData['user_id']) {
+                        ?>
+                            <div class="row d-flex justify-content-end">
+                                <button type="button" style="margin-right: 10px; margin-top: 10px; background-color: #ffffff; color: #000000; height: 35px; border-color: #876e8f; border-radius:50px;" class="btn btn-primary" data-toggle="modal" data-target="#editAboutModal">
+                                    <i class="bi bi-pencil"></i>
+                                </button>
+                            </div>
+                        <?php
+                        }
+                        ?>
+                    </div>
                 </div>
                 <div class="row h-22 mt-3">
-                        <div class="col">
-                            <div class="row mt-2">
-                                <h8 class="mb-2">About</h8>
-                            </div>
-                            <div class="row card-about" ]>
-                                <p style=""><?php echo $organisationData['description'] ?></p>
-                            </div>
+                    <div class="col">
+                        <div class="row mt-2">
+                            <h8 class="mb-2">About</h8>
                         </div>
-
+                        <div class="row card-about" ]>
+                            <p style=""><?php echo $organisationData['description'] ?></p>
+                        </div>
                     </div>
+
+                </div>
 
                 <!-- ADD Vacancy -->
                 <div class="row mt-3">
                     <div class="addVacancy">
                         <h8>Vacancies</h8>
-                        <button type="button" style="margin-right: 30px; margin-top: 10px; background-color: #ffffff; color: #000000; height: 35px; border-color: #876e8f; border-radius:50px;" class="btn btn-primary" data-toggle="modal" data-target="#addVacancyModal">
-                            <i class="bi bi-plus"></i>
-                        </button>
+                        <?php
+                        if ($userType == 'administrator' || $_SESSION['userid'] == $organisationData['user_id']) {
+                        ?>
+
+                            <button type="button" style="margin-right: 30px; margin-top: 10px; background-color: #ffffff; color: #000000; height: 35px; border-color: #876e8f; border-radius:50px;" class="btn btn-primary" data-toggle="modal" data-target="#addVacancyModal">
+                                <i class="bi bi-plus"></i>
+                            </button>
+                        <?php
+                        }
+                        ?>
                         <div class="modal fade" id="addVacancyModal" tabindex=" -1" role="dialog" aria-labelledby="vacancyModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
@@ -263,9 +270,15 @@ $recommendedVacancies = $vacancy->suggestedVacancies($_SESSION['userid']);
                                 </div>
 
                                 <div class="row float-right">
-                                    <button type="button" class="btn qualification-button btn-primary" data-toggle="modal" data-target="#<?php echo $organisationid ?>" style="margin-right:20px; margin-bottom:10px;">
-                                        <i class="bi bi-pencil"></i>
-                                    </button>
+                                    <?php
+                                    if ($userType == 'administrator' || $_SESSION['userid'] == $organisationData['user_id']) {
+                                    ?>
+                                        <button type="button" class="btn qualification-button btn-primary" data-toggle="modal" data-target="#<?php echo $organisationid ?>" style="margin-right:20px; margin-bottom:10px;">
+                                            <i class="bi bi-pencil"></i>
+                                        </button>
+                                    <?php
+                                    }
+                                    ?>
                                     <div class="modal fade" id="<?php echo $organisationid ?>" tabindex=" -1" role="dialog" aria-labelledby="qualificationModalLabel" aria-hidden="true">
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content">
@@ -331,42 +344,42 @@ $recommendedVacancies = $vacancy->suggestedVacancies($_SESSION['userid']);
             <!-- Vacancies -->
             <div class="col-lg-3">
                 <div class="vacancies-card">
-                <h class="connections-title" style="text-align:center; font-size: 12px"><b>Recommended Vacancies</b></h>
-                <br>
-                <?php if (count($recommendedVacancies) == 0) { ?>
-                    <p style="text-align:center">No vacancies to show</p><br>
+                    <h class="connections-title" style="text-align:center; font-size: 12px"><b>Recommended Vacancies</b></h>
+                    <br>
+                    <?php if (count($recommendedVacancies) == 0) { ?>
+                        <p style="text-align:center">No vacancies to show</p><br>
+                        <?php
+                    } else {
+                        $numberOfVacanciesDisplayed = 0;
+                        foreach ($recommendedVacancies as $key => $value) {
+                            if ($numberOfVacanciesDisplayed == 3) break;
+                            else {
+                                $vacancyOrgData = $organisation->getOrganisationData($value['org_id']);
+                                $numberOfVacanciesDisplayed += 1;
+                            }
+
+                        ?>
+                            <div class="connection-row">
+                                <div class="vacancy-header">
+                                    <img src="<?php echo $vacancyOrgData['profile_picture'] ?>" width="60" height="60" class=" rounded-circle" alt="...">
+                                    <div class="vacancy-title">
+                                        <h9><a style="color: #A58AAE; text-decoration: none;" href="organisation_profile.php?id=<?php echo $vacancyOrgData['org_id'] ?>" type="submit" name="view"><?php echo $vacancyOrgData['name'] ?></a></h9><br>
+                                        <h9><?php echo $value['title'] ?></h9>
+                                        <a href="mailto:<?php echo str_replace(' ', '', $vacancyOrgData['name']) ?>@psychnova.com?subject=Job Application" class="btn-small float-center" target="https://jobs.ie/" rel="noopener noreferrer">Apply</a>
+
+                                    </div>
+
+                                </div>
+                                <h style="font-size:12px"><i><?php echo $value['description'] ?></i></h><br>
+                                <hr>
+                            </div>
+                            <!-- <a class="btn-small float-center" style="margin-top:5px" href="jobs.php">Apply</a> -->
+
                     <?php
-                } else {
-                    $numberOfVacanciesDisplayed = 0;
-                    foreach ($recommendedVacancies as $key => $value) {
-                    if ($numberOfVacanciesDisplayed == 3) break;
-                    else {
-                        $vacancyOrgData = $organisation->getOrganisationData($value['org_id']);
-                        $numberOfVacanciesDisplayed += 1;
+                        }
                     }
-
                     ?>
-                    <div class="connection-row">
-                        <div class="vacancy-header">
-                        <img src="<?php echo $vacancyOrgData['profile_picture'] ?>" width="60" height="60" class=" rounded-circle" alt="...">
-                        <div class="vacancy-title">
-                            <h9><a style="color: #A58AAE; text-decoration: none;" href="organisation_profile.php?id=<?php echo $vacancyOrgData['org_id'] ?>" type="submit" name="view"><?php echo $vacancyOrgData['name'] ?></a></h9><br>
-                            <h9><?php echo $value['title'] ?></h9>
-                            <a href="mailto:<?php echo str_replace(' ', '', $vacancyOrgData['name']) ?>@psychnova.com?subject=Job Application" class="btn-small float-center" target="https://jobs.ie/" rel="noopener noreferrer">Apply</a>
-
-                        </div>
-
-                        </div>
-                        <h style="font-size:12px"><i><?php echo $value['description'] ?></i></h><br>
-                        <hr>
-                    </div>
-                    <!-- <a class="btn-small float-center" style="margin-top:5px" href="jobs.php">Apply</a> -->
-
-                <?php
-                    }
-                }
-                ?>
-                <a class="btn-view-more float-center" href="suggested_vacancies.php">Explore</a>
+                    <a class="btn-view-more float-center" href="suggested_vacancies.php">Explore</a>
                 </div>
             </div>
 
