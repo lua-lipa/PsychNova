@@ -24,7 +24,6 @@ $organisation = new organisation();
 $newSkills = array();
 if (isset($_POST['updateVacancy'])) {
     $vacancy = new vacancy();
-    $vacancy->updateVacancy($org_id, $_POST);
 
     $vacancy->removeAllVacancySkills($_POST);
     foreach ($_POST['selectedSkills'] as $selected) {
@@ -35,8 +34,8 @@ if (isset($_POST['updateVacancy'])) {
 
 if (isset($_POST['addVacancy'])) {
     $vacancy = new vacancy();
-    $vacancy->addVacancy($org_id, $_POST);
 
+    $vacancy->removeAllVacancySkills($_POST);
     foreach ($_POST['selectedSkills'] as $selected) {
         array_push($newSkills, $selected);
         $vacancy->addVacancySkills($_POST, $selected);
@@ -177,6 +176,7 @@ $organisationVacancies = $vacancy->getVacanciesOrg($org_id);
                                             <label for="description" style="color:black">Description *</label><input class="form-control" type="text" name="description" style="margin-bottom:10px; height: 50px; width:95%; border-radius:5px;" maxlength="200" value='' />
                                             <?php ?>
                                             <label for="requiredSkills" style="color:black">Required Skills *</label>
+                                            <input type="hidden" name="vacancyId" value='<?php echo $value_1['vacancy_id'] ?>' />
                                             <div class="form-group">
                                                 <?php
                                                 foreach ($allSkillsData as $key => $value) {
