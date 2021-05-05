@@ -33,17 +33,19 @@ class organisation
 
     public function createOrg($data, $userId)
     {
+        $DB = new Database();
+
         $error = "";
-        $name = $data['name'];
-        $DE = $data['dateEstablished'];
-        $desc = $data['description'];
-        $email = $data['email'];
-        $number = $data['contactNo'];
+        $name = $DB->validateInput($data['name']);
+        $DE = $DB->validateInput($data['dateEstablished']);
+        $desc = $DB->validateInput($data['description']);
+        $email = $DB->validateInput($data['email']);
+        $number = $DB->validateInput($data['contactNo']);
 
         $query = "insert into organisation 
                             (name, date_established, description, user_id, email, contact_number, profile_picture) 
                     values ('$name' , '$DE' , '$desc' , '$userId' , '$email' , '$number', '../images/pp/org_annon.png')";
-        $DB = new Database();
+        
         $DB->save($query);
 
         return $this->error;
