@@ -109,12 +109,13 @@ class User
 
     public function banUser($userId)
     {
-        $query = "INSERT INTO banned_users(user_id) VALUES $userId";
+        $query = "INSERT INTO banned_users(user_id, reason, date_of_ban, date_of_unban) 
+                    VALUES ($userId, 'banned for inappropriate content', '2021-05-04', '2021-05-04')";
         $db = new Database();
         return $db->save($query);
     }
 
-    public function isBanned($userId)
+    public function isBannedPeriod($userId)
     {
         $DB = new Database();
         $banQuery = "SELECT * FROM banned_users WHERE user_id = '$userId';";
@@ -129,6 +130,30 @@ class User
                 return "You have been banned for violating our guidelines. You will be unbanned on $unbanDate";
             }
         }
+        // $query = "select date_of_unban from banned_users where user_id = '$userId'";
+        // $db = new Database();
+        // $result = $db->readOne($query);
+
+        // if ($result) {
+        //     if (strtotime(($result['date_of_unban']) < time())) {
+        //         $this->unbanUser($userId);
+        //         return false;
+        //     } else {
+        //         return true;
+        //     }
+        // }
+    }
+
+    public function isBanned($userId)
+    {
+        $DB = new Database();
+        $banQuery = "SELECT * FROM banned_users WHERE user_id = '$userId';";
+        $banned = $DB->readOne($banQuery);
+
+        if ($banned) {
+            return true;
+        }
+        return false;
         // $query = "select date_of_unban from banned_users where user_id = '$userId'";
         // $db = new Database();
         // $result = $db->readOne($query);

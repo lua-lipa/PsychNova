@@ -14,8 +14,14 @@ if (!isset($_SESSION['userid'])) {
   header("location: login.php");
 }
 
+
 $post = new Post();
 $user = new User();
+
+if ($user->isBanned($_SESSION['userid'])) {
+  header("location: logout.php");
+}
+
 $connection = new connections();
 $vacancy = new vacancy();
 $organisation = new organisation();

@@ -58,6 +58,16 @@ if (isset($_POST['connectWithUser'])) {
     $connection->sendConnectionRequest($_SESSION['userid'], $_GET['userid']);
 }
 
+if (isset($_POST['banUser'])) {
+    $user = new User();
+    $user->banUser($_GET['userid']);
+}
+
+if (isset($_POST['unbanUser'])) {
+    $user = new User();
+    $user->unbanUser($_GET['userid']);
+}
+
 // echo "<pre>";
 // print_r($_POST['updateQualification']);
 // echo "</pre>";
@@ -199,17 +209,20 @@ if (!$userData) header("location: login.php");
                                 <?php if (count($connections->areConnected($_GET['userid'], $_SESSION['userid'])) == 0 && $_GET['userid'] != $_SESSION['userid']) { ?>
                                     <form action="" method="POST">
                                         <button style="margin-bottom: 15px; margin-right: 15px; margin-top: 10px; background-color: #ffffff; color: #000000; height: 35px; border-color: #876e8f; border-radius:50px;" class="btn btn-primary" type="submit" name="connectWithUser" value=<?php echo $$_GET['userid'] ?>>Connect</button>
-                                        <!-- <button type="button" name="connectButton" style="margin-bottom: 15px; margin-right: 15px; margin-top: 10px; background-color: #ffffff; color: #000000; height: 35px; border-color: #876e8f; border-radius:50px;" class="btn btn-primary">
-                                            Connect
-                                        </button> -->
                                     </form>
                                 <?php
                                 }
-                                if ($userType == 'administrator') {
+                                if ($userType == 'administrator' && $_GET['userid'] != $_SESSION['userid'] && !$user->isBanned($_GET['userid'])) {
                                 ?>
-                                    <button type="button" name="banButton" style="margin-bottom: 15px; margin-right: 15px; margin-top: 10px; background-color: #ffffff; color: #000000; height: 35px; border-color: #876e8f; border-radius:50px;" class="btn btn-primary">
-                                        Ban
-                                    </button>
+                                    <form action="" method="POST">
+                                        <button style="margin-bottom: 15px; margin-right: 15px; margin-top: 10px; background-color: #ffffff; color: #000000; height: 35px; border-color: #876e8f; border-radius:50px;" class="btn btn-primary" type="submit" name="banUser" value=<?php echo $$_GET['userid'] ?>>Ban</button>
+                                    </form>
+                                <?php
+                                } else if ($user->isBanned($_GET['userid'])) {
+                                ?>
+                                    <form action="" method="POST">
+                                        <button style="margin-bottom: 15px; margin-right: 15px; margin-top: 10px; background-color: #ffffff; color: #000000; height: 35px; border-color: #876e8f; border-radius:50px;" class="btn btn-primary" type="submit" name="unbanUser" value=<?php echo $$_GET['userid'] ?>>Unban</button>
+                                    </form>
                                 <?php
                                 }
                                 ?>
