@@ -92,7 +92,7 @@ $allEmploymentHistoryData = $userEmploymentHistory->getAllEmploymentOptions();
 $employmentHistoryJoinOrganisation = $userEmploymentHistory->employmentHistoryJoinOrganisation($_GET['userid']);
 
 $vacancy = new vacancy();
-$recommendedVacancies = $vacancy->getVacancies();
+$recommendedVacancies = $vacancy->suggestedVacancies($_SESSION['userid']);
 
 $organisation = new organisation();
 
@@ -599,30 +599,18 @@ if (!$userData) header("location: login.php");
                     <!-- Skills -->
 
                     <div class="row mt-3">
-                        <div class="col-9">
-                            <div class="row">
-                                <h8>Skills</h8>
-                            </div>
-                        </div>
+                        <h8>Skills</h8>
                     </div>
                     <div class="row mt-3">
                         <?php
-                        if (empty($userQualificationData)) {
+                        foreach ($userSkillsData as $key => $value) {
+                            $skillsData = $skill->getSkillFromId($value['skill_id']);
                         ?>
-                                <div class="card-no-result d-flex align-items-center">
-                                    <p style="margin-bottom:0;">No Skills Found</p>
-                                </div>
-                            <?php
-                        } else {
-                            foreach ($userSkillsData as $key => $value) {
-                                $skillsData = $skill->getSkillFromId($value['skill_id']);
-                            ?>
-                                <div class="skills" style="flex-wrap: wrap;">
-                                    <span type="badge badge-primary" class="badge-skill" style="background-color: #876e8f;  margin-bottom:20px;"><?php echo $skillsData['title'] ?> </span>
-                                </div>
+                            <div class="skills" style="flex-wrap: wrap;">
+                                <span type="badge badge-primary" class="badge-skill" style="background-color: #876e8f;  margin-bottom:20px;"><?php echo $skillsData['title'] ?> </span>
+                            </div>
 
                         <?php
-                            }
                         }
                         ?>
 
@@ -689,51 +677,42 @@ if (!$userData) header("location: login.php");
                 <!-- Vacancies -->
                 <div class="col-lg-3">
                     <div class="vacancies-card">
-                        <h7 style="text-align:center">Recommended Vacancies</h7>
-                        <?php if (count($recommendedVacancies) == 0) {
-                            echo "no vacancies to show.";
-                        } else {
-                            $numberOfVacanciesDisplayed = 0;
-                            foreach ($recommendedVacancies as $key => $value) {
-                                if ($numberOfVacanciesDisplayed == 4) break;
-                                else {
-                                    $vacancyOrgData = $organisation->getOrganisationData($value['org_id']);
-                                    $numberOfVacanciesDisplayed += 1;
-                                }
-
-
-                        ?>
-
-                                <div class="row mt-2">
-                                    <div class="col">
-                                        <div class="row">
-                                            <h9 style="color: #876e8f"><?php echo $value['title'] ?></h9><br>
-                                        </div>
-                                        <div class="row">
-                                            <h9 style="font-weight: lighter"><?php echo $vacancyOrgData['name'] ?></h9><br>
-                                        </div>
-                                    </div>
-                                    <div class="col d-flex justify-content-end align-items-center">
-                                        <a class="btn btn-purple" href="jobs.php">Apply</a>
-                                    </div>
-                                </div>
-
-                                <!-- <div class="connection-row">
-                                    <div class="vacancy-header">
-                                        <div class="vacancy-title">
-                                            
-                                        </div>
-                                    </div>
-                                    <br>
-                                    <a class="btn float-right" href="jobs.php">Apply</a>
-
-                                    <br>
-                                </div> -->
+                    <h class="connections-title" style="text-align:center; font-size: 12px"><b>Recommended Vacancies</b></h>
+                    <br>
+                    <?php if (count($recommendedVacancies) == 0) { ?>
+                        <p style="text-align:center">No vacancies to show</p><br>
                         <?php
-                            }
+                    } else {
+                        $numberOfVacanciesDisplayed = 0;
+                        foreach ($recommendedVacancies as $key => $value) {
+                        if ($numberOfVacanciesDisplayed == 3) break;
+                        else {
+                            $vacancyOrgData = $organisation->getOrganisationData($value['org_id']);
+                            $numberOfVacanciesDisplayed += 1;
                         }
+
                         ?>
-                        <a class="btn float-center" href="jobs.php"> More</a>
+                        <div class="connection-row">
+                            <div class="vacancy-header">
+                            <img src="<?php echo $vacancyOrgData['profile_picture'] ?>" width="60" height="60" class=" rounded-circle" alt="...">
+                            <div class="vacancy-title">
+                                <h9><a style="color: #A58AAE; text-decoration: none;" href="organisation_profile.php?id=<?php echo $vacancyOrgData['org_id'] ?>" type="submit" name="view"><?php echo $vacancyOrgData['name'] ?></a></h9><br>
+                                <h9><?php echo $value['title'] ?></h9>
+                                <a href="mailto:<?php echo str_replace(' ', '', $vacancyOrgData['name']) ?>@psychnova.com?subject=Job Application" class="btn-small float-center" target="https://jobs.ie/" rel="noopener noreferrer">Apply</a>
+
+                            </div>
+
+                            </div>
+                            <h style="font-size:12px"><i><?php echo $value['description'] ?></i></h><br>
+                            <hr>
+                        </div>
+                        <!-- <a class="btn-small float-center" style="margin-top:5px" href="jobs.php">Apply</a> -->
+
+                    <?php
+                        }
+                    }
+                    ?>
+                    <a class="btn-view-more float-center" href="suggested_vacancies.php">Explore</a>
                     </div>
                 </div>
 

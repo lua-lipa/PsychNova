@@ -48,4 +48,21 @@ class organisation
 
         return $this->error;
     }
+
+    public function updateAbout($orgId, $data){
+        $db = new Database();
+
+        $name = $db->validateInput($data['name']);
+        $date = $db->validateInput($data['dateEstablished']);
+        $email = $db->validateInput($data['email']);
+        $num = $db->validateInput($data['contactNo']);
+        $description = $db->validateInput($data['description']);
+
+        $query = "UPDATE organisation 
+                  SET name='$name', date_established='$date', 
+                      email='$email', contact_number='$num', description='$description'
+                  WHERE org_id='$orgId';";
+        
+        return $db->save($query);
+    }
 }
