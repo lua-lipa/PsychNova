@@ -160,7 +160,7 @@ $recommendedVacancies = $vacancy->suggestedVacancies($_SESSION['userid']);
 
           <div class="media-card">
             <div class="media">
-              <img src="<?php echo $postUserData['profile_picture'] ?>" width="64" height="64" class="mr-3" alt="...">
+              <img src="<?php echo $postUserData['profile_picture'] ?>" width="64" height="64" class="rounded-circle mr-3" alt="...">
               <div class="media-body">
                 <div class="post-user-title">
                   <h5 class="mt-0"><a style="color: #A58AAE; text-decoration: none;" href="profile.php?userid=<?php echo $postUserData['user_id'] ?>" type="submit" name="view"><?php echo $postUserData['first_name'] . " " . $postUserData['last_name'] ?></a></h5>
