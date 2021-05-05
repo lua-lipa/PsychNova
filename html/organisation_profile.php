@@ -91,10 +91,10 @@ $recommendedVacancies = $vacancy->suggestedVacancies($_SESSION['userid']);
 <div class="container mt-3">
     <div class="main-page">
         <div class="row">
-            <div class="col-sm-9 pr-5">
+            <div class="col-lg-9 pr-5">
                 <div class="row card-profile">
                     <div class="col-3 d-flex justify-content-center align-items-center">
-                        <img src="<?php echo $organisationData['profile_picture'] ?>" width="60" height="60" class=" rounded-circle" alt="..." />
+                        <img src="<?php echo $organisationData['profile_picture'] ?>" class="img-fluid img-circle" alt="..." />
                     </div>
                     <div class="col-6 pl-3 d-flex justify-content-center align-items-start flex-column">
                         <div class="row">
@@ -109,7 +109,7 @@ $recommendedVacancies = $vacancy->suggestedVacancies($_SESSION['userid']);
                                         </div>
                                         <form action="" method="POST">
                                             <div class="modal-body">
-                                                <label for="name" style="color:black">Name</label> <input class="form-control" type="text" name="name" style="border-radius:5px;" value=<?php echo $organisationData['name'] ?> />
+                                                <label for="name" style="color:black">Name</label> <input class="form-control" type="text" name="name" style="margin-bottom:10px; height: 50px; width:95%; border-radius:5px;" maxlength="200" value=<?php echo $organisationData['name'] ?> />
                                                 <br>
                                                 <label for="dateEstablished" style="color:black">Date Established</label> <input class="form-control" type="date" name="dateEstablished" style="border-radius:5px;" value="<?php echo $organisationData['date_established'] ?>" />
                                                 <br>
