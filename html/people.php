@@ -117,7 +117,7 @@ $connectedUsersData = $connections->getUserConnections($_SESSION['userid']);
                                 <img src="<?php echo $pendingConnectionUserData['profile_picture'] ?>" class="rounded-circle" alt="..." width="64" height="64">
                             </div>
                             <div class="col-6 result-card-content">
-                                <h6 class="yourOrgname"><a style="color: #A58AAE; text-decoration: none;" class="yourOrgname" href="userprofile.php?id=<?php echo $pendingConnectionUserData['user_id'] ?>" type="submit" name="view"> <?php echo $pendingConnectionUserData['first_name'] .  " " . $pendingConnectionUserData['last_name'] ?></a></h6>
+                                <h6 class="yourOrgname"><a style="color: #A58AAE; text-decoration: none;" class="yourOrgname" href="profile.php?userid=<?php echo $pendingConnectionUserData['user_id'] ?>" type="submit" name="view"> <?php echo $pendingConnectionUserData['first_name'] .  " " . $pendingConnectionUserData['last_name'] ?></a></h6>
                             </div>
                             <div class="col-4">
                                 <form action="" method="POST">
