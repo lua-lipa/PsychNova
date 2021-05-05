@@ -66,7 +66,7 @@ class User
                       date_of_birth='$dateOfBirth', description='$description'
                   WHERE user_id='$userId';";
 
-        
+
         return $db->save($query);
     }
 
@@ -102,7 +102,14 @@ class User
 
     public function unbanUser($userId)
     {
-        $query = "DELETE FROM banned_user WHERE user_id = '$userId'";
+        $query = "DELETE FROM banned_users WHERE user_id = '$userId'";
+        $db = new Database();
+        return $db->save($query);
+    }
+
+    public function banUser($userId)
+    {
+        $query = "INSERT INTO banned_users(user_id) VALUES $userId";
         $db = new Database();
         return $db->save($query);
     }

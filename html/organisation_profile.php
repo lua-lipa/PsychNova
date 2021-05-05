@@ -97,7 +97,7 @@ $organisationVacancies = $vacancy->getVacanciesOrg($org_id);
         <div class="row">
             <div class="col-sm-9 pr-5">
                 <div class="row card-profile">
-                    <div class="col-3">
+                    <div class="col-3 d-flex justify-content-center align-items-center">
                         <img src="<?php echo $organisationData['profile_picture'] ?>" class="img-circle" />
                     </div>
                     <div class="col-9">
