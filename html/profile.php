@@ -277,7 +277,7 @@ if (!$userData) header("location: login.php");
                                             <div class="form-group">
                                                 <!-- DROP DOWN -->
                                                 <label id="searchLabel" for="organisation" style="color:black">Organisation *</label>
-                                                <input autocomplete="off" class="form-control" value="" id="search" type="search" placeholder="" name="organisation">
+                                                <input onkeyup=autoComplete() autocomplete="off" class="form-control" value="" id="search" type="search" placeholder="" name="organisation">
                                                 <div class="list-group" id="show-list">
                                                     <!-- <a href="#" class="list-group-item list-group-item-action">List 1</a> -->
                                                 </div>
@@ -299,6 +299,9 @@ if (!$userData) header("location: login.php");
                                     </form>
                                     <script type="text/javascript">
                                         let orgId
+                                        function autoComplete() {
+
+                                        }
                                         $(document).ready(function() {
                                             $("#search").keyup(function() {
                                                 $("#searchLabel").text("Organisation *")
@@ -350,7 +353,7 @@ if (!$userData) header("location: login.php");
 
                         foreach ($employmentHistoryJoinOrganisation as $key => $value) {
                             // echo "<pre>";
-                            // print_r($userQualificationData);
+                            // print_r($employmentHistoryJoinOrganisation);
                             // echo "</pre>";
                             $id = "employmentModal" . $value['emp_his_id'];
                         ?>
@@ -404,17 +407,7 @@ if (!$userData) header("location: login.php");
                                                     <form action="" method="POST">
                                                         <div class="form-group">
                                                             <!-- DROP DOWN -->
-                                                            <label id="searchLabel" for="organisation" style="color:black">Organisation *</label>
-                                                            <input autocomplete="off" class="form-control" id="search" type="search" placeholder="" name="organisation" value="<?php if ($value['org_id'] == 0) {
-                                                                                                                                                                                    echo $value['organisation_name'];
-                                                                                                                                                                                } else {
-                                                                                                                                                                                    echo $value['name'];
-                                                                                                                                                                                } ?>">
-                                                            <div class="list-group" id="show-list">
-                                                                <!-- <a href="#" class="list-group-item list-group-item-action">List 1</a> -->
-                                                            </div>
                                                             <input name="orgId" id="orgId" type="hidden">
-                                                            <br>
                                                             <label for="position" style="color:black">Position *</label>
                                                             <input class="form-control" type="text" name="position" style="border-radius:5px;" value="<?php echo $value['position'] ?>" />
                                                             <br>
