@@ -90,7 +90,7 @@ $recommendedVacancies = $vacancy->suggestedVacancies($_SESSION['userid']);
 
 
 ?>
-
+<!DOCTYPE html>
 <html>
 
 <head>
