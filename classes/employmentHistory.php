@@ -20,9 +20,8 @@ class employmentHistory
     {
         $query = "SELECT employment_history.emp_his_id, employment_history.user_id, employment_history.org_id, employment_history.start_date, employment_history.end_date, employment_history.position, employment_history.organisation_name, organisation.name
                     FROM employment_history, organisation
-                    WHERE employment_history.user_id = '" . $userId . "'
+                    WHERE employment_history.user_id = '" . $userId . "' AND organisation.org_id = employment_history.org_id
                     GROUP BY employment_history.emp_his_id";
-
 
         $db = new Database();
         return $db->read($query);
