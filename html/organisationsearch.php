@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 $searchResults = null;
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $search = new Search();
-    $searchResults = $search->searchUsers($_GET);
+    $searchResults = $search->searchOrganisations($_GET);
 }
 
 
@@ -61,34 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             <div class="col-3"></div>
             <div class="col-lg-6">
 
-                <!-- filters -->
-                <div class="filters-wrapper">
-                    <form action="" method="GET" class="form-inline">
-                        <div class="form-group">
-                            <select class="form-control skill-form" onchange='this.form.submit()' name="skill">
-                                <option value="" selected disabled hidden>Skill</option>
-                                <?php foreach ($skillsData as $key => $value) {
-                                    if ($key == $_GET['skill']) {
-                                ?>
-                                        <option selected value="<?php echo $key ?>"><?php echo $value['title'] ?></option>
-                                    <?php
-                                    } else {
-                                    ?>
-                                        <option value="<?php echo $key ?>"><?php echo $value['title'] ?></option>
-                                <?php
-                                    }
-                                }
-                                ?>
-                            </select>
-                            <input type="hidden" name="name" value="<?php echo $_GET['name'] ?>" />
-                            <noscript><input type="submit" value="Submit"></noscript>
-                            <input class="form-control mr-sm-2" value="<?php if(isset($_GET['company'])) echo $_GET['company']; ?>" type="search" placeholder="Companies worked for" name="company">
-                        </div>
-
-                        
-                    </form>
-                </div>
-
+        
 
                 <?php
 
@@ -111,10 +84,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                                 </div>
                                 <div class="col-9">
                                     <div class="row">
-                                        <h6 class="mt-0"><a style="color: #A58AAE" href="profile.php?userid=<?php echo $value['user_id'] ?>" type="submit" name="view"><?php echo $value['first_name'] . " " . $value['last_name'] ?></a></h6>
+                                        <h6 class="mt-0"><a style="color: #A58AAE" href="organisation_profile.php?id=<?php echo $value['org_id'] ?>" type="submit" name="view"><?php echo $value['name'] ?></a></h6>
                                     </div>
                                     <div class="row">
-                                        <h7><?php echo $value['profession'] ?></h7>
+                                        <h7><?php echo $value['description'] ?></h7>
                                     </div>
                                 </div>
                             </div>

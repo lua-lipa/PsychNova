@@ -21,7 +21,7 @@ class Search
     }
 
     public function searchUsers($get) {
-        $query = "SELECT user.user_id, user.first_name, user.last_name, user.profession, user_skills.skill_id, employment_history.org_id, organisation.name
+        $query = "SELECT user.user_id, user.first_name, user.last_name, user.profile_picture, user.profession, user_skills.skill_id, employment_history.org_id, organisation.name
         FROM user, user_skills, employment_history, organisation
         WHERE user.first_name LIKE '%" . $get['name'] . "%' ";
 
@@ -32,7 +32,7 @@ class Search
         if(!empty($get['company'])) {
             $query .= " AND employment_history.user_id = user.user_id
                         AND organisation.org_id = employment_history.org_id 
-                        AND organisation.name LIKE '" . $get['company'] . "'";
+                        AND organisation.name LIKE '%" . $get['company'] . "%'";
         }
         $query .= "GROUP BY user.user_id ";
 
@@ -81,10 +81,12 @@ class Search
         return $db->read($query);
     }
 
-    public function searchOrganisations($searchInput)
+    public function searchOrganisations($data)
     {
+        
         $query = "SELECT * FROM organisation WHERE
-                    name LIKE '%$searchInput'";
+                    name LIKE '%" . $data['name'] . "%'";
+
         $db = new Database();
         return $db->read($query);
     }
