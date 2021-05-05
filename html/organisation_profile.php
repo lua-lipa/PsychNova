@@ -21,25 +21,22 @@ if (isset($_POST['deleteVacancy'])) {
 $org_id = $_GET['id'];
 $organisation = new organisation();
 
-$newSkills = array();
 if (isset($_POST['updateVacancy'])) {
     $vacancy = new vacancy();
-
     $vacancy->removeAllVacancySkills($_POST);
     foreach ($_POST['selectedSkills'] as $selected) {
-        array_push($newSkills, $selected);
         $vacancy->addVacancySkills($_POST, $selected);
     }
 }
 
 if (isset($_POST['addVacancy'])) {
     $vacancy = new vacancy();
+    $add = $vacancy->addVacancy($_GET['id'], $_POST);
 
-    $vacancy->removeAllVacancySkills($_POST);
-    foreach ($_POST['selectedSkills'] as $selected) {
-        array_push($newSkills, $selected);
-        $vacancy->addVacancySkills($_POST, $selected);
-    }
+    //$vacancy->removeAllVacancySkills($_POST);
+    //foreach ($_POST['selectedSkills'] as $selected) {
+        //$vacancy->addVacancySkills($_POST, $selected);
+    //}
 }
 
 if (isset($_POST['updateAbout'])) {
@@ -61,15 +58,6 @@ $qualification = new Qualification();
 $userQualificationData = $qualification->getUserQualificationData($_SESSION['userid']);
 $allQualifications = $qualification->getAllQualificationData();
 
-$newSkills = array();
-if (isset($_POST['updateSkills'])) {
-    $userSkills = new userSkills();
-    $userSkills->removeAllSkills($_SESSION['userid']);
-    foreach ($_POST['selectedSkills'] as $selected) {
-        array_push($newSkills, $selected);
-        $userSkills->addUserSkill($_SESSION['userid'], $selected);
-    }
-}
 
 $userSkills = new userSkills();
 $userSkillsData = $userSkills->getUserSkills($_SESSION['userid']);
@@ -205,7 +193,6 @@ $recommendedVacancies = $vacancy->suggestedVacancies($_SESSION['userid']);
                                             <label for="description" style="color:black">Description *</label><input class="form-control" type="text" name="description" style="margin-bottom:10px; height: 50px; width:95%; border-radius:5px;" maxlength="200" value='' />
                                             <?php ?>
                                             <label for="requiredSkills" style="color:black">Required Skills *</label>
-                                            <input type="hidden" name="vacancyId" value='<?php echo $value_1['vacancy_id'] ?>' />
                                             <div class="form-group">
                                                 <?php
                                                 foreach ($allSkillsData as $key => $value) {
