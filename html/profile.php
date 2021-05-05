@@ -52,6 +52,11 @@ if (isset($_POST['deleteQualification'])) {
     $qualification = new Qualification();
     $qualification->deleteQualification($_GET['userid'], $_POST);
 }
+
+if (isset($_POST['connectButton'])) {
+    $connections->sendConnectionRequest($_SESSION['userid'], $_GET['userid']);
+}
+
 // echo "<pre>";
 // print_r($_POST['updateQualification']);
 // echo "</pre>";
@@ -190,10 +195,16 @@ if (!$userData) header("location: login.php");
 
 
                             <div class="row d-flex justify-content-end align-items-end">
-                                <button type="button" name="connectButton" style="margin-bottom: 15px; margin-right: 15px; margin-top: 10px; background-color: #ffffff; color: #000000; height: 35px; border-color: #876e8f; border-radius:50px;" class="btn btn-primary" data-toggle="modal" data-target="#editAboutModal">
-                                    Connect
-                                </button>
+                                <?php if (count($connections->areConnected($_GET['userid'], $_SESSION['userid'])) == 0 && $_GET['userid'] != $_SESSION['userid']) { ?>
+                                    <form action="" method="POST">
+                                        <button style="margin-bottom: 15px; margin-right: 15px; margin-top: 10px; background-color: #ffffff; color: #000000; height: 35px; border-color: #876e8f; border-radius:50px;" class="btn btn-primary" type="submit" name="connectButton" value="<?php $_GET['userid'] ?>">Connect</button>
+
+                                        <!-- <button type="button" name="connectButton" style="margin-bottom: 15px; margin-right: 15px; margin-top: 10px; background-color: #ffffff; color: #000000; height: 35px; border-color: #876e8f; border-radius:50px;" class="btn btn-primary">
+                                            Connect
+                                        </button> -->
+                                    </form>
                                 <?php
+                                }
                                 if ($userType == 'administrator') {
                                 ?>
                                     <button type="button" name="banButton" style="margin-bottom: 15px; margin-right: 15px; margin-top: 10px; background-color: #ffffff; color: #000000; height: 35px; border-color: #876e8f; border-radius:50px;" class="btn btn-primary">
