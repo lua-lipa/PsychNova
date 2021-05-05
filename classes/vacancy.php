@@ -111,7 +111,6 @@ class vacancy
         $query = "INSERT INTO vacancy_skills(vacancy_id, skill_id)
                     VALUES ($vacancyId, $skillId);";
 
-        echo $query;
         $db = new Database();
         return $db->save($query);
     }

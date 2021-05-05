@@ -9,8 +9,6 @@ class Search
         $searchInput = $data['searchinput'];
         $dropdownInput = $data['dropdowninput'];
 
-        echo $searchInput;
-
         if ($dropdownInput == "Users") {
             echo "users";
             return $this->searchUsers($searchInput);

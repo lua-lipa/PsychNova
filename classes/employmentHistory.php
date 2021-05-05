@@ -27,10 +27,9 @@ class employmentHistory
         return $db->read($query);
     }
 
-    public function deleteEmploymentHistory($data)
+    public function deleteEmploymentHistory($data, $userId)
     {
         $empHisId = $data['empHisId'];
-        $userId = $data['userId'];
 
         $query = "DELETE FROM employment_history WHERE user_id='$userId' AND emp_his_id='$empHisId';";
 

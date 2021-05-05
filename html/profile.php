@@ -40,7 +40,7 @@ if (isset($_POST['updateQualification'])) {
 
 if (isset($_POST['deleteEmploymentHistory'])) {
     $userEmploymentHistory = new employmentHistory();
-    $userEmploymentHistory->deleteEmploymentHistory($_POST);
+    $userEmploymentHistory->deleteEmploymentHistory($_POST, $_GET['userid']);
 }
 
 if (isset($_POST['addQualification'])) {
@@ -435,7 +435,7 @@ if (!$userData) header("location: login.php");
                                                     <form action="" method="POST">
                                                         <div class="form-group">
                                                             <!-- DROP DOWN -->
-                                                            <input name="orgId" id="orgId" type="hidden">
+                                                            <input name="empHisId" id="empHisId" value="<?php echo $value['emp_his_id'] ?>" type="hidden">
                                                             <label for="position" style="color:black">Position *</label>
                                                             <input class="form-control" type="text" name="position" style="border-radius:5px;" value="<?php echo $value['position'] ?>" />
                                                             <br>
