@@ -60,7 +60,7 @@ if (isset($_POST['connectWithUser'])) {
 
 if (isset($_POST['banUser'])) {
     $user = new User();
-    $user->banUser($_GET['userid']);
+    $user->banUser($_POST);
 }
 
 if (isset($_POST['unbanUser'])) {
@@ -191,6 +191,36 @@ if (!$userData) header("location: login.php");
                                 <p class="mr-3 mt-5" style="font-size: 18px;"><i class="bi bi-moon" style="color:white"></i> Taurus</p>
                             </div> -->
                         </div>
+                        <div class="row">
+                            <div class="modal fade" id="banModal" tabindex="-1" role="dialog">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" style="color:black">Ban User</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <form action="" method="POST">
+                                            <div class="modal-body">
+                                                <label for="firstName" style="color:black">First name</label> <input class="form-control" type="text" name="firstName" style="border-radius:5px;" value=<?php echo $userData['first_name'] ?> required/>
+                                                <br>
+                                                <label for="lastName" style="color:black">Last name</label> <input class="form-control" type="text" name="lastName" style="border-radius:5px;" value=<?php echo $userData['last_name'] ?> required/>
+                                                <br>
+                                                <label for="reason" style="color:black">Reason for ban</label> <input class="form-control" type="text" name="reason" style="border-radius:5px;" maxlength="200" value=""/>
+                                                <br>
+                                                <label for="dateUnban" style="color:black">Date of Unban</label> <input class="form-control" type="date" name="dateOfUnban" style="border-radius:5px;" value="" required/>
+                                                <br>
+                                                <label for="userId" style="color:black">User ID</label> <input class="form-control" type="text" name="userId" style="margin-bottom:10px; height: 50px; width:95%; border-radius:5px;" maxlength="200" value="<?php echo $userData['user_id'] ?>" required/>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="submit" name="banUser" class="btn btn-primary" style="border-radius:15px; background-color: #a58aae; border-color:#876e8f">Ban User</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="col-3 d-flex flex-column justify-content-between">
                             <?php
                             if ($userType == 'administrator' || $_SESSION['userid'] == $_GET['userid']) {
@@ -204,7 +234,6 @@ if (!$userData) header("location: login.php");
                             }
                             ?>
 
-
                             <div class="row d-flex justify-content-end align-items-end">
                                 <?php if (count($connections->areConnected($_GET['userid'], $_SESSION['userid'])) == 0 && $_GET['userid'] != $_SESSION['userid']) { ?>
                                     <form action="" method="POST">
@@ -215,7 +244,7 @@ if (!$userData) header("location: login.php");
                                 if ($userType == 'administrator' && $_GET['userid'] != $_SESSION['userid'] && !$user->isBanned($_GET['userid'])) {
                                 ?>
                                     <form action="" method="POST">
-                                        <button style="margin-bottom: 15px; margin-right: 15px; margin-top: 10px; background-color: #ffffff; color: #000000; height: 35px; border-color: #876e8f; border-radius:50px;" class="btn btn-primary" type="submit" name="banUser" value=<?php echo $$_GET['userid'] ?>>Ban</button>
+                                        <button style="margin-bottom: 15px; margin-right: 15px; margin-top: 10px; background-color: #ffffff; color: #000000; height: 35px; border-color: #876e8f; border-radius:50px;" class="btn btn-primary" data-toggle="modal" data-target="#banModal" type="button">Ban</button>
                                     </form>
                                 <?php
                                 } else if ($user->isBanned($_GET['userid'])) {
@@ -227,7 +256,6 @@ if (!$userData) header("location: login.php");
                                 }
                                 ?>
                             </div>
-
                         </div>
                     </div>
                     <div class="row h-22 mt-3">

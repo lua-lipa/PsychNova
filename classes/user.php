@@ -107,10 +107,15 @@ class User
         return $db->save($query);
     }
 
-    public function banUser($userId)
+    public function banUser($data)
     {
+        $userId = $data['userId'];
+        $dataOfUnban = $data['dateOfUnban'];
+        $reason = $data['reason']; 
+        $d = new DateTime();
+        $now = $d->format('Y-m-d');
         $query = "INSERT INTO banned_users(user_id, reason, date_of_ban, date_of_unban) 
-                    VALUES ($userId, 'banned for inappropriate content', '2021-05-04', '2021-05-04')";
+                    VALUES ('$userId', '$reason', '$now', '$dataOfUnban')";
         $db = new Database();
         return $db->save($query);
     }
