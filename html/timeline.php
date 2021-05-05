@@ -194,7 +194,7 @@ $recommendedVacancies = $vacancy->suggestedVacancies($_SESSION['userid']);
           <h class="connections-title" style="text-align:center; font-size: 12px"><b>Recommended Vacancies</b></h>
           <br>
           <?php if (count($recommendedVacancies) == 0) { ?>
-            <p style="text-align:center">No vacancies to show</p><br>
+            <p style="text-align:center">No vacancies to show yet.</p><br>
             <?php
           } else {
             $numberOfVacanciesDisplayed = 0;
