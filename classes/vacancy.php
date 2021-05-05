@@ -21,7 +21,8 @@ class vacancy
     {
         $title = $data['title'];
         $description = $data['description'];
-        $dateCreated = $data['dateCreated'];
+        $d = new DateTime();
+        $dateCreated = $d->format('Y-m-d');
 
         $query = "INSERT INTO vacancy (title, description, date_created, org_id) 
                 VALUES ('$title', '$description', '$dateCreated', '$orgId');";

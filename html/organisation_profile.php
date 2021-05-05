@@ -193,8 +193,6 @@ $recommendedVacancies = $vacancy->suggestedVacancies($_SESSION['userid']);
                                     </div>
                                     <div class="modal-body">
                                         <form action="" method="POST">
-                                            <label for="dateCreated" style="color:black">Date Created *</label> <input class="form-control" type="date" name="dateCreated" style="border-radius:5px;" value='' />
-                                            <br>
                                             <label for="title" style="color:black">Title *</label><input class="form-control" type="text" name="title" style="border-radius:5px;" value='' />
                                             <br>
                                             <label for="description" style="color:black">Description *</label><input class="form-control" type="text" name="description" style="margin-bottom:10px; height: 50px; width:95%; border-radius:5px;" maxlength="200" value='' />
