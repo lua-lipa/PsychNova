@@ -140,7 +140,7 @@ if (!$userData) header("location: login.php");
                 <div class="col-lg-9 pr-5">
                     <div class="row card-profile">
                         <div class="col-3 d-flex justify-content-center align-items-center">
-                            <img src="<?php echo $userData['profile_picture'] ?>" class="img-fluid img-circle" />
+                            <img src="<?php echo $userData['profile_picture'] ?>" class="img-circle rounded-circle" />
                         </div>
                         <div class="col-6 pl-3 d-flex justify-content-center align-items-start flex-column">
                             <div class="row">

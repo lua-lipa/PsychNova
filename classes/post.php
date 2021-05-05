@@ -12,7 +12,8 @@ class Post
 
     public function sendPost($userId, $data)
     {
-        $post = $data['postcontent'];
+        $db = new Database();
+        $post = $db->validateInput($data['postcontent']);
 
         $query = "INSERT INTO posts 
                     (user_id, post, date_of_post, time_of_post) 
@@ -20,7 +21,7 @@ class Post
                     ('$userId', '$post', 'CURRDATE()', 'CURRTIME()')";
 
 
-        $db = new Database();
+        
         return $db->save($query);
     }
 
