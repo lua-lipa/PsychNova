@@ -106,7 +106,7 @@ $recommendedVacancies = $vacancy->suggestedVacancies($_SESSION['userid']);
             <div class="col-sm-9 pr-5">
                 <div class="row card-profile">
                     <div class="col-3 d-flex justify-content-center align-items-center">
-                        <img src="<?php echo $organisationData['profile_picture'] ?>" class="img-circle" />
+                        <img src="<?php echo $organisationData['profile_picture'] ?>" width="60" height="60" class=" rounded-circle" alt="..." />
                     </div>
                     <div class="col-6 pl-3 d-flex justify-content-center align-items-start flex-column">
                         <div class="row">
