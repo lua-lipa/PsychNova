@@ -93,6 +93,17 @@ class Database
         $conn = $this->connect();
         return mysqli_real_escape_string($conn, $query);
     }
+
+    public function saveAndReturnId($query) {
+        $conn = $this->connect();
+        $result = mysqli_query($conn, $query);
+
+        if (!$result) {
+            return false;
+        } else {
+            return mysqli_insert_id($conn);
+        }
+    }
 }
 
 /*

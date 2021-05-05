@@ -38,7 +38,7 @@ $recommendedVacancies = $vacancy->suggestedVacancies($_SESSION['userid']);
                 <?php
 
                 if (empty($recommendedVacancies)) {
-                    echo "no search results";
+                    echo "No suggestions yet. Try adding some skills to your profile!";
                 } else {
 
 
@@ -58,7 +58,7 @@ $recommendedVacancies = $vacancy->suggestedVacancies($_SESSION['userid']);
                                             <h5><?php echo $value['title'] ?></h5>
                                         </div>
                                         <div class="row">
-                                            <h8><a style="color: black; text-decoration: none;" href="organisation_profile.php?id=<?php echo $value['org_id']?>" type="submit" name="view"><?php echo $orgData['name'] ?></a></h7>
+                                            <h8><a style="color: black; text-decoration: none;" href="organisation_profile.php?id=<?php echo $value['org_id'] ?>" type="submit" name="view"><?php echo $orgData['name'] ?></a></h7>
                                         </div>
                                         <div class="row result-card-date">
                                             <h9><?php echo $value['date_created'] ?></h9>
@@ -66,6 +66,7 @@ $recommendedVacancies = $vacancy->suggestedVacancies($_SESSION['userid']);
                                         <div class="row result-card-description">
                                             <h7><?php echo $value['description'] ?></h7>
                                         </div>
+<<<<<<< HEAD
                                         <div class="row result-card-date">
                                             <h9 class="mt-3">Required Skills</h9><br>
                                         </div>
@@ -81,8 +82,11 @@ $recommendedVacancies = $vacancy->suggestedVacancies($_SESSION['userid']);
                                             }
                                             ?>
                                         </div>
+=======
+
+>>>>>>> 95ee275008926eeaaafbe0b389871fd1c2566033
                                     </div>
-                                    
+
                                 </div>
                                 <div class="col">
                                     <a href="mailto:<?php echo str_replace(' ', '', $orgData['name']) ?>@psychnova.com?subject=Job Application" class="btn float-right" target="https://jobs.ie/" rel="noopener noreferrer">Apply</a>
