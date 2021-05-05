@@ -71,3 +71,29 @@ html {
 .skill-form {
     min-width: 200px;
 }
+
+.skills {
+    padding-right: 3px;
+    padding-top: 3px;
+}
+
+.skills .badge-skill {
+    background-color: #876e8f;
+    color: #ffffff;
+    text-align: center;
+    font-size: 12px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    width: auto;
+    border-radius: 10px;
+    border-color: #876e8f;
+    border-width: 0px;
+}
+
+.no-skills{
+  margin-left: 15px;
+  padding-right: 20px;
+  font-size: 14px;
+}

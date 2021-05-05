@@ -13,6 +13,7 @@ if (!isset($_SESSION['userid'])) {
 
 $skill = new Skill();
 $skillsData = $skill->getAllSkills();
+$vacancy = new vacancy();
 
 
 $searchResults = null;
@@ -116,7 +117,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                                         <div class="row result-card-description">
                                             <h7><?php echo $value['description'] ?></h7>
                                         </div>
-                                        
+                                        <div class="row result-card-date">
+                                            <h9 class="mt-3">Required Skills</h9><br>
+                                        </div>
+                                        <div class="row">
+                                            <?php
+                                            $vacancySkillsData = $vacancy->vacancySkills($value['vacancy_id']);
+                                            foreach ($vacancySkillsData as $key => $value) {
+                                            ?>
+                                                <div class="skills" style="flex-wrap: wrap;">
+                                                    <span type="badge badge-primary" class="badge-skill" style="background-color: #876e8f;  margin-bottom:20px;"><?php echo $value['title'] ?> </span>
+                                                </div>
+                                            <?php
+                                            }
+                                            ?>
+                                        </div>
                                     </div>
                                     
                                 </div>
