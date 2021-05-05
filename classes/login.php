@@ -29,7 +29,8 @@ class Login
                     $unbanResult = $DB->save($removeBan);
                 }else{
                     $unbanDate = $banned['date_of_unban'];
-                    $this->error .= "You have been banned for violating our guidelines. You will be unbanned on $unbanDate";
+                    $reason = $banned['reason'];
+                    $this->error .= "You have been banned for the following reason: $reason. You will be unbanned on $unbanDate";
                 }
             }else{
                 if ($password == $result['password']) {
